@@ -1,9 +1,9 @@
-import './App.css';
+import React from 'react';
 import CardHome from './components/CardHome';
 
 function App() {
   return (
-    <div className="App">
+    <div>
     <CardHome/>
     </div>
   );
