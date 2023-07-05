@@ -4,8 +4,14 @@ module.exports = {
      "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        darkBlue: "#172554",
+        mediumBlue: "#1D4ED8",
+        rose: "#E11D48"
+      },
+    },
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin.cjs")],
 }
 
