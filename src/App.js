@@ -1,6 +1,6 @@
 import React from 'react';
 import CardHome from './components/CardHome';
-import HomeFooter from './components/HomeFooter';
+import Footer from './components/Footer';
 import Header from './components/Header';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
     <Header/>
     <CardHome/>
-    <HomeFooter/>
+    <Footer/>
     </div>
   );
 }
