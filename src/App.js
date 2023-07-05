@@ -1,12 +1,12 @@
 import React from 'react';
 import CardHome from './components/CardHome';
-import HomeFooter from './components/HomeFooter';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div>
     <CardHome/>
-    <HomeFooter/>
+    <Footer/>
     </div>
   );
 }
