@@ -14,13 +14,9 @@ const Header = () => {
 
   return (
     
-    <div className="mx-auto container py-8">
-       <Select 
-        options={Cities} 
-        closeMenuOnSelect={false}
-        isMulti
-        placeholder="Select City "
-       />
+    <div className=" bg-cover mx-auto py-8 h-screen w-full " style={{backgroundImage: "url(https://www.canberratimes.com.au/images/transform/v1/crop/frm/8WgcxeQ6swJGymJT6BMGEL/492aa436-ee5c-466e-bf9d-40e38eb8aee7.jpg/r0_960_6000_4333_w1200_h678_fmax.jpg)"}} >
+       
+       
     </div>
   )
 }
