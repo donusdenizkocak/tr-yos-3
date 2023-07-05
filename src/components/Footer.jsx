@@ -5,7 +5,7 @@ const Footer = () => {
     <>
     <div className="h-full bg-darkBlue grid grid-cols-3 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10">
         <div className='p-11'>
-            <p className='text-white pb-2 text-sm w-52 py-2 px-3 mb-3'>Adress: 1600 Amphitheatre Parkway Mountain View, CA 94043, USA.</p>
+            <p className='text-white pb-2 text-sm w-52 py-2 px-3 mb-3'>1600 Amphitheatre Parkway Mountain View, CA 94043, USA.</p>
             <p className="bg-mediumBlue text-white rounded-full italic font-bold w-52 py-2 px-4 mb-3"><span>P</span> +90 555 333 55 33</p>
             <p className="bg-mediumBlue text-white rounded-full font-bold w-52 py-2 px-4"><span>M</span> info@tryös.com</p>
         </div>
