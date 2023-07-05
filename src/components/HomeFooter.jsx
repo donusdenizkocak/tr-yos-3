@@ -18,6 +18,7 @@ const HomeFooter = () => {
             <p className='pb-2'><a className='text-darkBlue text-sm font-medium' href="">Checkout</a></p>
             <p className='pb-2'><a className='text-darkBlue text-sm font-medium' href="">Contact</a></p>
             <p className='pb-2'><a className='text-darkBlue text-sm font-medium' href="">Blog</a></p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam doloremque minus tempora. Eveniet recusandae quasi quibusdam eligendi omnis iste cumque unde ad aperiam sed! Beatae impedit aut ipsam soluta unde natus omnis incidunt, corporis laborum eligendi quia magni fugit atque nisi nesciunt nostrum deleniti repudiandae! Repudiandae quia minima fugiat necessitatibus laboriosam. Incidunt dicta pariatur consequatur harum ipsa et optio suscipit exercitationem! Totam iste similique delectus ducimus laborum commodi tenetur nobis quasi vero accusamus, tempora odit quis recusandae. Unde minus velit, quos sapiente fugit quasi odit dolorem dolorum iste qui fugiat corrupti nisi dicta autem, quo, animi totam eligendi dolor laboriosam.</p>
         </div>
 
 
