@@ -22,7 +22,7 @@ const HomeNavbar = () => {
 
  
   return (
-    <nav id="header" className={`w-full  z-30 top-0 py-3 bg-opacity-100 shadow-lg border-b border-blue-700  ${isScrolled ? 'bg-white fixed sticky' : "bg-[darkBlue]"}`}>
+    <nav id="header" className={`w-full  z-30 top-0 py-3 bg-opacity-100 shadow-lg border-b border-blue-700  ${isScrolled ? 'bg-white fixed' : "bg-[darkBlue]"}`}>
     <div className="w-full flex items-center justify-between mt-0 px-6 py-2">
       <label htmlFor="menu-toggle" className="cursor-pointer md:hidden block">
         <svg className="fill-current text-blue-600" xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 20 20">
