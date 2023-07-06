@@ -34,7 +34,7 @@ const HomeNavbar = () => {
       <div className="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
         <nav>
           <ul className="md:flex items-center justify-between text-base text-white pt-4 md:pt-0">
-            <li><a className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2" href="home">HomePage </a></li>
+            <li><a className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2" href="home">HomePage </a></li>
             <li><a className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2" href="products">Universites</a></li>
             <li><a className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2" href="about">Departments</a></li>
           </ul>
