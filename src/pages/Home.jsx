@@ -1,10 +1,11 @@
-import CardHome from "../components/CardHome";
+
+import CardHomeIntro from "../components/CardHomeIntro";
 import Header from "../components/Header";
 
 const Home = () => {
   return (<div>
      <Header />
-     <CardHome />
+     <CardHomeIntro />
   </div>);
 };
 
