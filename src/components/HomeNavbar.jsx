@@ -56,7 +56,7 @@ const HomeNavbar = () => {
               </li>
               <li>
                 <a
-                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
+                  className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
                   href="products"
                 >
                   Universites
@@ -64,7 +64,7 @@ const HomeNavbar = () => {
               </li>
               <li>
                 <a
-                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
+                  className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
                   href="about"
                 >
                   Departments
@@ -78,10 +78,10 @@ const HomeNavbar = () => {
           id="nav-content"
         >
           <div className="auth flex items-center w-full md:w-full">
-            <Link>
-              <button className="bg-white text-gray-800 w-20 p-2 rounded  mr-4 hover:bg-blue-500 hover:text-white">
-                Sign in
-              </button>
+            <Link className={`bg-blue-600 text-gray-800 w-20 p-2 rounded  mr-4 hover:bg-blue-500 hover:text-white text-center ${
+        isScrolled ? "bg-blue-600 text-white" : "bg-white"
+      }`}>
+              Sing İn
             </Link>
 
             <button className="bg-rose text-gray-200 w-20 p-2 rounded  hover:bg-blue-500 hover:text-white">
