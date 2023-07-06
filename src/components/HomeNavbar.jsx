@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-
+import Link from "react-router-dom"
 const HomeNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -42,7 +42,10 @@ const HomeNavbar = () => {
       </div>
       <div className="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4" id="nav-content">
         <div className="auth flex items-center w-full md:w-full">
+          <Link>
           <button className="bg-white text-gray-800 w-20 p-2 rounded  mr-4 hover:bg-blue-500 hover:text-white">Sign in</button>
+          </Link>
+          
           <button className="bg-rose text-gray-200 w-20 p-2 rounded  hover:bg-blue-500 hover:text-white">Sign up</button>
         </div>
       </div>

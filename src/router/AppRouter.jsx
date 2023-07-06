@@ -1,6 +1,6 @@
 import Footer from "./components/Footer";
 import HomeNavbar from "./components/HomeNavbar";
-import CardUniversities from "./components/CardUniversities";
+
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 

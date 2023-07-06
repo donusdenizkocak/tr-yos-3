@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from "react-select";
+import HomeNavbar from './HomeNavbar';
 
 
 const Cities = [
@@ -28,6 +29,7 @@ const Header = () => {
 
   return (
     <div>
+      <HomeNavbar/>
     <div className='flex justify-center items-center'>
     <h1>Education</h1>
     </div>
