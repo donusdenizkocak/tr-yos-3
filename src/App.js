@@ -1,19 +1,12 @@
-import React from 'react';
-import CardHome from './components/CardHome';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import HomeNavbar from './components/HomeNavbar';
-import CardUniversities from './components/CardUniversities';
+
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
-    <div>
-      <HomeNavbar/>
-    <Header/>
-    <CardHome/>
-    <Footer/>
-    <CardUniversities/>
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 
