@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const HomeNavbar = () => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const HomeNavbar = () => {
                   className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
                   href="home"
                 >
-                  HomePage{" "}
+                  Home
                 </a>
               </li>
               <li>
@@ -78,9 +78,11 @@ const HomeNavbar = () => {
           id="nav-content"
         >
           <div className="auth flex items-center w-full md:w-full">
-            <Link className={`bg-blue-600 text-gray-800 w-20 p-2 rounded  mr-4 hover:bg-blue-500 hover:text-white text-center ${
-        isScrolled ? "bg-blue-600 text-white" : "bg-white"
-      }`}>
+            <Link to="/login"
+              className={`bg-blue-600 text-gray-800 w-20 p-2 rounded  mr-4 hover:bg-blue-500 hover:text-white text-center ${
+                isScrolled ? "bg-blue-600 text-white" : "bg-white"
+              }`}
+            >
               Sing İn
             </Link>
 
@@ -94,4 +96,4 @@ const HomeNavbar = () => {
   );
 };
 
-export default HomeNavbar;
+export default Navbar;

@@ -1,13 +1,12 @@
-import React from "react";
-import universty from "../assets/images/universty.jpg";
+// import universty from "../assets/images/universty.jpg";
 
-const CardUniversities = () => {
+const CardUniversites = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-20 mt-20 mb-6">
 
         <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-          <img  src={universty} alt="" />
+          <img  src="" alt="" />
         </div>
 
 
@@ -35,4 +34,4 @@ const CardUniversities = () => {
   );
 };
 
-export default CardUniversities;
+export default CardUniversites;

@@ -1,6 +1,6 @@
 import React from 'react'
  import CardHome from './CardHome'
-import data from '../helper/data'
+import data from '../../helper/data'
  const CardHomeIntro = () => {
   
   return (
