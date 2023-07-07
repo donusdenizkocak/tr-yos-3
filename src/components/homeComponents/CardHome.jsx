@@ -9,9 +9,6 @@ import React from 'react'
       <a href="#">
           <img className="rounded-t-lg w-96 h-36" src={image} alt="image" />
       </a>
-
-     
-
    <div>
    <div className='relative h-5'> 
           <svg className=" w-32 h-7 absolute top-2 -right-7  text-gray-400" aria-hidden="true"
