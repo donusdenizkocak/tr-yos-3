@@ -1,7 +1,6 @@
 const HomeAction = () => {
   return (
     <div className="border border-collapse bg-blue-600 px-80 py-20">
-      <div>
         <div className="flex-1  justify-center items-center text-white ">
           <h1 className="font-extrabold text-center text-xl">
             Are You Already Working With Us?
@@ -33,7 +32,6 @@ const HomeAction = () => {
             </button>
           </div>
         </div>
-      </div>
     </div>
   );
 };
