@@ -47,28 +47,29 @@ const Navbar = () => {
           <nav>
             <ul className="md:flex items-center justify-between text-base text-white pt-4 md:pt-0">
               <li>
-                <a
+                <Link
+                  to="/"
                   className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
-                  href="home"
+                  
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
+                  to="/universites"
                   className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
-                  href="products"
                 >
                   Universites
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
+                  to="/departments"
                   className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
-                  href="about"
                 >
                   Departments
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -78,7 +79,8 @@ const Navbar = () => {
           id="nav-content"
         >
           <div className="auth flex items-center w-full md:w-full">
-            <Link to="/login"
+            <Link
+              to="/login"
               className={`bg-blue-600 text-gray-800 w-20 p-2 rounded  mr-4 hover:bg-blue-500 hover:text-white text-center ${
                 isScrolled ? "bg-blue-600 text-white" : "bg-white"
               }`}
