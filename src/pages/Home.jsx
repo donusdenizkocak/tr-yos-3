@@ -1,12 +1,15 @@
-
-import CardHomeIntro from "../components/CardHomeIntro";
-import Header from "../components/Header";
+// import Header from "../components/homeComponents/Header";
+import CardHomeIntro from "../components/homeComponents/CardHomeIntro";
+import Header2 from "../components/homeComponents/Header2";
 
 const Home = () => {
-  return (<div>
-     <Header />
-     <CardHomeIntro />
-  </div>);
+  return (
+    <>
+      <Header2/>
+      {/* <Header /> */}
+      <CardHomeIntro />
+    </>
+  );
 };
 
 export default Home;
