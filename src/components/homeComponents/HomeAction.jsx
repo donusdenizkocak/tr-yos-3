@@ -33,7 +33,6 @@ const HomeAction = () => {
             </button>
           </div>
         </div>
-      </div>
     </div>
   );
 };
