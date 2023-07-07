@@ -53,13 +53,13 @@ const Header2 = () => {
             justifyContent: "center",
             alignItems: "center",
             opacity: ".8",
+            background:
+              "url(https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg)",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
           }}
-        >
-          <img
-            src="https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg"
-            alt=""
-          />
-        </SwiperSlide>
+        ></SwiperSlide>
         <SwiperSlide
           style={{
             textAlign: "center",
@@ -68,13 +68,13 @@ const Header2 = () => {
             justifyContent: "center",
             alignItems: "center",
             opacity: ".8",
+            background:
+              "url(https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg)",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
           }}
-        >
-          <img
-            src="https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg"
-            alt=""
-          />
-        </SwiperSlide>
+        ></SwiperSlide>
         <SwiperSlide
           style={{
             textAlign: "center",
@@ -83,13 +83,13 @@ const Header2 = () => {
             justifyContent: "center",
             alignItems: "center",
             opacity: ".8",
+            background:
+              "url(https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg)",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
           }}
-        >
-          <img
-            src="https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg"
-            alt=""
-          />
-        </SwiperSlide>
+        ></SwiperSlide>
 
         <div
           className="absolute  z-50"
