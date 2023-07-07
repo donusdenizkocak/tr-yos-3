@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav
       id="header"
       className={`w-full  z-30 top-0 py-3 bg-opacity-100 shadow-lg border-b border-blue-700  ${
-        isScrolled ? "bg-white fixed" : "bg-[#274873]"
+        isScrolled ? "bg-white fixed text-blue-500" : "bg-[#274873]"
       }`}
     >
       <div className="w-full flex items-center justify-between mt-0 px-6 py-2">
