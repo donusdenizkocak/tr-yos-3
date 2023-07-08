@@ -6,6 +6,7 @@ import Universites from "../pages/Universites";
 import Departments from "../pages/Departments";
 import Login from "../pages/Login";
 
+
 const AppRouter = () => {
   return (
     <>
