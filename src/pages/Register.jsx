@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
-
-const Login = () => {
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Autoplay, Pagination, Navigation } from "swiper/modules";
+// import "swiper/css";
+// import "swiper/css/pagination";
+// import "swiper/css/navigation";
+const Register = () => {
   return (
     <div
       className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5"
@@ -17,7 +20,7 @@ const Login = () => {
         style={{ maxWidth: "1000px" }}
       >
         <div className="md:flex w-full">
-          <div className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
+          <div className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10 " >
             <svg
               id="a87032b8-5b37-4b7e-a4d9-4dbfbe394641"
               data-name="Layer 1"
@@ -221,13 +224,81 @@ const Login = () => {
                 fill="#2f2e41"
               />
             </svg>
+            {/* <Swiper
+              spaceBetween={30}
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}    
+              style={{ width: "100%", height: "100%", position: "relative" }}     
+              
+              modules={[Autoplay]}
+              className="mySwiper"
+            >
+              <SwiperSlide
+                style={{
+                  height:"100%",
+                  textAlign: "center",
+                  fontSize: "1rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  opacity: ".8",
+                  backgroundImage:"",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                }}
+              ></SwiperSlide>
+              <SwiperSlide>Slide 2</SwiperSlide>
+              <SwiperSlide>Slide 3</SwiperSlide>
+              <SwiperSlide>Slide 4</SwiperSlide>
+              <SwiperSlide>Slide 5</SwiperSlide>
+              <SwiperSlide>Slide 6</SwiperSlide>
+              <SwiperSlide>Slide 7</SwiperSlide>
+              <SwiperSlide>Slide 8</SwiperSlide>
+              <SwiperSlide>Slide 9</SwiperSlide>
+            </Swiper> */}
           </div>
           <div className="w-full md:w-1/2 py-10 px-5 md:px-10">
             <div className="text-center mb-10">
-              <h1 className="font-bold text-3xl text-gray-900">Sign In</h1>
-              <p>Enter your information to sign in</p>
+              <h1 className="font-bold text-3xl text-gray-900">REGISTER</h1>
+              <p>Enter your information to register</p>
             </div>
-            <form>
+            <div>
+              <div className="flex -mx-3">
+                <div className="w-1/2 px-3 mb-5">
+                  <label htmlFor className="text-xs font-semibold px-1">
+                    First name
+                  </label>
+                  <div className="flex">
+                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                      <i className="mdi mdi-account-outline text-gray-400 text-lg" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                      placeholder="John"
+                    />
+                  </div>
+                </div>
+                <div className="w-1/2 px-3 mb-5">
+                  <label htmlFor className="text-xs font-semibold px-1">
+                    Last name
+                  </label>
+                  <div className="flex">
+                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                      <i className="mdi mdi-account-outline text-gray-400 text-lg" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                      placeholder="Smith"
+                    />
+                  </div>
+                </div>
+              </div>
               <div className="flex -mx-3">
                 <div className="w-full px-3 mb-5">
                   <label htmlFor className="text-xs font-semibold px-1">
@@ -265,22 +336,11 @@ const Login = () => {
               <div className="flex -mx-3">
                 <div className="w-full px-3 mb-5">
                   <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
-                    Sign In
+                    REGISTER NOW
                   </button>
                 </div>
               </div>
-              <div className="text-center">
-                <p>
-                  Not a member?{" "}
-                  <Link
-                    to={"/register"}
-                    className="text-blue-500 hover:underline"
-                  >
-                    Sign Up
-                  </Link>
-                </p>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -288,4 +348,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

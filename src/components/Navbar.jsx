@@ -89,16 +89,17 @@ const Navbar = () => {
                 isScrolled ? "bg-blue-600 text-white" : "bg-gray-200"
               }`}
             >
-              Sing İn
+              Sign In
             </Link>
 
-            <button className="bg-[#EC1050] text-gray-200 w-20 p-2 rounded  hover:bg-blue-500 hover:text-white">
+            {/* <button className="bg-[#EC1050] text-gray-200 w-20 p-2 rounded  hover:bg-blue-500 hover:text-white">
               Sign up
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
     </nav>
+    
   );
 };
 

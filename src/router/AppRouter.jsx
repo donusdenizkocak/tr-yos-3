@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Universites from "../pages/Universites";
 import Departments from "../pages/Departments";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 
 const AppRouter = () => {
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Route path="/universites" element={<Universites />} />
         <Route path="/departments" element={<Departments />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
     </>
