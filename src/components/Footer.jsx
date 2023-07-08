@@ -1,5 +1,8 @@
 import React from "react";
 
+const navigations = ["About Us", "FAQs Page", "Checkout", "Contact", "Blog"];
+const myAccount = ["My Profile", "My Account", "Favorites"];
+
 const Footer = () => {
   return (
     <>
@@ -15,58 +18,38 @@ const Footer = () => {
             <span>M </span>info@tryös.com
           </p>
         </div>
+        {/* ********** Navigations ********** */}
 
         <div className="p-11">
-          <p className="text-white pb-2 font-semibold">Navigations</p>
-          <p className="pb-2">
-            <a className="text-[#6398CA] text-sm font-medium" href="#">
-              About Us
-            </a>
-          </p>
-          <p className="pb-2">
-            <a className="text-[#F578A2] text-sm font-medium" href="#">
-              FAQs Page
-            </a>
-          </p>
-          <p className="pb-2">
-            <a className="text-[#F578A2] text-sm font-medium" href="#">
-              Checkout
-            </a>
-          </p>
-          <p className="pb-2">
-            <a className="text-[#F578A2] text-sm font-medium" href="#">
-              Contact
-            </a>
-          </p>
-          <p className="pb-2">
-            <a className="text-[#F578A2] text-sm font-medium" href="#">
-              Blog
-            </a>
-          </p>
+          <p className="text-gray-200 pb-2 font-semibold">Navigations</p>
+          <div className="flex flex-col gap-5">
+            {navigations.map((item, index) => (
+              <a
+                className="text-[#6398CA] text-sm font-medium"
+                href="#"
+                key={index}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
         </div>
 
+        {/* ********** MY ACCOUNT ********** */}
+
         <div className="p-11 ">
-          <p className="text-white pb-2 font-semibold">My Acoount</p>
-          <p className="pb-2">
-            <a className="text-[#F578A2] pb-2 text-sm font-medium" href="#">
-              My Profile
-            </a>
-          </p>
-          <p className="pb-2">
-            <a className="text-[#F578A2] pb-2 text-sm font-medium" href="#">
-              My Account
-            </a>
-          </p>
-          <p className="pb-2">
-            <a className="text-gray-300 pb-2 text-sm font-medium" href="#">
-              Favorites
-            </a>
-          </p>
+          <p className="text-white pb-2 font-semibold">My Account</p>
+          <div className="flex flex-col gap-5">
+            {myAccount.map((item,index) => (
+              <a className="text-[#6398CA] text-sm font-medium" href="#" key={index}>
+              {item}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
       <p className="text-center bg-darkBlue text-white text-sm font-medium pb-4">
-        {" "}
         © 2023. All Rights Reserved.
       </p>
     </>
