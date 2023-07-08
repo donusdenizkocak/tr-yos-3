@@ -1,4 +1,4 @@
-// import universty from "../assets/images/universty.jpg";
+
 
 const CardUniversites = () => {
   return (
@@ -6,7 +6,7 @@ const CardUniversites = () => {
       <div className="flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-20 mt-20 mb-6">
 
         <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
-          <img  src="" alt="" />
+          <img  src="/image/bnr1.png" alt="" />
         </div>
 
 
@@ -18,7 +18,7 @@ const CardUniversites = () => {
 
           <div>
             <p className="font-bold text-xl mb-2">ACIBADEM MEHMET ALI AYDINLAR UNIVERSTY</p>
-            <p className="text-xs mb-1">K İstanbul</p>
+            <p className="text-xs mb-1">İstanbul</p>
             <p className="text-xs mb-2">
               İçerenköy Mah. Kayışdağı Cad. No:32 İçerenköy 34752
               Ataşehir/İstanbul
