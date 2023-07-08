@@ -6,6 +6,7 @@ import DeparmentsCard from '../components/departmentsComponents/DeparmentsCard'
 
 const Departments = () => {
   return (
+
     <div className='flex'>
         <div>
             <DepartmentsForm/>
@@ -14,6 +15,8 @@ const Departments = () => {
             <DeparmentsCard/>
         </div> 
         
+
+
     </div>
   )
 }
