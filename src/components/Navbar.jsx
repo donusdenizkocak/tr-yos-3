@@ -26,8 +26,7 @@ const Navbar = () => {
       }`}
       style={{
         position: "sticky",
-        top: "1px",
-        left: "1px",
+        top: "0px",       
         zIndex: "100",
       }}
     >
