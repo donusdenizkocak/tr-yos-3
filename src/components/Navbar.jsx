@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <nav
       className={`w-full py-3 bg-opacity-100 shadow-lg border-b border-blue-700  ${
-        isScrolled ? "bg-white " : "bg-[#274873]"
+        isScrolled ? "bg-white text-blue-600" : "bg-[#274873] text-white"
       }`}
       style={{
         position: "sticky",
@@ -49,11 +49,11 @@ const Navbar = () => {
           id="menu"
         >
           <nav>
-            <ul className="md:flex items-center justify-between text-base text-[#115D8C] pt-4 md:pt-0">
+            <ul className="md:flex items-center justify-between text-base pt-4 md:pt-0">
               <li>
                 <Link
                   to="/"
-                  className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
+                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
                 >
                   Home
                 </Link>
@@ -61,7 +61,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/universites"
-                  className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
+                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
                 >
                   Universites
                 </Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/departments"
-                  className="inline-block no-underline text-blue-600 hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
+                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
                 >
                   Departments
                 </Link>
