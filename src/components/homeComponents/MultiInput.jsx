@@ -36,8 +36,8 @@ const MultiInput = () => {
         <h1>Education</h1>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-4 p-5 rounded-lg  bg-slate-300">
-        <div className="lg:w-[13rem]">
+      <div className="flex flex-col lg:flex-row gap-4 p-5 rounded-lg  bg-[#ffffff49]">
+        <div className="lg:w-[13rem] ">
           <Select
             options={Cities}
             closeMenuOnSelect={false}
@@ -63,7 +63,7 @@ const MultiInput = () => {
             placeholder="Select Departmant"
           />
         </div>
-        <button class="bg-blue-500  hover:bg-blue-700 text-white font-bold w-[10rem] py-1.5 px-4 border border-blue-700 rounded h-9">
+        <button class="bg-[#0475e5] hover:bg-[#C5BEB5] text-white font-bold w-[10rem] py-1.5 px-4 border border-blue-700 rounded h-9">
           Select
         </button>
       </div>
