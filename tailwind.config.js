@@ -13,6 +13,16 @@ module.exports = {
         mediumBlue: "#1D4ED8",
         rose: "#E11D48",
       },
+      keyframes: {
+        wiggle: {
+          '0%': { transform: 'translate3d(0,-100%,0)' },
+          '100%': {transform: 'translate3d(0,0,0)'  },
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out 1',
+      }
+
     },
   },
   plugins: [require("tw-elements/dist/plugin.cjs")],

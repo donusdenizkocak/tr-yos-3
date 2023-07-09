@@ -5,8 +5,8 @@ const myAccount = ["My Profile", "My Account", "Favorites"];
 
 const Footer = () => {
   return (
-    <>
-      <div className="h-full bg-darkBlue grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10">
+    <div className=" bg-darkBlue">
+      <div className="h-full grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 container mx-auto ">
         <div className="p-11">
           <p className="text-white pb-2 text-sm w-52 py-2 px-3 mb-3">
             1600 Amphitheatre Parkway Mountain View, CA 94043, USA.
@@ -52,7 +52,7 @@ const Footer = () => {
       <p className="text-center bg-darkBlue text-white text-sm font-medium pb-4">
         © 2023. All Rights Reserved.
       </p>
-    </>
+    </div>
   );
 };
 

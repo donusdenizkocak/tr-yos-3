@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const navbarMenu = [
+  { title: "Home", url: "/" },
+  { title: "Universites", url: "/universites" },
+  { title: "Departments", url: "/departments" },
+];
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -21,16 +27,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`w-full py-3 bg-opacity-100 shadow-lg border-b border-blue-700  ${
-        isScrolled ? "bg-white text-blue-600" : "bg-[#274873] text-white"
+      className={`w-full  top-0 z-[100] py-3 bg-opacity-100 shadow-lg  ${
+        isScrolled
+          ? "bg-white border-b border-[#e9ecef] fixed animate-wiggle"
+          : "bg-[#00000080] absolute"
       }`}
-      style={{
-        position: "sticky",
-        top: "0px",       
-        zIndex: "100",
-      }}
     >
-      <div className="w-full flex items-center justify-between mt-0 px-6 py-2">
+      <div className="w-full md:container md:mx-auto flex items-center  justify-between mt-0 px-6 py-2">
         <label htmlFor="menu-toggle" className="cursor-pointer md:hidden block">
           <svg
             className="fill-current text-blue-600"
@@ -51,28 +54,16 @@ const Navbar = () => {
           <nav>
             <ul className="md:flex items-center justify-between text-base pt-4 md:pt-0">
               <li>
-                <Link
-                  to="/"
-                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/universites"
-                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
-                >
-                  Universites
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/departments"
-                  className="inline-block no-underline hover:text-rose font-medium text-lg py-2 px-4 lg:ml-2"
-                >
-                  Departments
-                </Link>
+                {navbarMenu.map((item, index) => (
+                  <Link
+                    to={item.url}
+                    className={`inline-block no-underline transition delay-75 hover:text-[#017efa] font-semibold text-sm py-2 px-4 lg:ml-2 ${
+                      isScrolled ? "text-[#022f5d]" : "text-white"
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
               </li>
             </ul>
           </nav>
@@ -81,19 +72,13 @@ const Navbar = () => {
           className="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4"
           id="nav-content"
         >
-          <div className="flex items-center w-full">
+          <div className="w-[115px] flex items-center  h-[50px]">
             <Link
               to="/login"
-              className={`bg-blue-600 text-gray-800 w-20 p-2 rounded text-lg  mr-4 hover:bg-blue-500 hover:text-white text-center ${
-                isScrolled ? "bg-blue-600 text-white" : "bg-gray-200"
-              }`}
+              className="w-full  h-[50px] bg-[#022f5d] text-white flex justify-center items-center  rounded text-sm font-semibold"
             >
               Sign In
             </Link>
-
-            {/* <button className="bg-[#EC1050] text-gray-200 w-20 p-2 rounded  hover:bg-blue-500 hover:text-white">
-              Sign up
-            </button> */}
           </div>
         </div>
       </div>
