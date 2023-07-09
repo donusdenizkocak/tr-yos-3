@@ -63,7 +63,7 @@ const MultiInput = () => {
             placeholder="Select Departmant"
           />
         </div>
-        <button class="bg-[#0475e5] hover:bg-[#C5BEB5] text-white font-bold w-[10rem] py-1.5 px-4 border border-blue-700 rounded h-9">
+        <button class="bg-[#0475e5]  hover:bg-[#C5BEB5] text-white font-bold w-[15rem] lg:w-[10rem] py-1.5 px-4 border border-blue-700 rounded h-9">
           Select
         </button>
       </div>
