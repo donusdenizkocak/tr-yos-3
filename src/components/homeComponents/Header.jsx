@@ -4,6 +4,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/autoplay";
 
 const Header2 = () => {
   return (
@@ -12,12 +13,12 @@ const Header2 = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 2500,
+          delay: 5500,
           disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
-        }}
+        }}        
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
@@ -30,9 +31,8 @@ const Header2 = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            opacity: ".8",
             background:
-              "url(https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg)",
+              "url(https://www.tr-yös.com/test/6984215678913/slider/1683716962252.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
@@ -45,9 +45,8 @@ const Header2 = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            opacity: ".8",
             background:
-              "url(https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg)",
+              "url(https://www.tr-yös.com/test/6984215678913/slider/1683716962252.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
@@ -60,9 +59,8 @@ const Header2 = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            opacity: ".8",
             background:
-              "url(https://sks.uskudar.edu.tr/uploads/images/61bdd39a0fda6ogrenci-kuluplerine-katilmak.jpg)",
+              "url(https://www.tr-yös.com/test/6984215678913/slider/1683716962252.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",

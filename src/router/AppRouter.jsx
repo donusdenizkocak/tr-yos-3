@@ -6,6 +6,7 @@ import Universites from "../pages/Universites";
 import Departments from "../pages/Departments";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Action from "../components/Action";
 
 
 const AppRouter = () => {
@@ -19,6 +20,7 @@ const AppRouter = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Action/>
       <Footer />
     </>
   );
