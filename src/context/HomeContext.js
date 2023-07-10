@@ -16,7 +16,7 @@ const HomeContextProvider = ({children}) => {
     useEffect(() => {
     getCities()
     }, [])
-  console.log(cities)
+
 
     const getCities= async()=>{
         try {
