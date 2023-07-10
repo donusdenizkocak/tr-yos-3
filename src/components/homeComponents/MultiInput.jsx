@@ -1,12 +1,9 @@
 import Select from "react-select";
+import { HomeContext } from "../../context/HomeContext";
+import {useContext}  from  'react'
 
-const Cities = [
-  { value: 1, label: "Adana" },
-  { value: 2, label: "Adiyaman" },
-  { value: 3, label: "Afyonkarahisar" },
-  { value: 4, label: "Agri" },
-  { value: 5, label: "Aksaray" },
-];
+
+
 const Universities = [
   { value: 1, label: "Abdullah Gül Üniversitesi" },
   { value: 2, label: "Acıbadem Mehmet Ali Aydınlar Üniversitesi" },
@@ -23,6 +20,20 @@ const Departmants = [
 ];
 
 const MultiInput = () => {
+
+  const{cities,setCities}=useContext(HomeContext);
+  const cityList=cities.map((city)=>{
+    return{value:city.id,label:city.tr}
+  })
+
+
+
+  
+  
+ 
+    
+  
+  console.log(cities)
   return (
     <div
       className="flex flex-col gap-10 absolute z-50"
@@ -39,7 +50,7 @@ const MultiInput = () => {
       <div className="flex flex-col lg:flex-row gap-4 p-5 rounded-lg  bg-[#ffffff49]">
         <div className="lg:w-[13rem] ">
           <Select
-            options={Cities}
+            options={cityList}
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select City "
