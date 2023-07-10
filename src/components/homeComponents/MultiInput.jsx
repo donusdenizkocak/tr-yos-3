@@ -22,6 +22,7 @@ const Departmants = [
 const MultiInput = () => {
 
   const{cities,setCities}=useContext(HomeContext);
+  
   const cityList=cities.map((city)=>{
     return{value:city.id,label:city.tr}
   })
@@ -33,7 +34,7 @@ const MultiInput = () => {
  
     
   
-  console.log(cities)
+  
   return (
     <div
       className="flex flex-col gap-10 absolute z-50"
