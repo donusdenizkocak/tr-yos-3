@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Icon } from "../helper/Icons";
 
 const navbarMenu = [
   { title: "Home", url: "/" },
@@ -78,6 +79,7 @@ const Navbar = () => {
               to="/login"
               className="w-full  h-[50px] bg-[#022f5d] text-white flex justify-center items-center  rounded text-sm font-semibold"
             >
+            <Icon name="login" size="25" color="white"/>
               Sign In
             </Link>
           </div>
