@@ -119,7 +119,7 @@ const DepartmentsForm = () => {
           </div>
         </div> */}
         <div className=" flex justify-center items-center">
-          <button class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1.5 px-4 border border-blue-700 rounded h-9 w-full mt-5">
+          <button className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1.5 px-4 border border-blue-700 rounded h-9 w-full mt-5">
             Submit Search
           </button>
         </div>
