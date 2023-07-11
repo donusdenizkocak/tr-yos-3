@@ -57,6 +57,7 @@ const Navbar = () => {
                 {navbarMenu.map((item, index) => (
                   <Link
                     to={item.url}
+                    key={index}
                     className={`inline-block no-underline transition delay-75 hover:text-[#017efa] font-semibold text-sm py-2 px-4 lg:ml-2 ${
                       isScrolled ? "text-[#022f5d]" : "text-white"
                     }`}
