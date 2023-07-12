@@ -2,6 +2,7 @@ import React from "react";
 import DepartmentsForm from "../components/departmentsComponents/DepartmentsForm";
 
 import DeparmentsCard from "../components/departmentsComponents/DeparmentsCard";
+import DepartmentUnvCard from "../components/departmentsComponents/DepartmentUnvCard";
 
 const Departments = () => {
   return (
@@ -29,6 +30,8 @@ const Departments = () => {
           <DeparmentsCard />
         </div>
       </div>
+
+      <DepartmentUnvCard/>
     </div>
   );
 };
