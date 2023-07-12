@@ -1,89 +1,83 @@
 import React from "react";
+import { Icon } from "../../helper/Icons";
 
 const DepartmentUnvCard = () => {
   return (
     <>
-      <button className="mt-2 mr-3 p-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
-        H Add Favorite
-      </button>
+      <div>
+        <button className=" w-40 mt-2 mr-3 p-3 ml-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-red-100 text-red-500 hover:bg-red-500 hover:text-white">
+          H Add Favorite
+        </button>
+      </div>
 
-      <div className="pg-side-groups">
-        <div className="pg-side-block">
-          <div className="pg-side-block-head">
-            <div className="pg-side-left">
-              <div className="pg-side-thumb">
-                <img
-                  src="https://www.tr-yös.com/test/6984215678913/logo/acibadem-mehmet-ali-aydinlar-universitesi-logo-1683762727498.png"
-                  className="img-fluid circle"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="pg-side-right">
-              <div className="pg-side-right-caption">
-                <h4>ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY</h4>
-                <span>
-                  <i className="fa-solid fa-location-dot me-2"></i>Istanbul
-                </span>
-              </div>
-            </div>
+
+      <div className="flex flex-col bg-gray-100 p-4 w-80">
+
+
+        <div className="flex items-center mb-10">
+          <div className="flex-shrink-0">
+            <img src="https://www.tr-yös.com/test/6984215678913/logo/acibadem-mehmet-ali-aydinlar-universitesi-logo-1683762727498.png"
+              className="w-16 h-16 rounded-full"
+              alt="" />
           </div>
-          <div className="pg-side-block-body">
-            <div className="pg-side-block-info">
-              <div className="vl-elfo-group">
-                <div className="vl-elfo-icon">
-                  <i className="fa-solid fa-phone-volume"></i>
-                </div>
-
-                <div className="vl-elfo-caption">
-                  <h6>Call Us</h6>
-                  <p>
-                    <a href="tel:(216) 500-4444">(216) 500-4444</a>
-                  </p>
-                </div>
-              </div>
-              <div className="vl-elfo-group">
-                <div className="vl-elfo-icon">
-                  <i className="fa-regular fa-envelope"></i>
-                </div>
-                <div className="vl-elfo-caption">
-                  <h6>E-Mail</h6>
-                  <p>
-                    <a href="mailto:info@acibadem.edu.tr">
-                      info@acibadem.edu.tr
-                    </a>
-                  </p>
-                </div>
-              </div>
-              <div className="vl-elfo-group">
-                <div className="vl-elfo-icon">
-                  <i className="fa-solid fa-globe"></i>
-                </div>
-                <div className="vl-elfo-caption">
-                  <h6>Website</h6>
-                  <p>
-                    <a href="https://www.acibadem.edu.tr" target="_blank">
-                      https://www.acibadem.edu.tr
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="pg-side-block-buttons">
-              <div className="single-button">
-                <a
-                  href="JavaScript:Void(0);"
-                  data-bs-toggle="modal"
-                  data-bs-target="#offer"
-                  className="btn font--medium btn-light-success full-width"
-                >
-                  <i className="fa-solid fa-paper-plane me-2"></i>Send Message
-                </a>
-              </div>
-            </div>
+          <div className="ml-4">
+            <h4 className="text-lg font-bold">
+              ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY
+            </h4>
+            <p className="text-gray-600 text-xs">K Istanbul</p>
           </div>
         </div>
+
+        <div>
+          <div>
+            <div>
+              <Icon name="fav"/>
+            </div>
+            <div className="ml-2 mb-5">
+              <h6 className="font-bold">Call Us</h6>
+              <p>
+                <a className="text-xs hover:text-sky-500" href="tel:(216) 500-4444">(216) 500-4444</a>
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <Icon name="fav"/>
+            </div>
+            <div className="ml-2 mb-5">
+              <h6 className="font-sm font-bold">E-Mail</h6>
+              <p>
+                <a className="text-xs hover:text-sky-500" href="mailto:info@acibadem.edu.tr">info@acibadem.edu.tr</a>
+              </p>
+            </div>
+          </div>
+            
+          <div>
+            <div>
+              <Icon name="fav" size="35"/>
+            </div>
+            <div className="ml-2 mb-5">
+              <h6 className="font-sm font-bold">Website</h6>
+              <p>
+                <a className="text-xs hover:text-sky-500" href="https://www.acibadem.edu.tr" target="_blank">https://www.acibadem.edu.tr</a>
+              </p>
+            </div>
+          </div>
+            
+
+        </div>
+
+        <div>
+        <button className="w-full mt-2 p-3 text-sm font-medium border-2 border-green-500 rounded-md bg-green-100 text-green-500 hover:bg-green-500 hover:text-white">
+            M Send Message
+          </button>
+        </div>
       </div>
+
+
+
+
     </>
   );
 };
