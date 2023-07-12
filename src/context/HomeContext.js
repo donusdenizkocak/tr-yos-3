@@ -11,21 +11,67 @@ const FEATURED_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${
 const HomeContextProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
 
-  useEffect(() => {
-    getCities(FEATURED_API);
-  }, []);
 
-  const getCities = async (api) => {
-    try {
-      const { data } = await axios.get(api);
-      console.log(data);
-      setCities(data);
-    } catch (error) {
-      console.log(error);
+const CITIES_API=`https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`
+const UNIVERSITIES_API=`https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`
+const DEPARTMENTS_API=`https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`
+
+
+const HomeContextProvider = ({children}) => {
+    const [cities, setCities] = useState([])
+    const [universities, setUniversities] = useState([])
+    const [departments, setDepartments] = useState([])
+
+
+   
+   
+
+
+    useEffect(() => {
+    getCities()
+    getUniversities()
+    getDepartments()
+    }, [])
+
+
+    const getCities= async()=>{
+        try {
+            const {data}=await axios.get(CITIES_API);
+            console.log(data)
+            setCities(data)
+
+        } catch (error) {
+            console.log(error)
+        }
     }
-  };
-  const values = { cities, setCities };
-  return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
-};
+    const getUniversities= async()=>{
+        try {
+            const {data}=await axios.get(UNIVERSITIES_API);
+            console.log(data)
+            setUniversities(data)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const getDepartments= async()=>{
+        try {
+            const {data}=await axios.get(DEPARTMENTS_API);
+            console.log(data)
+            setDepartments(data)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+   
+
+    
+    const values={cities,setCities,universities,setUniversities,departments}
+  return (
+ <HomeContext.Provider value={values}>{children}</HomeContext.Provider>
+  )
+}
+
 
 export default HomeContextProvider;
