@@ -2,31 +2,35 @@ import React, { useState } from "react";
 import { Icon } from "../../helper/Icons";
 
 const BasicDetail = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const handleToggle = () => {
     setShow(!show);
   };
   return (
     <div>
-        <div className=" justify-between p-2 border mt-8 border-gray-100 ">
-      <div className="flex space-x-96 justify-end">
-        <h3 className=" m-1" >Basic Detail</h3>
-        <div onClick={handleToggle}>
-          <Icon name="arrowUp" size="25" color="darkblue" />
+      <div className=" justify-between p-2 border mt-8 border-gray-100 ">
+        <div className="flex space-x-96 justify-end">
+          <h3 className="  ">Basic Detail</h3>
+          <div onClick={handleToggle}>
+            <Icon name="arrowUp" size="25" color="darkblue" />
+          </div>
         </div>
       </div>
-    </div>
-  
 
       {show && (
-        <div className="flex p-10 mb-6 relative w-full rounded-md bg-gray-200  bg-transparent text-blue-900 underline  justify-around">
-          <Icon name="bedIcon" size="25" color="darkblue"/>
-          <Icon name="groupIcon" size="25" color="darkblue"/>
-          <Icon name="warehouseIcon" size="25" color="darkblue"/>
+        <div className="flex p-10 mb-6 relative  rounded-md  bg-transparent text-blue-900 underline  ">
+          <ul className="flex flex-wrap grid-cols-2 p-8 w-full justify-around" >
+            <li className=" p-20 bg-gray-200">
+              <Icon name="bedIcon" size="25" color="darkblue" />
+            </li>
+            <li className=" p-20 bg-gray-200" >
+              <Icon name="groupIcon" size="25" color="darkblue" />
+            </li>
+            <li className=" p-20 bg-gray-200">
+              <Icon name="warehouseIcon" size="25" color="darkblue" />
+            </li>
+          </ul>
         </div>
-          
-          
-        
       )}
     </div>
     // <div className="relative block w-full mb-6 bg-white p-0 rounded-md">
