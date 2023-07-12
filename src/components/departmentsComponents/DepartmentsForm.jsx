@@ -1,36 +1,7 @@
 import Select from "react-select";
-const Cities = [
-  { value: 1, label: "Adana" },
-  { value: 2, label: "Adiyaman" },
-  { value: 3, label: "Afyonkarahisar" },
-  { value: 4, label: "Agri" },
-  { value: 5, label: "Aksaray" },
-];
-const Universities = [
-  { value: 1, label: "Abdullah Gül Üniversitesi" },
-  { value: 2, label: "Acıbadem Mehmet Ali Aydınlar Üniversitesi" },
-  { value: 3, label: "Adana Alparslan Türkeş Bilim Ve Teknoloji Üniversites" },
-  { value: 4, label: "Adıyaman Üniversites" },
-  { value: 5, label: "Afyonkarahisar Sağlık Bilimleri Üniversitesi" },
-];
-const Departmants = [
-  { value: 1, label: "Chemistry" },
-  { value: 2, label: "Computer Science" },
-  { value: 3, label: "Engineering" },
-  { value: 4, label: "Mathematics" },
-  { value: 5, label: "Psychology" },
-];
 
-// const options = [
-//   { id: "checkbox1", label: "Checkbox 1" },
-//   { id: "checkbox2", label: "Checkbox 2" },
-//   { id: "checkbox3", label: "Checkbox 3" },
-//   { id: "checkbox4", label: "Checkbox 4" },
-//   { id: "checkbox5", label: "Checkbox 5" },
-//   { id: "checkbox6", label: "Checkbox 6" },
-//   { id: "checkbox6", label: "Checkbox 7" },
-//   { id: "checkbox6", label: "Checkbox 8" },
-// ];
+import { HomeContext } from "../../context/HomeContext";
+import {useContext, useState}  from  'react'
 
 // const Checkbox = ({ id, label }) => (
 //   <div className="checkbox-container">
@@ -47,6 +18,27 @@ const Departmants = [
 // );
 
 const DepartmentsForm = () => {
+
+ const{cities,universities,departments}=useContext(HomeContext);
+   const [selectedIds, setSelectedIds] = useState([]);
+
+  const uniList=universities.map((uni)=>{
+    return{...universities,value:uni.city,label:uni.tr}
+  })
+  const handleFirstInputChange = (selectedOptions) => {
+    const selectedIds = selectedOptions.map((option) => option.value);
+    setSelectedIds(selectedIds);
+  };
+  const filteredUniList = selectedIds.length > 0
+  ? uniList.filter((item) => selectedIds.includes(item.value))
+  : uniList;
+
+
+  
+  console.log(selectedIds)
+  console.log(filteredUniList)
+
+
   return (
     <div
       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -56,16 +48,17 @@ const DepartmentsForm = () => {
         <div className="grid grid-row gap-4  w-full">
           <div>
             <Select
-              options={Cities}
+              options={cities.map((city)=>({value:city.id,label:city.tr}))}
               closeMenuOnSelect={false}
               isMulti
               placeholder="Select City "
+              onChange={handleFirstInputChange}
             />
           </div>
 
           <div>
             <Select
-              options={Universities}
+              options={filteredUniList}
               closeMenuOnSelect={false}
               isMulti
               placeholder="Select University "
@@ -74,7 +67,7 @@ const DepartmentsForm = () => {
 
           <div>
             <Select
-              options={Departmants}
+              options={departments.map((dep) => ({ value: dep.id, label: dep.tr}))}
               closeMenuOnSelect={false}
               isMulti
               placeholder="Select Departmant"

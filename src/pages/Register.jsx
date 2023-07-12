@@ -2,6 +2,9 @@
 // import { Autoplay, Pagination, Navigation } from "swiper/modules";
 // import "swiper/css";
 // import "swiper/css/pagination";
+
+import { Icon } from "../helper/Icons";
+
 // import "swiper/css/navigation";
 const Register = () => {
   return (
@@ -21,7 +24,8 @@ const Register = () => {
       >
         <div className="md:flex w-full">
           <div className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10 " >
-            <svg
+            <Icon name="register"/>
+            {/* <svg
               id="a87032b8-5b37-4b7e-a4d9-4dbfbe394641"
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
@@ -223,7 +227,7 @@ const Register = () => {
                 transform="translate(-227.576 -76.46149)"
                 fill="#2f2e41"
               />
-            </svg>
+            </svg> */}
             {/* <Swiper
               spaceBetween={30}
               centeredSlides={true}
