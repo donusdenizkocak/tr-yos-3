@@ -7,6 +7,7 @@ import Departments from "../pages/Departments";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Action from "../components/Action";
+import Detail from "../pages/Detail";
 
 
 const AppRouter = () => {
@@ -19,6 +20,7 @@ const AppRouter = () => {
         <Route path="/departments" element={<Departments />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/detail" element={<Detail />} />
       </Routes>
       <Action/>
       <Footer />

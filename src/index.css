@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
-@layer components {
-    .animations {
-      @apply 
-    } */
+.efect {
+  -webkit-box-reflect: below 2px
+    linear-gradient(transparent, transparent, #0004);
+}

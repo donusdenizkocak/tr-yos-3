@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Icon } from "../helper/Icons";
 
 const navbarMenu = [
   { title: "Home", url: "/" },
@@ -57,6 +58,7 @@ const Navbar = () => {
                 {navbarMenu.map((item, index) => (
                   <Link
                     to={item.url}
+                    key={index}
                     className={`inline-block no-underline transition delay-75 hover:text-[#017efa] font-semibold text-sm py-2 px-4 lg:ml-2 ${
                       isScrolled ? "text-[#022f5d]" : "text-white"
                     }`}
@@ -77,6 +79,7 @@ const Navbar = () => {
               to="/login"
               className="w-full  h-[50px] bg-[#022f5d] text-white flex justify-center items-center  rounded text-sm font-semibold"
             >
+            <Icon name="login" size="25" color="white"/>
               Sign In
             </Link>
           </div>
