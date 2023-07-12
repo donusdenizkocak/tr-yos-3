@@ -7,18 +7,26 @@ const BasicDetail = () => {
     setShow(!show);
   };
   return (
-    <div className="container">
-      <div className="flex space-x-72">
-        <h3>Basic Detail</h3>
+    <div>
+        <div className=" justify-between p-2 border mt-8 border-gray-100 ">
+      <div className="flex space-x-96 justify-end">
+        <h3 className=" m-1" >Basic Detail</h3>
         <div onClick={handleToggle}>
-          <Icon name="arrowUp" size="25" color="black" />
+          <Icon name="arrowUp" size="25" color="darkblue" />
         </div>
       </div>
+    </div>
+  
 
       {show && (
-        <div>
-          <h1>adddd</h1>
+        <div className="flex p-10 mb-6 relative w-full rounded-md bg-gray-200  bg-transparent text-blue-900 underline  justify-around">
+          <Icon name="bedIcon" size="25" color="darkblue"/>
+          <Icon name="groupIcon" size="25" color="darkblue"/>
+          <Icon name="warehouseIcon" size="25" color="darkblue"/>
         </div>
+          
+          
+        
       )}
     </div>
     // <div className="relative block w-full mb-6 bg-white p-0 rounded-md">
