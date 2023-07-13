@@ -9,9 +9,9 @@ const BasicDetail = () => {
   return (
     <div>
       <div className=" justify-between p-2 mt-8 ">
-        <div className="flex space-x-96 justify-end">
-          <h3 className=" text-darkBlue text-lg ">Basic Detail</h3>
-          <div onClick={handleToggle}>
+        <div className="flex justify-between  space-x-96 ">
+          <h3 className=" text-darkBlue font-bold text-2xl mb-4 ">Basic Detail</h3>
+          <div className="" onClick={handleToggle}>
             <Icon name="arrowUp" size="25" color="darkblue" />
           </div>
         </div>

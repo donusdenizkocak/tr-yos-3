@@ -1,3 +1,5 @@
+
+
 const MainInfo = () => {
   return (
     <div className=" mx-auto container">
@@ -116,7 +118,9 @@ const MainInfo = () => {
         </p>
       </div>
 
-      <div class="border rounded  border-gray-500 p-4 m-2">
+     
+
+      {/* <div class="border rounded  border-gray-500 p-4 m-2">
         <h1 class="text-md text-darkBlue font-bold mb-4">Bacic Detail</h1>
         <div class="grid grid-cols-2 gap-4">
           <div class="border rounded bg-gray-100 p-4">
@@ -132,7 +136,7 @@ const MainInfo = () => {
             <p>icon 4</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
