@@ -1,12 +1,13 @@
 import Header from "../components/homeComponents/Header";
 import CardHomeIntro from "../components/homeComponents/CardHomeIntro";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Header />
       <CardHomeIntro />
-    </div>
+    </motion.div>
   );
 };
 
