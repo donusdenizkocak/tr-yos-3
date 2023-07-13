@@ -272,7 +272,8 @@ const favIcon = ({ size, color }) => {
 };
 
 
-const arrowUp = ({ size, color }) => {
+
+const arrowUpIcon = ({ size, color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -338,19 +339,21 @@ const buildingCircleCheckIcon = ({ size, color }) => {
   );
 };
 
+
 const Icon = ({ name, size, color, style }) => {
   const icons = {
     home: HomeIcon,
-    arrowUp: arrowUp,
-    bedIcon: bedIcon,
-    groupIcon: groupIcon,
-    warehouseIcon: warehouseIcon,
-    buildingCircleCheckIcon: buildingCircleCheckIcon,
+    arrowUp: arrowUpIcon,
+    bed: bedIcon,
+    group: groupIcon,
+    warehouse: warehouseIcon,
+    buildingCircleCheck: buildingCircleCheckIcon,
     register: RegisterIcon,
     marker: MarkerLocationsIcon,
     payment: paymentIcon,
     login: loginIcon,
     fav:favIcon
+
   };
 
   const Component = icons[name];
