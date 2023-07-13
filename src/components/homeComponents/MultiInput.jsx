@@ -1,31 +1,26 @@
 import Select from "react-select";
 import { HomeContext } from "../../context/HomeContext";
-import {useContext, useState}  from  'react'
-
-
-
+import { useContext, useState } from "react";
 
 const MultiInput = () => {
+  const { cities, universities, departments } = useContext(HomeContext);
+  const [selectedIds, setSelectedIds] = useState([]);
 
-  const{cities,universities,departments}=useContext(HomeContext);
-   const [selectedIds, setSelectedIds] = useState([]);
-
-  const uniList=universities.map((uni)=>{
-    return{...universities,value:uni.city,label:uni.tr}
-  })
+  const uniList = universities.map((uni) => {
+    return { ...universities, value: uni.city, label: uni.tr };
+  });
   const handleFirstInputChange = (selectedOptions) => {
     const selectedIds = selectedOptions.map((option) => option.value);
     setSelectedIds(selectedIds);
   };
-  const filteredUniList = selectedIds.length > 0
-  ? uniList.filter((item) => selectedIds.includes(item.value))
-  : uniList;
+  const filteredUniList =
+    selectedIds.length > 0
+      ? uniList.filter((item) => selectedIds.includes(item.value))
+      : uniList;
 
+  console.log(selectedIds);
+  console.log(filteredUniList);
 
-  
-  console.log(selectedIds)
-  console.log(filteredUniList)
- 
   return (
     <div
       className="flex flex-col gap-10 absolute z-50"
@@ -42,7 +37,7 @@ const MultiInput = () => {
       <div className="flex flex-col lg:flex-row gap-4 p-5 rounded-lg  bg-[#ffffff49]">
         <div className="lg:w-[13rem] ">
           <Select
-            options= {cities.map((city)=>({value:city.id,label:city.tr}))}
+            options={cities.map((city) => ({ value: city.id, label: city.tr }))}
             // closeMenuOnSelect={false}
             isMulti
             placeholder="Select City "
@@ -61,7 +56,10 @@ const MultiInput = () => {
 
         <div className="lg:w-[13rem]">
           <Select
-           options={departments.map((dep) => ({ value: dep.id, label: dep.tr}))}
+            options={departments.map((dep) => ({
+              value: dep.id,
+              label: dep.tr,
+            }))}
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select Departmant"

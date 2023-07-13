@@ -1,6 +1,6 @@
 const MainInfo = () => {
   return (
-    <div className="container w-[50%]">
+    <div className=" mx-auto container">
       {/* ilk info */}
       <div className="">
         <div class="flex border rounded-md border-gray-500 p-4 m-2">
