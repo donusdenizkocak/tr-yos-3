@@ -9,7 +9,6 @@ const Detail = () => {
     <motion.div  initial={{opacity:0 }}
     animate={{opacity:1 }}>
       <DetailHeader />
-      
       <MainInfo/>
       <AboutDetail/>
       <BasicDetail/>
