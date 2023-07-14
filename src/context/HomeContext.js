@@ -10,16 +10,19 @@ const FEATURED_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${
 const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
 const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`;
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
+const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
 
 const HomeContextProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
   const [universities, setUniversities] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [allDepartments, setAllDepartments] = useState([])
 
   useEffect(() => {
     getCities();
     getUniversities();
     getDepartments();
+    getAllDepartments();
   }, []);
 
   const getCities = async () => {
@@ -35,7 +38,7 @@ const HomeContextProvider = ({ children }) => {
   const getUniversities = async () => {
     try {
       const { data } = await axios.get(UNIVERSITIES_API);
-      //   console.log(data);
+        console.log(data);
       setUniversities(data);
     } catch (error) {
       console.log(error);
@@ -51,6 +54,15 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const getAllDepartments = async () => {
+    try {
+      const { data } = await axios.get(ALLDEPARTMENTS_API);
+      console.log(data);
+      setAllDepartments(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const values = {
     cities,
@@ -58,6 +70,9 @@ const HomeContextProvider = ({ children }) => {
     universities,
     setUniversities,
     departments,
+    setAllDepartments,
+    allDepartments,
+
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
