@@ -1,5 +1,7 @@
 import CardUniversites from "../components/universitesComponents/CardUniversites";
 import { motion } from "framer-motion";
+import { HomeContext } from "../context/HomeContext";
+import { useContext } from "react";
 
 const mapss = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
 
@@ -13,6 +15,8 @@ const framerContainer = {
 
 
 const Universites = () => {
+  const{universities,cities}=useContext(HomeContext);
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -35,8 +39,8 @@ const Universites = () => {
         </div>
       </div>
       <motion.div initial="hidden" animate="visible" variants={framerContainer}>
-        {mapss.map((map, i) => (
-          <CardUniversites {...map} key={i} />
+        {universities.map((uni) => (
+          <CardUniversites {...uni} key={uni.id} cities={cities} />
         ))}
       </motion.div>
     </motion.div>

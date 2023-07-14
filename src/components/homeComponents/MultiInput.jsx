@@ -3,24 +3,45 @@ import { HomeContext } from "../../context/HomeContext";
 import { useContext, useState } from "react";
 
 const MultiInput = () => {
-  const { cities, universities, departments } = useContext(HomeContext);
+  const { cities, universities,allDepartments} = useContext(HomeContext);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [selectedSecondIds, setSelectedSecondIds] = useState([]);
 
-  const uniList = universities.map((uni) => {
-    return { ...universities, value: uni.city, label: uni.tr };
-  });
   const handleFirstInputChange = (selectedOptions) => {
     const selectedIds = selectedOptions.map((option) => option.value);
     setSelectedIds(selectedIds);
-  };
-  const filteredUniList =
-    selectedIds.length > 0
-      ? uniList.filter((item) => selectedIds.includes(item.value))
-      : uniList;
+  }
+     const handleSecondInputChange = (selectedOptions2) => {
+      const selectedSecondIds= selectedOptions2.map((option) => option.label);
+      console.log(selectedOptions2)
+      setSelectedSecondIds(selectedSecondIds);
+      
+    };
+
 
   console.log(selectedIds);
-  console.log(filteredUniList);
+  console.log(selectedSecondIds);
+  console.log(allDepartments);
 
+const filteredUniList=selectedIds.length ? 
+ universities?.filter((item) => selectedIds.includes(item.city)).map((item)=>({...item,
+  value:item.code,
+  label:item.tr
+})) : 
+universities?.map((item) => ({
+  ...item,
+  value: item.code,
+  label: item.tr,
+}));
+
+const filteredAllUniList =selectedSecondIds.length ? 
+ allDepartments?.filter((item) => selectedSecondIds.includes(item.university.tr)).map((item)=>({...item,label:item.department.tr,value:item.department.code})):
+
+allDepartments.map((item)=>({...item,label:item.department.tr,value:item.department.code}))
+
+
+ console.log(filteredUniList);
+ console.log(filteredAllUniList);
   return (
     <div
       className="flex flex-col gap-10 absolute z-50"
@@ -38,7 +59,7 @@ const MultiInput = () => {
         <div className="lg:w-[13rem] ">
           <Select
             options={cities.map((city) => ({ value: city.id, label: city.tr }))}
-            // closeMenuOnSelect={false}
+            closeMenuOnSelect={false}
             isMulti
             placeholder="Select City "
             onChange={handleFirstInputChange}
@@ -51,15 +72,13 @@ const MultiInput = () => {
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select University "
+            onChange={handleSecondInputChange}
           />
         </div>
 
         <div className="lg:w-[13rem]">
           <Select
-            options={departments.map((dep) => ({
-              value: dep.id,
-              label: dep.tr,
-            }))}
+            options={filteredAllUniList}
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select Departmant"
