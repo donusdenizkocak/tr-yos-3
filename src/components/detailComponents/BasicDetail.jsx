@@ -19,22 +19,22 @@ const BasicDetail = () => {
 
       {show && (
         <div className="flex p-10 mb-6 relative  rounded-md  bg-transparent text-blue-900 underline  ">
-          <ul className="flex flex-wrap grid-cols-2 p-8 w-full justify-around">
+          <ul className="flex flex-wrap grid-cols-2 p-8 text-center gap-12 w-full justify-around">
             <li className=" p-20 bg-gray-200">
               <Icon name="bed" size="50" color="darkblue" />
-              <p>3</p>
+              <p className=" text-center p-4 text-lg ">3</p>
             </li>
             <li className=" p-20 bg-gray-200">
               <Icon name="group" size="50" color="darkblue" />
-              <p>4,240</p>
+              <p className=" text-center p-4 text-lg ">4,240</p>
             </li>
             <li className=" p-20 bg-gray-200">
               <Icon name="warehouse" size="50" color="darkblue" />
-              <p>1</p>
+              <p className=" text-center p-4 text-lg ">1</p>
             </li>
             <li className=" p-20 bg-gray-200">
               <Icon name="buildingCircleCheck" size="50" color="darkblue" />
-              <p>Active</p>
+              <p className=" text-center p-4 text-lg ">Active</p>
             </li>
           </ul>
         </div>
