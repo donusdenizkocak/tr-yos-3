@@ -106,12 +106,23 @@ const Navbar = () => {
         data-te-offcanvas-init
       >
         <div className="flex items-center justify-between p-4 ">
-          <h5
+          {/* <h5
             className="mb-0 font-semibold leading-normal"
             id="offcanvasTopLabel"
           >
             Offcanvas top
-          </h5>
+          </h5> */}
+          <ul className=" h-full flex flex-col justify-center  ">
+        <li className=" mb-0 p-2 font-semibold leading-normal">
+          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >HomePage</a>
+        </li>
+        <li className=" mb-0 p-2 font-semibold leading-normal">
+          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >Universites</a>
+        </li>
+        <li className=" mb-0 p-2 font-semibold leading-normal">
+          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700">Departments</a>
+        </li>
+      </ul>
           <button
             type="button"
             className="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
