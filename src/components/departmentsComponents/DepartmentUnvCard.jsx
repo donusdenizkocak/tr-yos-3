@@ -31,7 +31,7 @@ const DepartmentUnvCard = () => {
         <div>
           <div>
             <div>
-              <Icon name="fav"/>
+              {/* <Icon name="fav"/> */}
             </div>
             <div className="ml-2 mb-5">
               <h6 className="font-bold">Call Us</h6>
@@ -43,7 +43,7 @@ const DepartmentUnvCard = () => {
 
           <div>
             <div>
-              <Icon name="fav"/>
+              {/* <Icon name="fav"/> */}
             </div>
             <div className="ml-2 mb-5">
               <h6 className="font-sm font-bold">E-Mail</h6>
@@ -55,7 +55,7 @@ const DepartmentUnvCard = () => {
             
           <div>
             <div>
-              <Icon name="fav" size="35"/>
+              {/* <Icon name="fav" size="35"/> */}
             </div>
             <div className="ml-2 mb-5">
               <h6 className="font-sm font-bold">Website</h6>
