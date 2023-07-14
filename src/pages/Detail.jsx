@@ -1,3 +1,4 @@
+import AboutDetail from '../components/detailComponents/AboutDetail';
 import BasicDetail from '../components/detailComponents/BasicDetail'
 import DetailHeader from '../components/detailComponents/DetailHeader'
 import MainInfo from '../components/detailComponents/MainInfo'
@@ -10,6 +11,7 @@ const Detail = () => {
       <DetailHeader />
       
       <MainInfo/>
+      <AboutDetail/>
       <BasicDetail/>
     </motion.div>
 
