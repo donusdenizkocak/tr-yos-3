@@ -59,7 +59,7 @@ const MainInfo = () => {
         </div>
       </div>
 
-      <div class="border rounded-md border-gray-500 p-4 m-2">
+      {/* <div class="border rounded-md border-gray-500 p-4 m-2">
         <h1 class="text-2xl font-bold mb-4 text-darkBlue">About Department</h1>
         <p>
           The Acıbadem University School of Medicine was established in 2007 and
@@ -116,7 +116,7 @@ const MainInfo = () => {
           field of primary healthcare. We continue to stride confidently towards
           our goal of training the best physicians in Turkey.
         </p>
-      </div>
+      </div> */}
 
      
 
