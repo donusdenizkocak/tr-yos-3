@@ -1,13 +1,16 @@
 import { Icon } from "../../helper/Icons";
+// import {data} from "./../../helper/data"
 
-const DeparmentsIntro = ({ id, bolum, fakulte, universty, image }) => {
+
+const DeparmentsIntro = ({ city, bolum, faculty, universty,department ,image,code}) => {
+ 
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow text-center"
-      key={id}
+      key={code}
     >
       <a href="#">
-        <img className="rounded-t-lg w-96 h-36" src={image} alt="image" />
+        <img className="rounded-t-lg w-96 h-36" src={image}  alt="image" />
       </a>
       <div>
         <div className="relative h-5">
@@ -16,16 +19,16 @@ const DeparmentsIntro = ({ id, bolum, fakulte, universty, image }) => {
         <div className="p-2 ">
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 hover:text-sky-400">
-              {bolum}
+              {department?.tr}
             </h5>
           </a>
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 hover:text-sky-400">
-              {fakulte}
+              {faculty.tr}
             </h5>
           </a>
           <p className="mb-3 font-normal text-gray-800 uppercase">
-            <span className="">{universty}</span>
+            <span className="">{universty?.tr}</span>
           </p>
           {/* <a
               href="#"
@@ -53,7 +56,7 @@ const DeparmentsIntro = ({ id, bolum, fakulte, universty, image }) => {
         <div className="flex">
          
           <Icon name="marker" size="20"/>
-          <p className="">Ankara</p>
+          <p className="">{city?.tr}</p>
         </div>
         <div className="flex">
         <Icon name="payment" size="25"/>
