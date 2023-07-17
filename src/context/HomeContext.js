@@ -24,6 +24,13 @@ const HomeContextProvider = ({ children }) => {
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps,   setSelectedDeps] = useState([]);
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
 
   useEffect(() => {
     getCities();
@@ -46,7 +53,8 @@ const HomeContextProvider = ({ children }) => {
     try {
       const { data } = await axios.get(UNIVERSITIES_API);
         console.log(data);
-      setUniversities(data);
+        const shuffledData = shuffleArray(data);
+      setUniversities(shuffledData);
     } catch (error) {
       console.log(error);
     }
@@ -107,6 +115,8 @@ const HomeContextProvider = ({ children }) => {
       
       
     };
+
+   
     console.log(selectedDeps)
     console.log(selectedThirdIds)
     const filteredUniList=selectedIds.length ? 
@@ -125,7 +135,10 @@ const filteredAllUniList =selectedSecondIds.length ?
 
 allDepartments.map((item)=>({...item,label:item.department.tr,value:item.department.code}))
 
-  const values = {
+
+const filteredDepartments= filteredAllUniList?.filter((item)=>selectedThirdIds?.includes(item.label))
+
+const values = {
     cities,
     setCities,
     city,
@@ -133,6 +146,7 @@ allDepartments.map((item)=>({...item,label:item.department.tr,value:item.departm
     setUniversities,
     departments,
     setAllDepartments,
+
     allDepartments,
     selectedIds,
     selectedCities,
@@ -144,7 +158,8 @@ allDepartments.map((item)=>({...item,label:item.department.tr,value:item.departm
     handleSecondInputChange,
     handleThirdInputChange,
     filteredUniList,
-    filteredAllUniList
+    filteredAllUniList,
+    filteredDepartments
 
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
