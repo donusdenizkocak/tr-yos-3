@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { HomeContext } from "../context/HomeContext";
 import { useContext } from "react";
 
-const mapss = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
-
 const framerContainer = {
   visible: {
     transition: {
