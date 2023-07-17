@@ -17,6 +17,13 @@ const HomeContextProvider = ({ children }) => {
   const [universities, setUniversities] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [allDepartments, setAllDepartments] = useState([])
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [selectedCities, setSelectedCities] = useState([]);
+  const [selectedUnies, setSelectedUnies] = useState([]);
+  const [selectedSecondIds, setSelectedSecondIds] = useState([]);
+  const [selectedThirdIds, setSelectedThirdIds] = useState([]);
+  const [selectedDeps,   setSelectedDeps] = useState([]);
+
 
   useEffect(() => {
     getCities();
@@ -64,14 +71,80 @@ const HomeContextProvider = ({ children }) => {
     }
   };
 
+  const handleFirstInputChange = (selectedOptions) => {
+    console.log(selectedOptions)
+    const selectedIds = selectedOptions.map((option) => option.value);
+    // const selectedCities=selectedOptions.map((option) => option.label)
+    setSelectedCities(selectedOptions)
+    setSelectedIds(selectedIds);
+    
+    console.log(selectedIds)
+   
+  
+  
+    
+  }
+  console.log(selectedCities)
+
+
+  const city= cities?.map((city) => ({ value: city.id, label: city.tr }))
+
+     const handleSecondInputChange = (selectedOptions2) => {
+      const selectedSecondIds= selectedOptions2.map((option) => option.label);
+     
+      console.log(selectedOptions2)
+      setSelectedSecondIds(selectedSecondIds);
+      setSelectedUnies(selectedOptions2)
+      
+      
+    };
+     const handleThirdInputChange = (selectedOptions3) => {
+      const selectedThirdIds= selectedOptions3.map((option) => option.label);
+      // const selectedDeps= selectedOptions3.map((option) => ({label:option.department.tr,value:option.department.code}));
+      console.log(selectedOptions3)
+      setSelectedThirdIds(selectedThirdIds);
+      setSelectedDeps(selectedOptions3)
+      
+      
+    };
+    console.log(selectedDeps)
+    console.log(selectedThirdIds)
+    const filteredUniList=selectedIds.length ? 
+ universities?.filter((item) => selectedIds.includes(item.city)).map((item)=>({...item,
+  value:item.code,
+  label:item.tr
+})) : 
+universities?.map((item) => ({
+  ...item,
+  value: item.code,
+  label: item.tr,
+}));
+
+const filteredAllUniList =selectedSecondIds.length ? 
+ allDepartments?.filter((item) => selectedSecondIds.includes(item.university.tr)).map((item)=>({...item,label:item.department.tr,value:item.department.code})):
+
+allDepartments.map((item)=>({...item,label:item.department.tr,value:item.department.code}))
+
   const values = {
     cities,
     setCities,
+    city,
     universities,
     setUniversities,
     departments,
     setAllDepartments,
     allDepartments,
+    selectedIds,
+    selectedCities,
+    selectedUnies,
+    selectedDeps,
+
+    selectedSecondIds,
+    handleFirstInputChange,
+    handleSecondInputChange,
+    handleThirdInputChange,
+    filteredUniList,
+    filteredAllUniList
 
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;

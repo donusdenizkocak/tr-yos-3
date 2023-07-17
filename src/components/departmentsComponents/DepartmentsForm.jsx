@@ -1,7 +1,8 @@
 import Select from "react-select";
 
+
 import { HomeContext } from "../../context/HomeContext";
-import {useContext, useState}  from  'react'
+import {useContext}  from  'react'
 
 // const Checkbox = ({ id, label }) => (
 //   <div className="checkbox-container">
@@ -18,25 +19,21 @@ import {useContext, useState}  from  'react'
 // );
 
 const DepartmentsForm = () => {
+ 
 
- const{cities,universities,departments}=useContext(HomeContext);
-   const [selectedIds, setSelectedIds] = useState([]);
 
-  const uniList=universities.map((uni)=>{
-    return{...universities,value:uni.city,label:uni.tr}
-  })
-  const handleFirstInputChange = (selectedOptions) => {
-    const selectedIds = selectedOptions.map((option) => option.value);
-    setSelectedIds(selectedIds);
-  };
-  const filteredUniList = selectedIds.length > 0
-  ? uniList.filter((item) => selectedIds.includes(item.value))
-  : uniList;
+  const { cities,city,selectedCities,selectedUnies,selectedThirdIds,selectedDeps, universities,allDepartments,selectedIds,setSelectedIds,selectedSecondIds,handleFirstInputChange,handleSecondInputChange,handleThirdInputChange,filteredUniList,filteredAllUniList} = useContext(HomeContext);
+
+
+
+
+
 
 
   
   console.log(selectedIds)
   console.log(filteredUniList)
+  console.log(cities)
 
 
   return (
@@ -48,13 +45,16 @@ const DepartmentsForm = () => {
         <div className="grid grid-row gap-4  w-full">
           <div>
             <Select
-              options={cities.map((city)=>({value:city.id,label:city.tr}))}
+              options={city}
               closeMenuOnSelect={false}
               isMulti
               placeholder="Select City "
+              isClearable
               onChange={handleFirstInputChange}
+              value={selectedCities}
             />
           </div>
+         
 
           <div>
             <Select
@@ -62,15 +62,20 @@ const DepartmentsForm = () => {
               closeMenuOnSelect={false}
               isMulti
               placeholder="Select University "
-            />
+              onChange={handleSecondInputChange}
+              value={selectedUnies}
+          />
+            
           </div>
 
           <div>
             <Select
-              options={departments.map((dep) => ({ value: dep.id, label: dep.tr}))}
+              options={filteredAllUniList}
               closeMenuOnSelect={false}
               isMulti
               placeholder="Select Departmant"
+              value={selectedDeps}
+              onChange={handleThirdInputChange}
             />
           </div>
         </div>
