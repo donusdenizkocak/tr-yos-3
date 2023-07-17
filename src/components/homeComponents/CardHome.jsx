@@ -4,10 +4,48 @@ const CardHome = ({ id, data, logo, tr }) => {
       className=" bg-white border border-gray-200 rounded-lg shadow w-96 h-[420px]"
       key={id}
     >
+<<<<<<< HEAD
+     <div className="relative">
+        <img
+          className="rounded-t-lg w-full h-[15rem]"
+          src={image}
+          alt="image"
+        />
+        <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-white p-1 rounded-lg border font-semibold">
+          <span className="pt-1">
+              <svg
+                fill="#000000"
+                height="1rem"
+                width="1rem"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 51.4 51.4"
+                xmlSpace="preserve"
+                stroke="#000000"
+                strokeWidth="0.7196"
+              >
+                <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
+                <g id="SVGRepo_iconCarrier">
+                  
+                  <g>                   
+                    <path d="M1.7,25.2c0.553,0,1-0.447,1-1c0-6.065,4.935-11,11-11h24v8.964L51.4,12.2L37.7,2.236V11.2h-24c-7.168,0-13,5.832-13,13 C0.7,24.753,1.147,25.2,1.7,25.2z" />
+                    <path d="M49.7,26.2c-0.553,0-1,0.447-1,1c0,6.065-4.935,11-11,11h-24v-8.964L0,39.2l13.7,9.964V40.2h24c7.168,0,13-5.832,13-13 C50.7,26.647,50.253,26.2,49.7,26.2z" />
+                  </g>
+                </g>
+              </svg>
+          </span>
+          <span>Compare</span>
+        </div>
+     </div>
+=======
       <div>
         <img className="rounded-t-lg w-full h-[215px]" src={logo} alt="image" />
       </div>
 
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
       <div>
         <div className="relative h-5">
           <svg

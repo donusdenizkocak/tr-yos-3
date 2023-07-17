@@ -65,9 +65,15 @@ const MultiInput = () => {
             onChange={handleThirdInputChange}
           />
         </div>
+<<<<<<< HEAD
+        <button class="bg-[#0475e5]  hover:bg-[#C5BEB5] text-white font-bold w-[15rem] lg:w-[10rem] py-1.5 px-4 border border-blue-700 rounded h-9">
+          Select
+        </button>
+=======
         <button class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1.5 px-4 border border-blue-700 rounded h-9 w-full mt-5" onClick={()=>navigate("/departments")} >
             Submit Search
           </button>
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
       </div>
     </div>
   );
