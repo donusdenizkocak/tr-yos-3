@@ -3,9 +3,9 @@ import CardHome from "./CardHome";
 import { HomeContext } from "../../context/HomeContext";
 
 const CardHomeIntro = () => {
-  const { universities } = useContext(HomeContext);
+  const { universities,allDepartments} = useContext(HomeContext);
 
-  const records = universities.slice(0, 12);
+  const records = allDepartments.slice(0, 12);
 
   return (
     <div className=" px-4 text-center p-5">
