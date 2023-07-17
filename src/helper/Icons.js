@@ -18,7 +18,7 @@ const RegisterIcon = () => {
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
-      height="auto"
+      height="100%"
       viewBox="0 0 744.84799 747.07702"
     >
       <path
@@ -271,18 +271,104 @@ const favIcon = ({ size, color }) => {
   );
 };
 
-const Icon = ({ name, size, color }) => {
+
+  
+
+const arrowUpIcon = ({ size, color }) => {
+  return (
+<svg xmlns="http://www.w3.org/2000/svg"
+ height={size}
+ fill={color}
+  viewBox="0 0 512 512">
+  <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/>
+  </svg>
+  );
+};
+
+const arrowDownIcon = ({ size, color }) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"
+   height={size}
+   fill={color}
+   viewBox="0 0 512 512">
+    <path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z"/>
+    </svg>
+  )
+}
+
+const bedIcon = ({ size, color }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      fill={color}
+      viewBox="0 0 640 512"
+    >
+      <path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z" />
+    </svg>
+  );
+};
+
+const groupIcon = ({ size, color }) => {
+  return (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height={size}
+    fill={color}
+    viewBox="0 0 576 512"
+  >
+    <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z" />
+  </svg>
+  );
+};
+
+const warehouseIcon = ({ size, color }) => {
+  return (
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  height={size}
+  fill={color}
+  viewBox="0 0 640 512"
+>
+  <path d="M0 488V171.3c0-26.2 15.9-49.7 40.2-59.4L308.1 4.8c7.6-3.1 16.1-3.1 23.8 0L599.8 111.9c24.3 9.7 40.2 33.3 40.2 59.4V488c0 13.3-10.7 24-24 24H568c-13.3 0-24-10.7-24-24V224c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32V488c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zm488 24l-336 0c-13.3 0-24-10.7-24-24V432H512l0 56c0 13.3-10.7 24-24 24zM128 400V336H512v64H128zm0-96V224H512l0 80H128z" />
+</svg>
+  );
+};
+
+const buildingCircleCheckIcon = ({ size, color }) => {
+  return (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height={size}
+    fill={color}
+    
+    viewBox="0 0 640 512"
+  >
+    <path d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c15.1 0 28.5-6.9 37.3-17.8C340.4 462.2 320 417.5 320 368c0-54.7 24.9-103.5 64-135.8V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zM640 368a144 144 0 1 0 -288 0 144 144 0 1 0 288 0zm-76.7-43.3c6.2 6.2 6.2 16.4 0 22.6l-72 72c-6.2 6.2-16.4 6.2-22.6 0l-40-40c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L480 385.4l60.7-60.7c6.2-6.2 16.4-6.2 22.6 0z" />
+  </svg>
+  );
+};
+
+
+const Icon = ({ name, size, color, style }) => {
   const icons = {
     home: HomeIcon,
+    arrowUp: arrowUpIcon,
+    arrowdown: arrowDownIcon,
+    bed: bedIcon,
+    group: groupIcon,
+    warehouse: warehouseIcon,
+    buildingCircleCheck: buildingCircleCheckIcon,
     register: RegisterIcon,
     marker: MarkerLocationsIcon,
     payment: paymentIcon,
     login: loginIcon,
-    fav:favIcon 
+    fav:favIcon
+
   };
 
   const Component = icons[name];
-  return <Component size={size} color={color} />;
+  return <Component size={size} color={color} style={style}/>;
 };
 
 export { Icon };

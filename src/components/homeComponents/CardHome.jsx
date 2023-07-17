@@ -1,13 +1,10 @@
-import React from "react";
-
-const CardHome = ({ item }) => {
-  const { id, bolum, fakulte, universty, image } = item;
-
+const CardHome = ({ id, data, logo, tr }) => {
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-96 h-[420px]"
       key={id}
     >
+<<<<<<< HEAD
      <div className="relative">
         <img
           className="rounded-t-lg w-full h-[15rem]"
@@ -43,6 +40,12 @@ const CardHome = ({ item }) => {
           <span>Compare</span>
         </div>
      </div>
+=======
+      <div>
+        <img className="rounded-t-lg w-full h-[215px]" src={logo} alt="image" />
+      </div>
+
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
       <div>
         <div className="relative h-5">
           <svg
@@ -58,16 +61,16 @@ const CardHome = ({ item }) => {
         <div className="p-2 ">
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 hover:text-sky-400">
-              {bolum}
+              {tr}
             </h5>
           </a>
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 hover:text-sky-400">
-              {fakulte}
+              FATÜLTE
             </h5>
           </a>
           <p className="mb-3 font-normal text-gray-800 uppercase">
-            <span className="">{universty}</span>
+            <span className="">ÜNİVERSİTE</span>
           </p>
           {/* <a
             href="#"

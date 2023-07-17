@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import { SubmitReview } from "./SubmitReview";
 
 const MainInfo = () => {
   return (
  
     <div className="container w-[50%]">
+=======
+
+
+const MainInfo = () => {
+  return (
+    <div className=" mx-auto container">
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
       {/* ilk info */}
       <div className="">
         <div className="flex border rounded-md border-gray-500 p-4 m-2">
@@ -60,7 +68,11 @@ const MainInfo = () => {
         </div>
       </div>
 
+<<<<<<< HEAD
       <div className="border rounded-md border-gray-500 p-4 m-2">
+=======
+      {/* <div class="border rounded-md border-gray-500 p-4 m-2">
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
         <h1 class="text-2xl font-bold mb-4 text-darkBlue">About Department</h1>
         <p>
           The Acıbadem University School of Medicine was established in 2007 and
@@ -117,12 +129,21 @@ const MainInfo = () => {
           field of primary healthcare. We continue to stride confidently towards
           our goal of training the best physicians in Turkey.
         </p>
-      </div>
+      </div> */}
 
+<<<<<<< HEAD
       <div className="border rounded  border-gray-500 p-4 m-2">
         <h1 className="text-md text-darkBlue font-bold mb-4">Bacic Detail</h1>
         <div className="grid grid-cols-2 gap-4">
           <div className="border rounded bg-gray-100 p-4">
+=======
+     
+
+      {/* <div class="border rounded  border-gray-500 p-4 m-2">
+        <h1 class="text-md text-darkBlue font-bold mb-4">Bacic Detail</h1>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="border rounded bg-gray-100 p-4">
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
             <p>icon 1</p>
           </div>
           <div className="border rounded bg-gray-100 p-4">
@@ -135,11 +156,15 @@ const MainInfo = () => {
             <p>icon 4</p>
           </div>
         </div>
+<<<<<<< HEAD
       </div>
       <div className="border rounded  border-gray-500 p-4 m-2">
       <SubmitReview/>
       </div>
       
+=======
+      </div> */}
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
     </div>
    
   );

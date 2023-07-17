@@ -1,30 +1,26 @@
 import Select from "react-select";
 import { HomeContext } from "../../context/HomeContext";
-import {useContext, useState}  from  'react'
-
-
-
+import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const MultiInput = () => {
+  const navigate = useNavigate();
+  const { cities,setCities,city, universities,allDepartments,selectedIds,setSelectedIds,selectedSecondIds,handleFirstInputChange,handleSecondInputChange,handleThirdInputChange,filteredUniList,filteredAllUniList} = useContext(HomeContext);
 
-  const{cities,universities,departments}=useContext(HomeContext);
-   const [selectedIds, setSelectedIds] = useState([]);
+ 
 
-  const uniList=universities.map((uni)=>{
-    return{...universities,value:uni.city,label:uni.tr}
-  })
-  const handleFirstInputChange = (selectedOptions) => {
-    const selectedIds = selectedOptions.map((option) => option.value);
-    setSelectedIds(selectedIds);
-  };
-  const filteredUniList = selectedIds.length > 0
-  ? uniList.filter((item) => selectedIds.includes(item.value))
-  : uniList;
+  console.log(selectedIds);
+  console.log(selectedSecondIds);
+  console.log(allDepartments);
 
 
-  
-  console.log(selectedIds)
-  console.log(filteredUniList)
+
+
+
+ console.log(filteredUniList);
+ console.log(filteredAllUniList);
+
+
  
   return (
     <div
@@ -42,8 +38,8 @@ const MultiInput = () => {
       <div className="flex flex-col lg:flex-row gap-4 p-5 rounded-lg  bg-[#ffffff49]">
         <div className="lg:w-[13rem] ">
           <Select
-            options= {cities.map((city)=>({value:city.id,label:city.tr}))}
-            // closeMenuOnSelect={false}
+            options={city}
+            closeMenuOnSelect={false}
             isMulti
             placeholder="Select City "
             onChange={handleFirstInputChange}
@@ -56,20 +52,28 @@ const MultiInput = () => {
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select University "
+            onChange={handleSecondInputChange}
           />
         </div>
 
         <div className="lg:w-[13rem]">
           <Select
-           options={departments.map((dep) => ({ value: dep.id, label: dep.tr}))}
+            options={filteredAllUniList}
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select Departmant"
+            onChange={handleThirdInputChange}
           />
         </div>
+<<<<<<< HEAD
         <button class="bg-[#0475e5]  hover:bg-[#C5BEB5] text-white font-bold w-[15rem] lg:w-[10rem] py-1.5 px-4 border border-blue-700 rounded h-9">
           Select
         </button>
+=======
+        <button class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1.5 px-4 border border-blue-700 rounded h-9 w-full mt-5" onClick={()=>navigate("/departments")} >
+            Submit Search
+          </button>
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
       </div>
     </div>
   );
