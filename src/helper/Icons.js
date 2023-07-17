@@ -272,19 +272,29 @@ const favIcon = ({ size, color }) => {
 };
 
 
+  
 
 const arrowUpIcon = ({ size, color }) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height={size}
-      fill={color}
-      viewBox="0 0 512 512"
-    >
-      <path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
-    </svg>
+<svg xmlns="http://www.w3.org/2000/svg"
+ height={size}
+ fill={color}
+  viewBox="0 0 512 512">
+  <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/>
+  </svg>
   );
 };
+
+const arrowDownIcon = ({ size, color }) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"
+   height={size}
+   fill={color}
+   viewBox="0 0 512 512">
+    <path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z"/>
+    </svg>
+  )
+}
 
 const bedIcon = ({ size, color }) => {
   return (
@@ -344,6 +354,7 @@ const Icon = ({ name, size, color, style }) => {
   const icons = {
     home: HomeIcon,
     arrowUp: arrowUpIcon,
+    arrowdown: arrowDownIcon,
     bed: bedIcon,
     group: groupIcon,
     warehouse: warehouseIcon,

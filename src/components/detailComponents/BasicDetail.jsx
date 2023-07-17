@@ -12,7 +12,14 @@ const BasicDetail = () => {
         <div className="flex justify-between  space-x-96 ">
           <h3 className=" text-darkBlue font-bold text-2xl mb-4 ">Basic Detail</h3>
           <div className="" onClick={handleToggle}>
-            <Icon name="arrowUp" size="25" color="darkblue" />
+            {show ? (
+              <Icon name="arrowUp" size="25" color="darkblue" />
+            ) : (
+              <Icon name="arrowdown" size="25" color="darkblue" />
+            )
+
+            }
+            
           </div>
         </div>
       </div>
