@@ -1,22 +1,31 @@
+<<<<<<< HEAD
+import { SubmitReview } from "./SubmitReview";
+
+const MainInfo = () => {
+  return (
+ 
+    <div className="container w-[50%]">
+=======
 
 
 const MainInfo = () => {
   return (
     <div className=" mx-auto container">
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
       {/* ilk info */}
       <div className="">
-        <div class="flex border rounded-md border-gray-500 p-4 m-2">
-          <div class="mr-4">
-            <h2 class="text-xl text-darkBlue font-bold mb-2">
+        <div className="flex border rounded-md border-gray-500 p-4 m-2">
+          <div className="mr-4">
+            <h2 className="text-xl text-darkBlue font-bold mb-2">
               Molecular Biology And Genetics
             </h2>
-            <h2 class="text-xl text-darkBlue font-bold mb-2">
+            <h2 className="text-xl text-darkBlue font-bold mb-2">
               Faculty Of Engineering
             </h2>
-            <a href="#" class="flex items-center mb-2">
+            <a href="#" className="flex items-center mb-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 mr-2"
+                className="h-6 w-6 mr-2"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -36,22 +45,22 @@ const MainInfo = () => {
 
         {/* ikinci info */}
 
-        <div class="border rounded-md border-gray-500 p-4 m-2">
-          <h1 class="text-2xl font-bold mb-4 text-darkBlue">Other</h1>
-          <div class="border border-success-400 rounded-md bg-success-100 grid grid-cols-4 ">
-            <div class="border border-success-200 p-8">
+        <div className="border rounded-md border-gray-500 p-4 m-2">
+          <h1 className="text-2xl font-bold mb-4 text-darkBlue">Other</h1>
+          <div className="border border-success-400 rounded-md bg-success-100 grid grid-cols-4 ">
+            <div className="border border-success-200 p-8">
               <h2>Language</h2>
               <h4 className=" text-success">Turkish</h4>
             </div>
-            <div class="border border-success-200 p-8">
+            <div className="border border-success-200 p-8">
               <h2>Language</h2>
               <h4 className=" text-success">4</h4>
             </div>
-            <div class="border border-success-200 p-8">
+            <div className="border border-success-200 p-8">
               <h2>Language</h2>
               <h4 className=" text-success">40</h4>
             </div>
-            <div class="border border-success-200 p-8">
+            <div className="border border-success-200 p-8">
               <h2>Language</h2>
               <h4 className=" text-success"></h4>
             </div>
@@ -59,7 +68,11 @@ const MainInfo = () => {
         </div>
       </div>
 
+<<<<<<< HEAD
+      <div className="border rounded-md border-gray-500 p-4 m-2">
+=======
       {/* <div class="border rounded-md border-gray-500 p-4 m-2">
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
         <h1 class="text-2xl font-bold mb-4 text-darkBlue">About Department</h1>
         <p>
           The Acıbadem University School of Medicine was established in 2007 and
@@ -118,26 +131,42 @@ const MainInfo = () => {
         </p>
       </div> */}
 
+<<<<<<< HEAD
+      <div className="border rounded  border-gray-500 p-4 m-2">
+        <h1 className="text-md text-darkBlue font-bold mb-4">Bacic Detail</h1>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="border rounded bg-gray-100 p-4">
+=======
      
 
       {/* <div class="border rounded  border-gray-500 p-4 m-2">
         <h1 class="text-md text-darkBlue font-bold mb-4">Bacic Detail</h1>
         <div class="grid grid-cols-2 gap-4">
           <div class="border rounded bg-gray-100 p-4">
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
             <p>icon 1</p>
           </div>
-          <div class="border rounded bg-gray-100 p-4">
+          <div className="border rounded bg-gray-100 p-4">
             <p>icon 2</p>
           </div>
-          <div class="border rounded bg-gray-100 p-4">
+          <div className="border rounded bg-gray-100 p-4">
             <p>icon 3</p>
           </div>
-          <div class="border rounded bg-gray-100 p-4">
+          <div className="border rounded bg-gray-100 p-4">
             <p>icon 4</p>
           </div>
         </div>
+<<<<<<< HEAD
+      </div>
+      <div className="border rounded  border-gray-500 p-4 m-2">
+      <SubmitReview/>
+      </div>
+      
+=======
       </div> */}
+>>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
     </div>
+   
   );
 };
 
