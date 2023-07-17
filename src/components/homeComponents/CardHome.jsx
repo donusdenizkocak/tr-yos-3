@@ -1,51 +1,49 @@
-const CardHome = ({ id, data, logo, tr }) => {
+const CardHome = ({ id, data, logo, tr, images }) => {
+ 
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-96 h-[420px]"
       key={id}
     >
-<<<<<<< HEAD
-     <div className="relative">
+      <div className="relative">
         <img
           className="rounded-t-lg w-full h-[15rem]"
-          src={image}
+          src={logo}
           alt="image"
         />
         <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-white p-1 rounded-lg border font-semibold">
           <span className="pt-1">
-              <svg
-                fill="#000000"
-                height="1rem"
-                width="1rem"
-                version="1.1"
-                id="Capa_1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 51.4 51.4"
-                xmlSpace="preserve"
-                stroke="#000000"
-                strokeWidth="0.7196"
-              >
-                <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
-                <g id="SVGRepo_iconCarrier">
-                  
-                  <g>                   
-                    <path d="M1.7,25.2c0.553,0,1-0.447,1-1c0-6.065,4.935-11,11-11h24v8.964L51.4,12.2L37.7,2.236V11.2h-24c-7.168,0-13,5.832-13,13 C0.7,24.753,1.147,25.2,1.7,25.2z" />
-                    <path d="M49.7,26.2c-0.553,0-1,0.447-1,1c0,6.065-4.935,11-11,11h-24v-8.964L0,39.2l13.7,9.964V40.2h24c7.168,0,13-5.832,13-13 C50.7,26.647,50.253,26.2,49.7,26.2z" />
-                  </g>
+            <svg
+              fill="#000000"
+              height="1rem"
+              width="1rem"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 51.4 51.4"
+              xmlSpace="preserve"
+              stroke="#000000"
+              strokeWidth="0.7196"
+            >
+              <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path d="M1.7,25.2c0.553,0,1-0.447,1-1c0-6.065,4.935-11,11-11h24v8.964L51.4,12.2L37.7,2.236V11.2h-24c-7.168,0-13,5.832-13,13 C0.7,24.753,1.147,25.2,1.7,25.2z" />
+                  <path d="M49.7,26.2c-0.553,0-1,0.447-1,1c0,6.065-4.935,11-11,11h-24v-8.964L0,39.2l13.7,9.964V40.2h24c7.168,0,13-5.832,13-13 C50.7,26.647,50.253,26.2,49.7,26.2z" />
                 </g>
-              </svg>
+              </g>
+            </svg>
           </span>
           <span>Compare</span>
         </div>
-     </div>
-=======
-      <div>
-        <img className="rounded-t-lg w-full h-[215px]" src={logo} alt="image" />
       </div>
 
->>>>>>> 498dc9bf939e49217d430a12dc06be6f20064881
       <div>
         <div className="relative h-5">
           <svg
@@ -72,25 +70,6 @@ const CardHome = ({ id, data, logo, tr }) => {
           <p className="mb-3 font-normal text-gray-800 uppercase">
             <span className="">ÜNİVERSİTE</span>
           </p>
-          {/* <a
-            href="#"
-            className="inline-flex items-center  p-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            more
-            <svg
-              aria-hidden="true"
-              className="w-4 h-4 ml-2 -mr-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a> */}
         </div>
       </div>
       <hr />
@@ -104,8 +83,7 @@ const CardHome = ({ id, data, logo, tr }) => {
             className="bi bi-geo-alt-fill"
             viewBox="0 0 16 16"
           >
-            {" "}
-            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />{" "}
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
           </svg>
           <p className="">Ankara</p>
         </div>
