@@ -1,7 +1,9 @@
 const MainInfo = () => {
   return (
+    <>
+   
     <div className=" mx-auto container">
-      {/* ilk info */}
+      {/* birinci kısım */}
       <div className="">
         <div className="flex border rounded-md border-gray-500 p-4 m-2">
           <div className="mr-4">
@@ -14,7 +16,7 @@ const MainInfo = () => {
             <a href="#" className="flex items-center mb-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2"
+                class="h-6 w-6 mr-2"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -32,7 +34,7 @@ const MainInfo = () => {
           </div>
         </div>
 
-        {/* ikinci info */}
+        {/* ikinci kısım */}
 
         <div className="border rounded-md border-gray-500 p-4 m-2">
           <h1 className="text-2xl font-bold mb-4 text-darkBlue">Other</h1>
@@ -56,6 +58,7 @@ const MainInfo = () => {
           </div>
         </div>
       </div>
+    </div>
 
       <div className="border rounded-md border-gray-500 p-4 m-2">
         <div className="border rounded  border-gray-500 p-4 m-2">
@@ -65,7 +68,7 @@ const MainInfo = () => {
           </div>
         </div>
       </div>
-    </div>
+     </>
   );
 };
 
