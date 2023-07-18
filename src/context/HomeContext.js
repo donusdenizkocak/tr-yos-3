@@ -130,6 +130,16 @@ universities?.map((item) => ({
   value: item.code,
   label: item.tr,
 }));
+// const UniversityImages = universities.map((item) => item.images);
+
+// const allImages = UniversityImages.flat();
+
+// for (const image of allImages) {
+  
+//   console.log(image);
+// }
+
+
 
 const filteredAllUniList =selectedSecondIds.length ? 
  allDepartments?.filter((item) => selectedSecondIds.includes(item.university.tr)).map((item)=>({...item,label:item.department.tr,value:item.department.code})):
@@ -160,7 +170,9 @@ const values = {
     handleThirdInputChange,
     filteredUniList,
     filteredAllUniList,
-    filteredDepartments
+    filteredDepartments,
+   
+    
 
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
