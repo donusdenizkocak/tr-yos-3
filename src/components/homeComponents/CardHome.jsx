@@ -1,14 +1,14 @@
-const CardHome = ({ id, data, logo, tr, images }) => {
+const CardHome = ({ city, bolum, faculty, universty,department ,image,code}) => {
  
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-96 h-[420px]"
-      key={id}
+      key={code}
     >
       <div className="relative">
         <img
           className="rounded-t-lg w-full h-[15rem]"
-          src={logo}
+          src={image}
           alt="image"
         />
         <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-white p-1 rounded-lg border font-semibold">
@@ -59,16 +59,16 @@ const CardHome = ({ id, data, logo, tr, images }) => {
         <div className="p-2 ">
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 hover:text-sky-400">
-              {tr}
+             {department?.tr}
             </h5>
           </a>
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 hover:text-sky-400">
-              FATÜLTE
+               {faculty.tr}
             </h5>
           </a>
           <p className="mb-3 font-normal text-gray-800 uppercase">
-            <span className="">ÜNİVERSİTE</span>
+            <span className="">{universty?.tr}</span>
           </p>
         </div>
       </div>
