@@ -1,6 +1,16 @@
-const CardHome = ({ city, bolum, faculty, universty,department ,image,code}) => {
- 
+const CardHome = ({ city, bolum, faculty,university,universities,universityImage,department ,images,code}) => {
+console.log(universityImage)
+
+const departmentName = university?.tr;
+console.log(departmentName)
+const departmentImage = Object.entries(universityImage).find(
+  ([universityName, imageUrl]) =>
+    universityName.trim().toLowerCase() === departmentName?.trim().toLowerCase()
+)?.[1];
+
   return (
+
+  
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-96 h-[420px]"
       key={code}
@@ -8,7 +18,7 @@ const CardHome = ({ city, bolum, faculty, universty,department ,image,code}) => 
       <div className="relative">
         <img
           className="rounded-t-lg w-full h-[15rem]"
-          src={image}
+          src={departmentImage }
           alt="image"
         />
         <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-white p-1 rounded-lg border font-semibold">
@@ -68,7 +78,7 @@ const CardHome = ({ city, bolum, faculty, universty,department ,image,code}) => 
             </h5>
           </a>
           <p className="mb-3 font-normal text-gray-800 uppercase">
-            <span className="">{universty?.tr}</span>
+            <span className="">{departmentName}</span>
           </p>
         </div>
       </div>
@@ -85,7 +95,7 @@ const CardHome = ({ city, bolum, faculty, universty,department ,image,code}) => 
           >
             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
           </svg>
-          <p className="">Ankara</p>
+          <p className="">{city?.tr}</p>
         </div>
         <div className="flex">
           <svg
