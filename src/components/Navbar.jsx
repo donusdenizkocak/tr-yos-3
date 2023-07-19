@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../helper/Icons";
-import { Offcanvas, Ripple, initTE } from "tw-elements";
+import { Offcanvas, Dropdown, Ripple, initTE } from "tw-elements";
+import { AuthContext } from "../context/AuthContext";
 
 const navbarMenu = [
   { title: "Home", url: "/" },
@@ -11,9 +12,10 @@ const navbarMenu = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   useEffect(() => {
-    initTE({ Offcanvas, Ripple });
+    initTE({ Offcanvas, Ripple, Dropdown });
 
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -22,13 +24,11 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <>
       <nav
@@ -82,18 +82,81 @@ const Navbar = () => {
             </nav>
           </div>
           <div
-            className="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4"
+            className="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4 relative"
             id="nav-content"
+           
           >
-            <div className="w-[115px] flex items-center  h-[50px]">
-              <Link
-                to="/login"
-                className="w-full  h-[50px] bg-[#022f5d] text-white flex justify-center items-center  rounded text-sm font-semibold"
-              >
-                <Icon name="login" size="25" color="white" />
-                Sign In
-              </Link>
-            </div>
+            {currentUser && (
+              <div className="w-[115px] flex items-center  h-[50px]"  data-te-dropdown-ref>
+                <Link
+                  id="dropdownMenuButton1d"
+                  data-te-dropdown-toggle-ref
+                  aria-expanded="false"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"                  
+                  className={`transition delay-75 ${
+                    isScrolled ? "text-[#022f5d]" : "text-white"
+                  } hover:text-[#017efa] font-semibold text-sm `}
+                >
+                  MyAccount ▽
+                </Link>
+                <ul
+                  className="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
+                  aria-labelledby="dropdownMenuButton1d"
+                  data-te-dropdown-menu-ref
+                  tabIndex={-1}
+                >
+                  <li>
+                    <a
+                      className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                      href="#"
+                      data-te-dropdown-item-ref
+                    >
+                      User Dashboard
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                      href="#"
+                      data-te-dropdown-item-ref
+                    >
+                      Favori Deparments
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                      href="#"
+                      data-te-dropdown-item-ref
+                    >
+                      Compare Departments
+                    </a>
+                  </li>
+                  <hr className="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
+                  <li>
+                    <a
+                      className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                      href="#"
+                      data-te-dropdown-item-ref
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
+            {!currentUser && (
+              <div className="w-[115px] flex items-center  h-[50px]">
+                <Link
+                  to="/login"
+                  className="w-full  h-[50px] bg-[#022f5d] text-white flex justify-center items-center  rounded text-sm font-semibold"
+                >
+                  <Icon name="login" size="25" color="white" />
+                  Sign In
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </nav>
@@ -105,7 +168,7 @@ const Navbar = () => {
         aria-labelledby="offcanvasTopLabel"
         data-te-offcanvas-init
       >
-        <div className="flex items-center justify-between p-4 ">
+        <div className="flex items-center justify-between p-5 ">
           {/* <h5
             className="mb-0 font-semibold leading-normal"
             id="offcanvasTopLabel"
@@ -113,19 +176,34 @@ const Navbar = () => {
             Offcanvas top
           </h5> */}
           <ul className=" h-full flex flex-col justify-center  ">
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >HomePage</a>
-        </li>
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >Universites</a>
-        </li>
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700">Departments</a>
-        </li>
-      </ul>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                HomePage
+              </a>
+            </li>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                Universites
+              </a>
+            </li>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                Departments
+              </a>
+            </li>
+          </ul>
           <button
             type="button"
-            className="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+            className="mt-0 box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
             data-te-offcanvas-dismiss
           >
             <span className="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
@@ -135,7 +213,7 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="h-6 w-6"
+                className="h-6 w-6 "
               >
                 <path
                   strokeLinecap="round"

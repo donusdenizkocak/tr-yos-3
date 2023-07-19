@@ -1,8 +1,7 @@
 import Select from "react-select";
 
-
 import { HomeContext } from "../../context/HomeContext";
-import {useContext}  from  'react'
+import { useContext } from "react";
 
 // const Checkbox = ({ id, label }) => (
 //   <div className="checkbox-container">
@@ -19,29 +18,35 @@ import {useContext}  from  'react'
 // );
 
 const DepartmentsForm = () => {
- 
+  const {
+    cities,
+    city,
+    selectedCities,
+    selectedUnies,
+    selectedThirdIds,
+    selectedDeps,
+    universities,
+    allDepartments,
+    selectedIds,
+    setSelectedIds,
+    selectedSecondIds,
+    handleFirstInputChange,
+    handleSecondInputChange,
+    handleThirdInputChange,
+    filteredUniList,
+    filteredAllUniList,
+  } = useContext(HomeContext);
 
-
-  const { cities,city,selectedCities,selectedUnies,selectedThirdIds,selectedDeps, universities,allDepartments,selectedIds,setSelectedIds,selectedSecondIds,handleFirstInputChange,handleSecondInputChange,handleThirdInputChange,filteredUniList,filteredAllUniList} = useContext(HomeContext);
-
-
-
-
-
-
-
-  
-  console.log(selectedIds)
-  console.log(filteredUniList)
-  console.log(cities)
-
+  console.log(selectedIds);
+  console.log(filteredUniList);
+  console.log(cities);
 
   return (
     <div
       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      style={{ maxWidth: "550px" }}
+      style={{ maxWidth: "450px",minWidth:"265px" }}
     >
-      <form>
+      <form className="w-full h-full">
         <div className="grid grid-row gap-4  w-full">
           <div>
             <Select
@@ -54,7 +59,6 @@ const DepartmentsForm = () => {
               value={selectedCities}
             />
           </div>
-         
 
           <div>
             <Select
@@ -64,8 +68,7 @@ const DepartmentsForm = () => {
               placeholder="Select University "
               onChange={handleSecondInputChange}
               value={selectedUnies}
-          />
-            
+            />
           </div>
 
           <div>
@@ -79,29 +82,29 @@ const DepartmentsForm = () => {
             />
           </div>
         </div>
-        <div className="flex ">
-          <div className="relative my-3 " data-te-input-wrapper-init>
+        <div className="flex w-full mt-3 gap-1">
+          <div className="relative my-3 w-full" data-te-input-wrapper-init>
             <input
               type="text"
-              className="peer  min-h-[auto] mr-3 rounded border border-gray-300 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              className="peer  rounded border border-gray-300 bg-transparent  py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0  w-full "
               placeholder="Default input"
             />
             <label
               htmlFor="exampleFormControlInpu3"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              className="pointer-events-none absolute left-3 top-0   origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.3rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
             >
               Min Price
             </label>
           </div>
-          <div className="relative my-3" data-te-input-wrapper-init>
+          <div className="relative my-3 w-full" data-te-input-wrapper-init>
             <input
               type="text"
-              className="peer  min-h-[auto] rounded border  border-gray-300 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              className="peer rounded border  border-gray-300 bg-transparent  py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 w-full "
               placeholder="Default input"
             />
             <label
               htmlFor="exampleFormControlInpu3"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              className="pointer-events-none absolute left-3  origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.3rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
             >
               Max Price
             </label>

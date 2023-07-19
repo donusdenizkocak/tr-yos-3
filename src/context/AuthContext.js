@@ -13,9 +13,18 @@ const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
   console.log(currentUser);
 
-  const createUser = async (info) => {
+  const createUser = async (info) => { 
+    const formData = new FormData();
+    formData.append("email", info.email);
+    formData.append("password1", info.password1);
+    formData.append("password2", info.password2);
+    formData.append("name", info.name);
     try {
-      const data = await axios.post(`${REGISTER_API}`, info);
+      const { data } = await axios.post(`${REGISTER_API}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setCurrentUser(data);
       navigate("/");
     } catch (error) {
@@ -24,11 +33,16 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const loginUser = async (info) => {
-    
+    const formData = new FormData();
+    formData.append("email", info.email);
+    formData.append("password", info.password);
     try {
-      const data = await axios(`${LOGİN_API}`, info);
-      setCurrentUser(data);
-      console.log(currentUser);
+      const { data } = await axios.post(`${LOGİN_API}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setCurrentUser(data); 
       navigate("/");
     } catch (error) {
       console.log(`Login Error:${error}`);
@@ -36,7 +50,7 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const values = { createUser, loginUser };
+  const values = { createUser, loginUser,currentUser  };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
