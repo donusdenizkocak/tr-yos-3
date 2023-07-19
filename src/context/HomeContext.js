@@ -23,6 +23,7 @@ const HomeContextProvider = ({ children }) => {
   const [selectedSecondIds, setSelectedSecondIds] = useState([]);
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps,   setSelectedDeps] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
 
 
   useEffect(() => {
@@ -144,7 +145,9 @@ allDepartments.map((item)=>({...item,label:item.department.tr,value:item.departm
     handleSecondInputChange,
     handleThirdInputChange,
     filteredUniList,
-    filteredAllUniList
+    filteredAllUniList,
+    selectedItems,
+    setSelectedItems
 
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;

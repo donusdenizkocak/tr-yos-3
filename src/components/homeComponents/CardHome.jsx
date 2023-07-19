@@ -1,5 +1,10 @@
+import { useContext, useState } from "react";
+import { HomeContext } from "../../context/HomeContext";
+
 const CardHome = ({ id, data, logo, tr, images }) => {
- 
+const {selectedItems,setSelectedItems} =useContext(HomeContext)
+
+console.log(selectedItems)
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-96 h-[420px]"
@@ -7,11 +12,11 @@ const CardHome = ({ id, data, logo, tr, images }) => {
     >
       <div className="relative">
         <img
-          className="rounded-t-lg w-full h-[15rem]"
+          className="rounded-t-lg w-full h-[15rem] object-scale-down"
           src={logo}
           alt="image"
         />
-        <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-white p-1 rounded-lg border font-semibold">
+        <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" onClick={(e)=> setSelectedItems([...selectedItems, e.target])}>
           <span className="pt-1">
             <svg
               fill="#000000"
@@ -41,7 +46,7 @@ const CardHome = ({ id, data, logo, tr, images }) => {
             </svg>
           </span>
           <span>Compare</span>
-        </div>
+        </button>
       </div>
 
       <div>

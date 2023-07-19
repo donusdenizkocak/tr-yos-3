@@ -14,7 +14,7 @@ const Departments = () => {
       <div
         className="h-[240px] w-full "
         style={{
-          backgroundImage: "url(./image/bnr16.png)",
+          backgroundImage: "url(./image/bnr4.jpg)",
           backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
