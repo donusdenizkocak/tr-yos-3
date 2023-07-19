@@ -22,12 +22,12 @@ const DetailHeader = () => {
     initLightboxJS("Insert your License Key here", "Insert plan type here");
   }, []);
   return (
-    <div className="bg-black">
+    <div className="bg-gradient-black-white">
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
           "--swiper-pagination-color": "#fff",
-          padding: "7rem",
+          padding: "8rem 0",
         }}
         effect={"coverflow"}
         spaceBetween={10}
@@ -40,10 +40,10 @@ const DetailHeader = () => {
           stretch: 0,
           depth: 100,
           modifier: 1,
-          slideShadows: true,          
+          slideShadows: true,
         }}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         navigation={true}
@@ -51,42 +51,45 @@ const DetailHeader = () => {
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide className="efect">
+        <SwiperSlide>
           <SlideshowLightbox>
             <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
           </SlideshowLightbox>
         </SwiperSlide>
-        <SwiperSlide className="efect">
+        <SwiperSlide>
           <SlideshowLightbox>
-            <img className="" src="https://swiperjs.com/demos/images/nature-2.jpg" />
+            <img
+              className=""
+              src="https://swiperjs.com/demos/images/nature-2.jpg"
+            />
           </SlideshowLightbox>
-        </SwiperSlide >
-        <SwiperSlide className="efect">
+        </SwiperSlide>
+        <SwiperSlide>
           <SlideshowLightbox>
             <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
           </SlideshowLightbox>
-        </SwiperSlide  >
-        <SwiperSlide className="efect">
+        </SwiperSlide>
+        <SwiperSlide>
           <SlideshowLightbox>
             <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
           </SlideshowLightbox>
         </SwiperSlide>
-        <SwiperSlide className="efect">
+        <SwiperSlide>
           <SlideshowLightbox>
             <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
           </SlideshowLightbox>
         </SwiperSlide>
-        <SwiperSlide className="efect" >
+        <SwiperSlide>
           <SlideshowLightbox>
             <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
           </SlideshowLightbox>
         </SwiperSlide>
-        <SwiperSlide className="efect">
+        <SwiperSlide>
           <SlideshowLightbox>
             <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
           </SlideshowLightbox>
         </SwiperSlide>
-        <SwiperSlide className="efect">
+        <SwiperSlide>
           <SlideshowLightbox>
             <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
           </SlideshowLightbox>
