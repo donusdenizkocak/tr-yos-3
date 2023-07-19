@@ -172,7 +172,7 @@ const values = {
     filteredUniList,
     filteredAllUniList,
     selectedItems,
-    setSelectedItems
+    setSelectedItems,
     filteredDepartments,  };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };

@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { HomeContext } from "../../context/HomeContext";
 const CardHome = ({
   city,
   bolum,
@@ -8,10 +10,11 @@ const CardHome = ({
   universityImage,
   department,
   images,
-  code,
+  code,  
 }) => {
   console.log(universityImage);
   const navigate=useNavigate()
+  const {setSelectedItems,selectedItems} =useContext(HomeContext)
 
   const departmentName = university?.tr;
   console.log(departmentName);
