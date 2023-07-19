@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import CardHome from "./CardHome";
 import { HomeContext } from "../../context/HomeContext";
 
