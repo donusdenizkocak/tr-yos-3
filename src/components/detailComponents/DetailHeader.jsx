@@ -22,12 +22,12 @@ const DetailHeader = () => {
     initLightboxJS("Insert your License Key here", "Insert plan type here");
   }, []);
   return (
-    <div className="bg-black">
+    <div className="bg-gradient-black-white">
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
           "--swiper-pagination-color": "#fff",
-          padding: "7rem",
+          padding: "8rem 0",
         }}
         effect={"coverflow"}
         spaceBetween={10}

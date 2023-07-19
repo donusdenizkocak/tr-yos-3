@@ -2,7 +2,7 @@ import React from 'react'
 
 const AboutDetail = () => {
   return (
-    <div className="border rounded-md border-gray-500 p-4 m-2">
+    <div className="rounded-md bg-white p-4">
     <h1 className="text-2xl font-bold mb-4 text-darkBlue">About Department</h1>
     <p>
       The Acıbadem University School of Medicine was established in 2007 and

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../helper/Icons";
 import { Formik } from "formik";
-import LoginForm from "../components/LoginForm";
-import { registerSchema } from "./Register";
+import LoginForm from "../components/authComponents/LoginForm";
+// import { registerSchema } from "./Register";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
@@ -38,7 +38,7 @@ const Login = () => {
                 password: "",
               }}
               
-              validationSchema={registerSchema}
+              // validationSchema={registerSchema}
               onSubmit={(values, actions) => {               
                 loginUser(values);
                 actions.resetForm();
