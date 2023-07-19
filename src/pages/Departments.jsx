@@ -1,7 +1,6 @@
 import React from "react";
 import DepartmentsForm from "../components/departmentsComponents/DepartmentsForm";
 import DeparmentsCard from "../components/departmentsComponents/DeparmentsCard";
-import DepartmentUnvCard from "../components/departmentsComponents/DepartmentUnvCard";
 import { motion } from "framer-motion";
 
 const Departments = () => {
@@ -26,7 +25,7 @@ const Departments = () => {
         </div>
       </div>
 
-      <div className="flex container mx-auto ">
+      <div className="flex flex-row container mx-auto ">
         <div>
           <DepartmentsForm />
         </div>
@@ -34,8 +33,6 @@ const Departments = () => {
           <DeparmentsCard />
         </div>
       </div>
-
-      <DepartmentUnvCard />
     </motion.div>
   );
 };

@@ -1,7 +1,7 @@
 import { Icon } from "../helper/Icons";
 import { Formik } from "formik";
 import { object, string } from "yup";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/authComponents/RegisterForm";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link} from "react-router-dom";
@@ -51,7 +51,7 @@ const Register = () => {
                 email: "",
                 password1: "",
               }}
-              validationSchema={registerSchema}
+              // validationSchema={registerSchema}
               onSubmit={(values, actions) => {
                 createUser({ ...values, password2: values.password1 });
                 actions.resetForm();

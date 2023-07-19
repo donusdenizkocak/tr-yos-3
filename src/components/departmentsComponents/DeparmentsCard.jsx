@@ -1,6 +1,3 @@
-import React from "react";
-
-import data from "../../helper/data";
 import DeparmentsIntro from "./DeparmentsIntro";
 import { HomeContext } from "../../context/HomeContext";
 import {useContext}  from  'react'

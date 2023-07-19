@@ -7,41 +7,40 @@ const BasicDetail = () => {
     setShow(!show);
   };
   return (
-    <div>
+    <div className="bg-white rounded-md">
       <div className=" justify-between p-2 mt-8 ">
         <div className="flex justify-between  space-x-96 ">
-          <h3 className=" text-darkBlue font-bold text-2xl mb-4 ">Basic Detail</h3>
+          <h3 className=" text-darkBlue font-bold text-2xl mb-4 ">
+            Basic Detail
+          </h3>
           <div className="" onClick={handleToggle}>
             {show ? (
               <Icon name="arrowUp" size="25" color="darkblue" />
             ) : (
               <Icon name="arrowdown" size="25" color="darkblue" />
-            )
-
-            }
-            
+            )}
           </div>
         </div>
       </div>
 
       {show && (
-        <div className="flex p-10 mb-6 relative  rounded-md  bg-transparent text-blue-900 underline  ">
-          <ul className="flex flex-wrap grid-cols-2 p-8 text-center gap-12 w-full justify-around">
-            <li className=" p-20 bg-gray-200">
-              <Icon name="bed" size="50" color="darkblue" />
-              <p className=" text-center p-4 text-lg ">3</p>
+        <div className="rounded-md text-blue-900 underline p-3  ">
+          <ul className="flex flex-row justify-around items-center">
+            <li className="w-[150px] py-3 bg-[#f1f5f8] flex flex-col justify-center items-center">
+              <Icon name="bed" size="30" color="darkblue" />
+              <p className=" text-center  text-lg ">3</p>
             </li>
-            <li className=" p-20 bg-gray-200">
-              <Icon name="group" size="50" color="darkblue" />
-              <p className=" text-center p-4 text-lg ">4,240</p>
+            <li className=" w-[150px] py-3 bg-[#f1f5f8] flex flex-col justify-center items-center">
+              <Icon name="group" size="30" color="darkblue" />
+              <p className=" text-center  text-lg ">4,240</p>
             </li>
-            <li className=" p-20 bg-gray-200">
-              <Icon name="warehouse" size="50" color="darkblue" />
-              <p className=" text-center p-4 text-lg ">1</p>
+            <li className="w-[150px] py-3 bg-[#f1f5f8] flex flex-col justify-center items-center">
+              <Icon name="warehouse" size="30" color="darkblue" />
+              <p className=" text-center  text-lg ">1</p>
             </li>
-            <li className=" p-20 bg-gray-200">
-              <Icon name="buildingCircleCheck" size="50" color="darkblue" />
-              <p className=" text-center p-4 text-lg ">Active</p>
+            <li className="w-[150px] py-3 bg-[#f1f5f8] flex flex-col justify-center items-center">
+              <Icon name="buildingCircleCheck" size="30" color="darkblue" />
+              <p className=" text-center  text-lg ">Active</p>
             </li>
           </ul>
         </div>

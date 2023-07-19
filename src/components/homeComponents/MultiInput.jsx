@@ -20,14 +20,6 @@ const MultiInput = () => {
     filteredUniList,
     filteredAllUniList,
   } = useContext(HomeContext);
-
-  // console.log(selectedIds);
-  // console.log(selectedSecondIds);
-  // console.log(allDepartments);
-
-  // console.log(filteredUniList);
-  // console.log(filteredAllUniList);
-
   return (
     <div
       className="flex flex-col gap-10 absolute z-50"
@@ -48,7 +40,7 @@ const MultiInput = () => {
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select City "
-            onChange={handleFirstInputChange}
+            onChange={handleFirstInputChange}       
           />
         </div>
 
@@ -72,7 +64,7 @@ const MultiInput = () => {
           />
         </div>
         <button
-          className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1.5 px-4 border border-blue-700 rounded h-9  w-[15rem] lg:w-[10rem] mt-5"
+          className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1.5 px-4 border border-blue-700 rounded h-9  w-full lg:w-[10rem] "
           onClick={() => navigate("/departments")}
         >
           Submit Search

@@ -1,11 +1,9 @@
 const MainInfo = () => {
   return (
-    <>
-   
-    <div className=" mx-auto container">
+    <div className="w-full ">
       {/* birinci kısım */}
-      <div className="">
-        <div className="flex border rounded-md border-gray-500 p-4 m-2">
+      <div className="flex flex-col gap-5 ">
+        <div className="flex rounded-md bg-white p-4 ">
           <div className="mr-4">
             <h2 className="text-xl text-darkBlue font-bold mb-2">
               Molecular Biology And Genetics
@@ -36,7 +34,7 @@ const MainInfo = () => {
 
         {/* ikinci kısım */}
 
-        <div className="border rounded-md border-gray-500 p-4 m-2">
+        <div className="rounded-md bg-white p-4 ">
           <h1 className="text-2xl font-bold mb-4 text-darkBlue">Other</h1>
           <div className="border border-success-400 rounded-md bg-success-100 grid grid-cols-4 ">
             <div className="border border-success-200 p-8">
@@ -59,16 +57,6 @@ const MainInfo = () => {
         </div>
       </div>
     </div>
-
-      <div className="border rounded-md border-gray-500 p-4 m-2">
-        <div className="border rounded  border-gray-500 p-4 m-2">
-          <h1 className="text-md text-darkBlue font-bold mb-4">Bacic Detail</h1>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border rounded bg-gray-100 p-4"></div>
-          </div>
-        </div>
-      </div>
-     </>
   );
 };
 
