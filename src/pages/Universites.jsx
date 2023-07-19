@@ -23,13 +23,13 @@ const Universites = () => {
       <div
         className="h-[240px] w-full "
         style={{
-          backgroundImage: "url(./image/bnr16.png)",
+          backgroundImage: "url(./image/bnr4.jpg)",
           backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
       >
-        <div className="h-full flex flex-col justify-end text-white md:mx-auto md:container pb-8">
+        <div className="h-full flex flex-col justify-end text-white mx-auto md:container pb-8">
           <h2 className=" font-bold text-[50px]">Universites</h2>
           <p className="text-sm font-medium">
             Tüm Üniversiteleri Kontrol Edebilirsiniz

@@ -23,6 +23,7 @@ const HomeContextProvider = ({ children }) => {
   const [selectedSecondIds, setSelectedSecondIds] = useState([]);
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps,   setSelectedDeps] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -170,11 +171,9 @@ const values = {
     handleThirdInputChange,
     filteredUniList,
     filteredAllUniList,
-    filteredDepartments,
-   
-    
-
-  };
+    selectedItems,
+    setSelectedItems,
+    filteredDepartments,  };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
 
