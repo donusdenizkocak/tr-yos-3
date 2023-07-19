@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState  } from "react";
 import CardHome from "./CardHome";
 import { HomeContext } from "../../context/HomeContext";
 
 const CardHomeIntro = () => {
+
   const { universities, allDepartments } = useContext(HomeContext);
 
   const records = allDepartments.slice(0, 12);
@@ -30,7 +31,6 @@ const CardHomeIntro = () => {
           />
         ))}
       </div>
-    </div>
-  );
-};
+    );
+  }
 export default CardHomeIntro;

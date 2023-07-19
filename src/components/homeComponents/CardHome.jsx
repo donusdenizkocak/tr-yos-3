@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 const CardHome = ({
   city,
   bolum,
@@ -21,6 +20,7 @@ const CardHome = ({
       universityName.trim().toLowerCase() ===
       departmentName?.trim().toLowerCase()
   )?.[1];
+
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
@@ -28,11 +28,12 @@ const CardHome = ({
     >
       <div className="relative">
         <img
+
           className="rounded-t-lg w-full h-[215px] object-fill hover:scale-90 hover:ease-in-out hover:duration-300 "
           src={departmentImage}
           alt="image"
         />
-        <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-white p-1 rounded-lg border font-semibold">
+        <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" onClick={(e)=> setSelectedItems([...selectedItems, e.target])}>
           <span className="pt-1">
             <svg
               fill="#000000"
@@ -62,7 +63,7 @@ const CardHome = ({
             </svg>
           </span>
           <span>Compare</span>
-        </div>
+        </button>
       </div>
       <div className="flex flex-row h-[150px] text-[14px] p-3  gap-2">
         <div className=" flex flex-col flex-1 justify-center items-center gap-3  ">

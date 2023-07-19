@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import Action from "../components/Action";
 import Detail from "../pages/Detail";
 import MyAccount from "../pages/MyAccount";
+import CompareDepartments from "../components/compareDepartments/CompareDepartments"
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
         <Route path="/register" element={<Register />} />
          <Route path="/myaccount" element={<MyAccount />} />
         <Route path="/detail" element={<Detail />} />
+        <Route path="/compare" element={<CompareDepartments/>}/>
       </Routes>
      
       <Action />
