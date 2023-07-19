@@ -168,7 +168,7 @@ const Navbar = () => {
         aria-labelledby="offcanvasTopLabel"
         data-te-offcanvas-init
       >
-        <div className="flex items-center justify-between p-4 ">
+        <div className="flex items-center justify-between p-5 ">
           {/* <h5
             className="mb-0 font-semibold leading-normal"
             id="offcanvasTopLabel"
@@ -203,7 +203,7 @@ const Navbar = () => {
           </ul>
           <button
             type="button"
-            className="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+            className="mt-0 box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
             data-te-offcanvas-dismiss
           >
             <span className="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
@@ -213,7 +213,7 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="h-6 w-6"
+                className="h-6 w-6 "
               >
                 <path
                   strokeLinecap="round"
