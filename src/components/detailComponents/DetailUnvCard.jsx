@@ -1,6 +1,27 @@
+import { HomeContext } from "../../context/HomeContext";
 import { Icon } from "../../helper/Icons";
+import { useContext } from "react";
 
-const DetailUnvCard = () => {
+const DetailUnvCard = ({ department }) => {
+  const {universities}=useContext(HomeContext)
+  if (!department) {
+    return null;
+  }
+
+  const {
+    tr: departmentName,
+    faculty,
+    content,
+    city,
+    language,
+    university,
+    price,
+    scholarship,
+    data,
+    // data: { adress, web, email, phone, fax },
+  } = department;
+  const filteredLogo=universities.filter((item)=>item.tr===city.tr).map((item)=>item.logo)
+  // console.log(filteredLogo)
   return (
     <div className="flex flex-col  gap-5">
       <div className="bg-white flex  justify-center p-3 rounded-md ">
@@ -13,16 +34,17 @@ const DetailUnvCard = () => {
         <div className="flex items-center mb-10">
           <div className="flex-shrink-0">
             <img
-              src="https://www.tr-yös.com/test/6984215678913/logo/acibadem-mehmet-ali-aydinlar-universitesi-logo-1683762727498.png"
+              src={filteredLogo}
+              // className="w-16 h-16 rounded-full"
               className="w-16 h-16 rounded-full"
               alt=""
             />
           </div>
           <div className="ml-4">
             <h4 className="text-lg font-bold">
-              ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY
+              {university.tr}
             </h4>
-            <p className="text-gray-600 text-xs">K Istanbul</p>
+            <p className="text-gray-600 text-xs">{city.tr}</p>
           </div>
         </div>
 
@@ -36,7 +58,7 @@ const DetailUnvCard = () => {
                   className="text-xs hover:text-sky-500"
                   href="tel:(216) 500-4444"
                 >
-                  (216) 500-4444
+                {data?.phone}
                 </a>
               </p>
             </div>
@@ -45,13 +67,13 @@ const DetailUnvCard = () => {
           <div>
             <div>{/* <Icon name="fav"/> */}</div>
             <div className="ml-2 mb-5">
-              <h6 className="font-sm font-bold">E-Mail</h6>
+              <h6 className="font-sm font-bold">Email</h6>
               <p>
                 <a
                   className="text-xs hover:text-sky-500"
                   href="mailto:info@acibadem.edu.tr"
                 >
-                  info@acibadem.edu.tr
+               {data?.email}
                 </a>
               </p>
             </div>
@@ -67,7 +89,7 @@ const DetailUnvCard = () => {
                   href="https://www.acibadem.edu.tr"
                   target="_blank"
                 >
-                  https://www.acibadem.edu.tr
+                   {data?.web}
                 </a>
               </p>
             </div>

@@ -1,16 +1,35 @@
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { HomeContext } from "../../context/HomeContext";
 
 const framerItem = {
   hidden: { opacity: 0, translateY: 20 },
   visible: { opacity: 1, translateY: 0 },
 };
 const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
+  const {universities,allDepartments}=useContext(HomeContext)
 
-  console.log(data);
-  console.log(cities)
+  const universityDepartments = allDepartments.filter(
+    (department) => department?.university?.code === code
+  );
+
+
+  const facultySet = new Set();
+  const departmentSet = new Set();
+
+  universityDepartments.forEach((department) => {
+    facultySet.add(department.faculty.code);
+    departmentSet.add(department.department.code);
+  });
+
+  const facultyCount = facultySet.size;
+  const departmentCount = departmentSet.size
+ 
+
+
   const filteredCity=cities.filter((item)=>item.id===city).map((item)=>item.tr)
 
-  console.log(filteredCity)
+
 
   return (
     <motion.div
@@ -28,10 +47,10 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
       <div className="my-6">
         <div className="flex">
           <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500">
-            5 Faculties
+            {facultyCount} Faculties
           </p>
           <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-green-100 text-green-500">
-            4 Departments
+            {departmentCount} Departments
           </p>
         </div>
 

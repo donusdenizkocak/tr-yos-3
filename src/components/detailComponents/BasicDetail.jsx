@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "../../helper/Icons";
 
-const BasicDetail = () => {
+const BasicDetail = ({ department }) => {
   const [show, setShow] = useState(true);
   const handleToggle = () => {
     setShow(!show);
