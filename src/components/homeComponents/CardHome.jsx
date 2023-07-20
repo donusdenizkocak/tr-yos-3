@@ -36,7 +36,7 @@ const CardHome = ({
           src={departmentImage}
           alt="image"
         />
-        <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" onClick={(e)=> setSelectedItems([...selectedItems, e.target])}>
+        <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}>
           <span className="pt-1">
             <svg
               fill="#000000"
