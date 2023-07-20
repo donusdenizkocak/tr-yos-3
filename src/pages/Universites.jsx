@@ -37,8 +37,8 @@ const Universites = () => {
         </div>
       </div>
       <motion.div initial="hidden" animate="visible" variants={framerContainer}>
-        {universities.map((uni) => (
-          <CardUniversites {...uni} key={uni.id} cities={cities} />
+        {universities.map((uni,index) => (
+          <CardUniversites {...uni} key={index} cities={cities} />
         ))}
       </motion.div>
     </motion.div>

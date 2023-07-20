@@ -2,15 +2,16 @@ import { HomeContext } from "../../context/HomeContext";
 import { Icon } from "../../helper/Icons";
 import { useContext } from "react";
 
-const DetailUnvCard = ({ department }) => {
+const DetailUnvCard = ({ departments }) => {
   const {universities}=useContext(HomeContext)
-  if (!department) {
+  if (!departments) {
     return null;
   }
 
   const {
-    tr: departmentName,
+   department,
     faculty,
+ 
     content,
     city,
     language,
@@ -19,8 +20,8 @@ const DetailUnvCard = ({ department }) => {
     scholarship,
     data,
     // data: { adress, web, email, phone, fax },
-  } = department;
-  const filteredLogo=universities.filter((item)=>item.tr===city.tr).map((item)=>item.logo)
+  } = departments;
+  const filteredLogo=universities.filter((item)=>item.tr===university.tr).map((item)=>item.logo)
   // console.log(filteredLogo)
   return (
     <div className="flex flex-col  gap-5">
@@ -41,6 +42,9 @@ const DetailUnvCard = ({ department }) => {
             />
           </div>
           <div className="ml-4">
+          <h4 className="text-lg font-bold">
+              {department?.tr}
+            </h4>
             <h4 className="text-lg font-bold">
               {university.tr}
             </h4>
@@ -71,7 +75,7 @@ const DetailUnvCard = ({ department }) => {
               <p>
                 <a
                   className="text-xs hover:text-sky-500"
-                  href="mailto:info@acibadem.edu.tr"
+                  href={data?.email}
                 >
                {data?.email}
                 </a>
@@ -86,10 +90,10 @@ const DetailUnvCard = ({ department }) => {
               <p>
                 <a
                   className="text-xs hover:text-sky-500"
-                  href="https://www.acibadem.edu.tr"
+                  href={data?.web}
                   target="_blank"
                 >
-                   {data?.web}
+            {data?.web}
                 </a>
               </p>
             </div>
