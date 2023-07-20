@@ -3,3 +3,22 @@
 @tailwind utilities;
 
 
+.main-swiper {
+    width: 65% !important;
+    margin: auto !important;
+    padding: 8rem 0 !important;
+  }
+  
+  .data-swiper-slider{
+   
+    background-position: center  !important ;
+    background-size: cover  !important; 
+    width: 350px  !important;
+    height: 350px  !important;
+    
+  }
+  
+  .swiper-image {
+    display: block  !important;
+    width: 100%  !important;
+  }

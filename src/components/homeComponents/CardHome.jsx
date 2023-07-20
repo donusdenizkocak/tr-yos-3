@@ -42,7 +42,9 @@ const CardHome = ({
           src={departmentImage ||  "https://iatkv.tmgrup.com.tr/c4c003/616/321/0/0/800/416?u=https%3A%2F%2Fitkv.tmgrup.com.tr%2F2020%2F08%2F07%2Fmaas-gibi-burs-destegi-1596775964948.jpeg"}
           alt="image"
         />
-        <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}>
+        <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" 
+        // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
+        >
           <span className="pt-1">
             <svg
               fill="#000000"
