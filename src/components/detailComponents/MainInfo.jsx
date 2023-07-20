@@ -1,19 +1,21 @@
-const MainInfo = ({ department }) => {
+const MainInfo = ({ departments }) => {
 
-  if (!department) {
+  if (!departments) {
     return null;
   }
 
   const {
-    tr: departmentName,
+ department,
     faculty,
     content,
     language,
     university,
     price,
     scholarship,
+    data,
    
-  } = department;
+  } = departments;
+  // console.log(departments)
   return (
     <div className="w-full ">
       {/* birinci kısım */}
@@ -21,12 +23,15 @@ const MainInfo = ({ department }) => {
         <div className="flex rounded-md bg-white p-4 ">
           <div className="mr-4">
             <h2 className="text-xl text-darkBlue font-bold mb-2">
-            {departmentName}
+            {department?.tr}
             </h2>
             <h2 className="text-xl text-darkBlue font-bold mb-2">
             {faculty.tr}
             </h2>
-            <a href="#" className="flex items-center mb-2">
+            {/* <a href="#" className="flex items-center mb-2">
+
+
+            
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6 mr-2"
@@ -41,8 +46,22 @@ const MainInfo = ({ department }) => {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-             
-            </a>
+             {data.adress}
+            </a> */}
+            <div className="flex text-[12px] text-[#4F5E64] gap-2 mb-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            fill="currentColor"
+            className="bi bi-geo-alt-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+          </svg>
+          <p className="">{data?.adress}</p>
+        </div>
+
           </div>
         </div>
 

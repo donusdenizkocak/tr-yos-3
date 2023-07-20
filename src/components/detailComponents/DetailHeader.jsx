@@ -17,10 +17,39 @@ import {
   Autoplay,
   Navigation,
 } from "swiper/modules";
-const DetailHeader = () => {
+
+const DetailHeader = ({universityImage,departments}) => {
+
   useEffect(() => {
     initLightboxJS("Insert your License Key here", "Insert plan type here");
   }, []);
+
+  if (!departments) {
+    return null;
+  }
+
+  const {
+    department,
+       faculty,
+       content,
+       language,
+       university,
+       price,
+       scholarship,
+       data,
+      
+     } = departments;
+    //  console.log(departments)
+
+
+  const departmentName = university?.tr;
+  // console.log(universityImage)
+  // console.log(departmentName);
+  const departmentImage = Object.entries(universityImage).find(
+    ([universityName, imageUrl]) =>
+      universityName.trim().toLowerCase() ===
+      departmentName?.trim().toLowerCase()
+  )?.[1];
   return (
     <div className="bg-gradient-black-white">
       <Swiper
@@ -51,9 +80,16 @@ const DetailHeader = () => {
         modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
+
+
+      {/* /**map yap  */ }
+
+
+      
         <SwiperSlide>
           <SlideshowLightbox>
-            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+            {/* <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> */}
+            <img src={departmentImage}/>
           </SlideshowLightbox>
         </SwiperSlide>
         <SwiperSlide>

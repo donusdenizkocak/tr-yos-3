@@ -7,7 +7,7 @@ const CardHomeIntro = () => {
 
   const records = allDepartments.slice(0, 12);
 
-  console.log(allDepartments);
+  // console.log(allDepartments);
 
   const universityImagesMap = universities.reduce((map, university) => {
     if (university && university.images && university.images.length > 0) {
@@ -15,7 +15,7 @@ const CardHomeIntro = () => {
     }
     return map;
   }, {});
-  console.log(universityImagesMap);
+  // console.log(universityImagesMap);
 
   return (
     <div className=" px-4 text-center p-5">

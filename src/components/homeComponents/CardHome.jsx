@@ -14,14 +14,14 @@ const CardHome = ({
   code,  
   id
 }) => {
-  console.log(universityImage);
-  console.log(id)
+  // console.log(universityImage);
+  // console.log(id)
   const navigate=useNavigate()
 
   const {setSelectedItems,selectedItems} =useContext(HomeContext)
 
   const departmentName = university?.tr;
-  console.log(departmentName);
+  // console.log(departmentName);
   const departmentImage = Object.entries(universityImage).find(
     ([universityName, imageUrl]) =>
       universityName.trim().toLowerCase() ===
@@ -39,7 +39,7 @@ const CardHome = ({
         <img
 
           className="rounded-t-lg w-full h-[215px] object-fill hover:scale-90 hover:ease-in-out hover:duration-300 "
-          src={departmentImage}
+          src={departmentImage ||  "https://iatkv.tmgrup.com.tr/c4c003/616/321/0/0/800/416?u=https%3A%2F%2Fitkv.tmgrup.com.tr%2F2020%2F08%2F07%2Fmaas-gibi-burs-destegi-1596775964948.jpeg"}
           alt="image"
         />
         <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" onClick={(e)=> setSelectedItems([...selectedItems, e.target])}>
