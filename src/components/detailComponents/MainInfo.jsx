@@ -1,4 +1,19 @@
-const MainInfo = () => {
+const MainInfo = ({ department }) => {
+
+  if (!department) {
+    return null;
+  }
+
+  const {
+    tr: departmentName,
+    faculty,
+    content,
+    language,
+    university,
+    price,
+    scholarship,
+   
+  } = department;
   return (
     <div className="w-full ">
       {/* birinci kısım */}
@@ -6,10 +21,10 @@ const MainInfo = () => {
         <div className="flex rounded-md bg-white p-4 ">
           <div className="mr-4">
             <h2 className="text-xl text-darkBlue font-bold mb-2">
-              Molecular Biology And Genetics
+            {departmentName}
             </h2>
             <h2 className="text-xl text-darkBlue font-bold mb-2">
-              Faculty Of Engineering
+            {faculty.tr}
             </h2>
             <a href="#" className="flex items-center mb-2">
               <svg
@@ -26,8 +41,7 @@ const MainInfo = () => {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-              İçerenköy Mah. Kayışdağı Cad. No:32 İçerenköy 34752 Ataşehir
-              İstanbul
+             
             </a>
           </div>
         </div>
@@ -39,18 +53,18 @@ const MainInfo = () => {
           <div className="border border-success-400 rounded-md bg-success-100 grid grid-cols-4 ">
             <div className="border border-success-200 p-8">
               <h2>Language</h2>
-              <h4 className=" text-success">Turkish</h4>
+              <h4 className=" text-success">{language}</h4>
             </div>
             <div className="border border-success-200 p-8">
-              <h2>Language</h2>
+              <h2>Year</h2>
               <h4 className=" text-success">4</h4>
             </div>
             <div className="border border-success-200 p-8">
-              <h2>Language</h2>
+              <h2>Quota</h2>
               <h4 className=" text-success">40</h4>
             </div>
             <div className="border border-success-200 p-8">
-              <h2>Language</h2>
+              <h2>Internships</h2>
               <h4 className=" text-success"></h4>
             </div>
           </div>
