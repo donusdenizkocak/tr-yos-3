@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../context/HomeContext";
+
 const CardHome = ({
   city,
   bolum,
@@ -11,9 +12,12 @@ const CardHome = ({
   department,
   images,
   code,  
+  id
 }) => {
   console.log(universityImage);
+  console.log(id)
   const navigate=useNavigate()
+
   const {setSelectedItems,selectedItems} =useContext(HomeContext)
 
   const departmentName = university?.tr;
@@ -23,7 +27,9 @@ const CardHome = ({
       universityName.trim().toLowerCase() ===
       departmentName?.trim().toLowerCase()
   )?.[1];
-
+  const handleDetailClick = () => {
+    navigate(`/detail/${id}`);
+  };
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
@@ -110,7 +116,7 @@ const CardHome = ({
           </svg>
           <p className="">{city?.tr}</p>
         </div>
-        <div className="text-md font-bold h-[2rem] my-1 flex justify-center items-center" onClick={()=>navigate("/detail")}>
+        <div className="text-md font-bold h-[2rem] my-1 flex justify-center items-center" onClick={handleDetailClick}>
           <button className="mx-5 h-full px-3 bg-[#00000080] text-white rounded-lg">
             Detail
           </button>

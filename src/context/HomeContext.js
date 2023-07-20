@@ -43,7 +43,7 @@ const HomeContextProvider = ({ children }) => {
   const getCities = async () => {
     try {
       const { data } = await axios.get(CITIES_API);
-      console.log(data);
+      // console.log(data);
       setCities(data);
     } catch (error) {
       console.log(error);
