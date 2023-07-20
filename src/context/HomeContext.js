@@ -94,7 +94,7 @@ const HomeContextProvider = ({ children }) => {
   
     
   }
-  console.log(selectedCities)
+  // console.log(selectedCities)
 
 
   const city= cities?.map((city) => ({ value: city.id, label: city.tr }))

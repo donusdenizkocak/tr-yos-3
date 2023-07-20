@@ -10,31 +10,37 @@ import DetailUnvCard from "../components/detailComponents/DetailUnvCard";
 import { HomeContext } from "../context/HomeContext";
 const Detail = () => {
   const { id } = useParams()
-  const { allDepartments } = useContext(HomeContext);
+  const { allDepartments ,universities} = useContext(HomeContext);
   const [departmentDetails, setDepartmentDetails] = useState(null);
   useEffect(() => {
     // Function to fetch department details by ID from allDepartments
     const fetchDepartmentDetails = () => {
-      const department = allDepartments.find((dep) => dep.id === id);
-      setDepartmentDetails(department);
-      console.log(department)
+      const departments = allDepartments.find((dep) => dep.id === id);
+      setDepartmentDetails(departments);
+      // console.log(departments)
     };
 
     fetchDepartmentDetails();
   }, [allDepartments, id]);
 
+  const universityImagesMap = universities.reduce((map, university) => {
+    if (university && university.images && university.images.length > 0) {
+      map[university.tr] = university.images[0];
+    }
+    return map;
+  }, {});
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-[#f1f5f8]">
-      <DetailHeader />
+      <DetailHeader  universityImage={universityImagesMap} departments= {departmentDetails}/>
       <div className="container mx-auto flex gap-5">
         <div className="flex flex-col gap-5">
-          <MainInfo department={departmentDetails}/>
-          <AboutDetail department={departmentDetails}/>
-          <BasicDetail department={departmentDetails} />
+          <MainInfo departments={departmentDetails}/>
+          <AboutDetail departments={departmentDetails}/>
+          <BasicDetail departments={departmentDetails} />
           <SubmitReview />
         </div>
         <div>
-          <DetailUnvCard department= {departmentDetails}/>
+          <DetailUnvCard departments= {departmentDetails}/>
         </div>
       </div>
     </motion.div>

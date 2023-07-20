@@ -37,9 +37,9 @@ const DepartmentsForm = () => {
     filteredAllUniList,
   } = useContext(HomeContext);
 
-  console.log(selectedIds);
-  console.log(filteredUniList);
-  console.log(cities);
+  // console.log(selectedIds);
+  // console.log(filteredUniList);
+  // console.log(cities);
 
   return (
     <div
