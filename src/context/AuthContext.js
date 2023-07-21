@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { SlideshowLightbox } from "lightbox.js-react";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
@@ -11,9 +12,9 @@ const AuthContextProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(false);
   const navigate = useNavigate();
-  console.log(currentUser);
+  console.log(currentUser.user);
 
-  const createUser = async (info) => { 
+  const createUser = async (info) => {
     const formData = new FormData();
     formData.append("email", info.email);
     formData.append("password1", info.password1);
@@ -25,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      setCurrentUser(data);
+      setCurrentUser(data.user);
       navigate("/");
     } catch (error) {
       console.log(`CreateUserError: ${error}`);
@@ -42,7 +43,7 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      setCurrentUser(data); 
+      setCurrentUser(data);
       navigate("/");
     } catch (error) {
       console.log(`Login Error:${error}`);
@@ -50,7 +51,7 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const values = { createUser, loginUser,currentUser  };
+  const values = { createUser, loginUser, currentUser ,setCurrentUser};
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
