@@ -7,13 +7,18 @@ const framerItem = {
   visible: { opacity: 1, translateY: 0 },
 };
 const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
+
+
   const {universities,allDepartments}=useContext(HomeContext)
 
+
+  // const universityDepartments = allDepartments.filter(
+  //   (department) => department?.university?.code === code
+  // );
+
   const universityDepartments = allDepartments.filter(
-    (department) => department?.university?.code === code
+    (department) => department?.university?.code.includes(code)
   );
-
-
   const facultySet = new Set();
   const departmentSet = new Set();
 
@@ -24,8 +29,10 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
   const facultyCount = facultySet.size;
   const departmentCount = departmentSet.size
+  // console.log(universityDepartments)
  
-
+// console.log(facultyCount)
+// console.log(departmentCount)
 
   const filteredCity=cities.filter((item)=>item.id===city).map((item)=>item.tr)
 
@@ -61,11 +68,13 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
           <p className="text-xs mb-1"> {filteredCity}</p>
          
           <p className="text-xs mb-2">
-         {data?.adress ? data?.adress : `ADDRESS`}
+         {data?.adress ? data?.adress : null }
           </p>
-          <button className="mt-2 mr-3 p-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
+          {data?.phone &&
+           ( <button className="mt-2 mr-3 p-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
             P {data?.phone}
-          </button>
+          </button>)}
+    
           <button className="mt-2 p-3 text-sm font-medium border-2 border-green-500 rounded-md bg-green-100 text-green-500  hover:bg-green-500 hover:text-white">
             M Send Massege{" "}
           </button>
