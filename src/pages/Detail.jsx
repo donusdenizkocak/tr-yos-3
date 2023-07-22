@@ -32,7 +32,7 @@ const Detail = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-[#f1f5f8]">
       <DetailHeader  universityImage={universityImagesMap} departments= {departmentDetails}/>
-      <div className="container mx-auto flex gap-5">
+      <div className="container mx-auto flex gap-5 py-5">
         <div className="flex flex-col gap-5">
           <MainInfo departments={departmentDetails}/>
           <AboutDetail departments={departmentDetails}/>
