@@ -12,6 +12,7 @@ const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.p
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
 
+
 const HomeContextProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
   const [universities, setUniversities] = useState([]);
@@ -40,10 +41,12 @@ const HomeContextProvider = ({ children }) => {
     getAllDepartments();
   }, []);
 
+ 
+
   const getCities = async () => {
     try {
       const { data } = await axios.get(CITIES_API);
-      console.log(data);
+      // console.log(data);
       setCities(data);
     } catch (error) {
       console.log(error);
@@ -94,7 +97,7 @@ const HomeContextProvider = ({ children }) => {
   
     
   }
-  console.log(selectedCities)
+  // console.log(selectedCities)
 
 
   const city= cities?.map((city) => ({ value: city.id, label: city.tr }))

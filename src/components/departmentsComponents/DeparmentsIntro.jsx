@@ -3,6 +3,7 @@ import { Icon } from "../../helper/Icons";
 
 
 
+
 const DeparmentsIntro = ({ city, bolum, faculty, universty,department ,image,code}) => {
   const navigate=useNavigate()
  

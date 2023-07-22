@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import uuid from 'react-uuid';
 
 const framerItem = {
   hidden: { opacity: 0, translateY: 20 },
@@ -6,16 +7,16 @@ const framerItem = {
 };
 const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
-  console.log(data);
-  console.log(cities)
+  // console.log(data);
+  // console.log(cities)
   const filteredCity=cities.filter((item)=>item.id===city).map((item)=>item.tr)
 
-  console.log(filteredCity)
+  // console.log(filteredCity)
 
   return (
     <motion.div
       className=" container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-10"
-      key={id}
+      key={uuid()}
       variants={framerItem}
     >
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
@@ -45,7 +46,7 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
          {data?.adress ? data?.adress : `ADDRESS`}
           </p>
           <button className="mt-2 mr-3 p-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
-            P {data?.phone}
+            +90 {data?.phone}
           </button>
           <button className="mt-2 p-3 text-sm font-medium border-2 border-green-500 rounded-md bg-green-100 text-green-500  hover:bg-green-500 hover:text-white">
             M Send Massege{" "}
