@@ -31,7 +31,7 @@ const DetailUnvCard = ({ departments }) => {
         </button>
       </div>
 
-      <div className="flex flex-col bg-white p-4 w-80">
+      <div className="flex flex-col rounded-md  bg-white p-4 w-80">
         <div className="flex items-center mb-10">
           <div className="flex-shrink-0">
             <img
@@ -69,7 +69,7 @@ const DetailUnvCard = ({ departments }) => {
           </div>
 
           <div>
-            <div>{/* <Icon name="fav"/> */}</div>
+           <div> {/*  <Icon name="fav"/>*/} </div> 
             <div className="ml-2 mb-5">
               <h6 className="font-sm font-bold">Email</h6>
               <p>
