@@ -12,18 +12,8 @@ const AuthContextProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(false);
   const navigate = useNavigate();
-<<<<<<< HEAD
-  // console.log(currentUser);
-  
 
-    
- 
-
-
-
-=======
-  console.log(currentUser.user);
->>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
+  // console.log(currentUser)
 
   const createUser = async (info) => {
     const formData = new FormData();

@@ -13,14 +13,9 @@ const navbarMenu = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-<<<<<<< HEAD
-  const { currentUser } = useContext(AuthContext);
-  // console.log(currentUser);
-  useEffect(() => {
-    initTE({ Offcanvas, Ripple, Dropdown });
-=======
+
   const [openBarMenu, setOpenBarMenu] = useState(false);
->>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
+
 
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {

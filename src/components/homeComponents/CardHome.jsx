@@ -1,15 +1,10 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import uuid from 'react-uuid';
 import { AuthContext } from "../../context/AuthContext";
 import { CompareContext } from "../../context/CompareContext";
-=======
-import { HomeContext } from "../../context/HomeContext";
 
->>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
+
 const CardHome = ({
-  id,
   city,
   bolum,
   faculty,
@@ -22,17 +17,10 @@ const CardHome = ({
   id
 }) => {
   // console.log(universityImage);
-<<<<<<< HEAD
+
   const navigate=useNavigate()
   const {currentUser} =useContext(AuthContext)
-  const {putCompares,compares}=useContext(CompareContext)
-
-=======
-  // console.log(id)
-  const navigate=useNavigate()
-
-  const {setSelectedItems,selectedItems} =useContext(HomeContext)
->>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
+  const {postCompares,compares}=useContext(CompareContext)
 
   const departmentName = university?.tr;
   // console.log(departmentName);
@@ -47,7 +35,7 @@ const CardHome = ({
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
-      key={uuid()}
+      key={id}
     >
       <div className="relative">
         <img
@@ -57,12 +45,8 @@ const CardHome = ({
           alt="image"
         />
         <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" 
-<<<<<<< HEAD
-        onClick={(e)=>putCompares({id:currentUser?.userID,code})}>
-=======
-        // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
-        >
->>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
+        onClick={()=>postCompares(id,currentUser?.userID)}>
+
           <span className="pt-1">
             <svg
               fill="#000000"
