@@ -9,9 +9,7 @@ const framerItem = {
 };
 const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
-
   const {universities,allDepartments}=useContext(HomeContext)
-
 
   // const universityDepartments = allDepartments.filter(
   //   (department) => department?.university?.code === code
@@ -30,10 +28,7 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
   const facultyCount = facultySet.size;
   const departmentCount = departmentSet.size
-  // console.log(universityDepartments)
- 
-// console.log(facultyCount)
-// console.log(departmentCount)
+
 
   const filteredCity=cities.filter((item)=>item.id===city).map((item)=>item.tr)
 
@@ -74,11 +69,13 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
           </p>
           {data?.phone &&
            ( <button className="mt-2 mr-3 p-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
-            P {data?.phone}
+          +90 {data?.phone}
           </button>)}
     
           <button className="mt-2 p-3 text-sm font-medium border-2 border-green-500 rounded-md bg-green-100 text-green-500  hover:bg-green-500 hover:text-white">
-            M Send Massege
+
+          Send Massege
+
           </button>
         </div>
       </div>

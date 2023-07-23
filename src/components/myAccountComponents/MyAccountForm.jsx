@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+
+import { useState, useEffect } from "react";
+
 import axios from "axios";
 
 const MyAccountForm = () => {
@@ -9,7 +11,6 @@ const MyAccountForm = () => {
   useEffect(() => {
     getCountry();
   }, []);
-  console.log(country);
   const API_KEY =
     "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
   const COUNTRY_API = `https://tr-yös.com/api/v1/location/allcountries.php?token=${API_KEY}`;
@@ -17,11 +18,10 @@ const MyAccountForm = () => {
 
   const getCountry = async () => {
     try {
-      const { data } = await axios.get(COUNTRY_API);
-      // console.log(data);
+
+      const { data } = await axios.get(COUNTRY_API);     
       setCountry(data);
-    } catch (error) {
-      // console.log(error);
+    } catch (error) {     
     }
   };
 
@@ -32,8 +32,6 @@ const MyAccountForm = () => {
       setCities(data);
     } catch (error) {}
   };
-  // console.log(selectedCountry);
-  // console.log(cities);
 
   return (
     <div>

@@ -17,7 +17,9 @@ const CardHome = ({
 }) => {
   const navigate = useNavigate();
 
-  const { setSelectedItems, selectedItems, postFavAdd } =
+
+  const { postFavAdd,handleCompare } =
+
     useContext(HomeContext);
 
   const departmentName = university?.tr;
@@ -50,7 +52,9 @@ const CardHome = ({
           className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200"
           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
         >
-          <span className="pt-1">
+
+          <span className="pt-1 "  onClick={()=>handleCompare(id)}>
+
             <Icon name="compare" size="1rem" />
           </span>
           <span>Compare</span>

@@ -1,5 +1,3 @@
-import React from "react";
-
 import Profil from "../components/myAccountComponents/Profil";
 import MyAccountForm from "../components/myAccountComponents/MyAccountForm";
 

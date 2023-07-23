@@ -1,6 +1,6 @@
 import Select from "react-select";
 import { HomeContext } from "../../context/HomeContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MultiInput = () => {
@@ -40,7 +40,7 @@ const MultiInput = () => {
             closeMenuOnSelect={false}
             isMulti
             placeholder="Select City "
-            onChange={handleFirstInputChange}       
+            onChange={handleFirstInputChange}
           />
         </div>
 

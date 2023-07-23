@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <AuthContextProvider>
         <HomeContextProvider>
-          <AppRouter />
+          <AppRouter />         
         </HomeContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
