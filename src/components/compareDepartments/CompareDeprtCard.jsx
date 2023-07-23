@@ -1,3 +1,4 @@
+
  const CompareDeprtCard = (item) => {   
     const {city,
       bolum,
@@ -40,10 +41,9 @@
       </p>
       <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 p-4 text-center">
         4 Years
-      </p>
-      
+      </p>      
+
     </div>
-  </div>
-  )
-}
-export default CompareDeprtCard
+  );
+};
+export default CompareDeprtCard;

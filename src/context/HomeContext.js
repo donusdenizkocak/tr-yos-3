@@ -12,7 +12,11 @@ const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${AP
 const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`;
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
+
 const COMPARE_API = `https://tr-yös.com/api/v1/users/addcompare.php?`;
+
+const FAVADD_API = `https://tr-yös.com/api/v1/users/addcompare.php?id=departmentID&user_id=userID&token=YourToken`;
+
 
 const HomeContextProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
@@ -33,6 +37,8 @@ const HomeContextProvider = ({ children }) => {
   const [deleteCompare, setDeleteCompare] = useState([]);
   const [active, setActive] = useState([]);
   const navigate = useNavigate();
+
+  const userID = JSON.parse(sessionStorage.getItem("user")) || false;
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -73,7 +79,6 @@ const HomeContextProvider = ({ children }) => {
   const getUniversities = async () => {
     try {
       const { data } = await axios.get(UNIVERSITIES_API);
-
       setUniversities(data);
     } catch (error) {
       console.log(error);
@@ -105,6 +110,7 @@ const HomeContextProvider = ({ children }) => {
     // const selectedCities=selectedOptions.map((option) => option.label)
     setSelectedCities(selectedOptions);
     setSelectedIds(selectedIds);
+
 
     const getCompare = async (id) => {
       try {
@@ -221,5 +227,6 @@ const HomeContextProvider = ({ children }) => {
       <HomeContext.Provider value={values}>{children}</HomeContext.Provider>
     );
   };
+
 };
 export default HomeContextProvider;

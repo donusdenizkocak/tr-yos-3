@@ -73,7 +73,9 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
           </button>)}
     
           <button className="mt-2 p-3 text-sm font-medium border-2 border-green-500 rounded-md bg-green-100 text-green-500  hover:bg-green-500 hover:text-white">
+
           Send Massege
+
           </button>
         </div>
       </div>

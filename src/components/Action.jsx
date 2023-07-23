@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 
+
 //***********************! */ HATALI  BURASI ( SADECE POST ATILMADI 404 hata alınıyor) ************************
+
 
 const Action = () => {
   const [emailPost, setEmailPost] = useState({ email: "" });
@@ -24,7 +26,6 @@ const Action = () => {
         },
       });
     } catch (error) {
-     
     }
   };
 
