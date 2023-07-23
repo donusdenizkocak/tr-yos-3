@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { CompareContext } from "../../context/CompareContext";
+import { HomeContext } from "../../context/HomeContext";
 
 
 const CardHome = ({
@@ -20,7 +20,7 @@ const CardHome = ({
 
   const navigate=useNavigate()
   const {currentUser} =useContext(AuthContext)
-  const {postCompares,compares}=useContext(CompareContext)
+  const {handleCompares,active,handleDelete,compares}=useContext(HomeContext)
 
   const departmentName = university?.tr;
   // console.log(departmentName);
@@ -45,7 +45,7 @@ const CardHome = ({
           alt="image"
         />
         <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" 
-        onClick={()=>postCompares(id,currentUser?.userID)}>
+        onClick={()=>handleCompares(id)}>
 
           <span className="pt-1">
             <svg
