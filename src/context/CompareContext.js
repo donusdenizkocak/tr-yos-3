@@ -13,9 +13,9 @@ const CompareContextProvider=({children}) =>{
 
 
 
-  const putCompares = async ({departmentID,userID}) =>{
+  const postCompares = async (userID,departmentID) =>{
   try {
-    await axios.get(`${COMPARE_API}id=${departmentID}&user_id=${userID}&token=${API_KEY}`);
+    await axios.post(`${COMPARE_API}id=${departmentID}&user_id=${userID}&token=${API_KEY}`);
     console.log("dene1")
     console.log("dene2")
    getCompares()
@@ -24,7 +24,7 @@ const CompareContextProvider=({children}) =>{
   }
 }
 
-const getCompares = async ({userID,departmentID}) =>{
+const getCompares = async (userID,departmentID) =>{
   try {
     const { data } =await axios.get(`${COMPARE_API}id=${departmentID}&user_id=${userID}&token=${API_KEY}`);
     setCompares(data)
@@ -33,7 +33,7 @@ const getCompares = async ({userID,departmentID}) =>{
     console.log(error)
   }
 }
-const values={getCompares,putCompares,compares,};
+const values={getCompares,postCompares,compares,};
 return  (
     <CompareContext.Provider value={values}>{children}</CompareContext.Provider>
 )
