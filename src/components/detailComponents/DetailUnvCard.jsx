@@ -3,15 +3,15 @@ import { Icon } from "../../helper/Icons";
 import { useContext } from "react";
 
 const DetailUnvCard = ({ departments }) => {
-  const {universities}=useContext(HomeContext)
+  const { universities } = useContext(HomeContext);
   if (!departments) {
     return null;
   }
 
   const {
-   department,
+    department,
     faculty,
- 
+
     content,
     city,
     language,
@@ -21,8 +21,10 @@ const DetailUnvCard = ({ departments }) => {
     data,
     // data: { adress, web, email, phone, fax },
   } = departments;
-  const filteredLogo=universities.filter((item)=>item.tr===university.tr).map((item)=>item.logo)
-  // console.log(filteredLogo)
+  const filteredLogo = universities
+    .filter((item) => item.tr === university.tr)
+    .map((item) => item.logo);
+
   return (
     <div className="flex flex-col  gap-5">
       <div className="bg-white flex  justify-center p-3 rounded-md ">
@@ -42,12 +44,8 @@ const DetailUnvCard = ({ departments }) => {
             />
           </div>
           <div className="ml-4">
-          <h4 className="text-lg font-bold">
-              {department?.tr}
-            </h4>
-            <h4 className="text-lg font-bold">
-              {university.tr}
-            </h4>
+            <h4 className="text-lg font-bold">{department?.tr}</h4>
+            <h4 className="text-lg font-bold">{university.tr}</h4>
             <p className="text-gray-600 text-xs">{city.tr}</p>
           </div>
         </div>
@@ -62,22 +60,19 @@ const DetailUnvCard = ({ departments }) => {
                   className="text-xs hover:text-sky-500"
                   href="tel:(216) 500-4444"
                 >
-                {data?.phone}
+                  {data?.phone}
                 </a>
               </p>
             </div>
           </div>
 
           <div>
-           <div> {/*  <Icon name="fav"/>*/} </div> 
+            <div> {/*  <Icon name="fav"/>*/} </div>
             <div className="ml-2 mb-5">
               <h6 className="font-sm font-bold">Email</h6>
               <p>
-                <a
-                  className="text-xs hover:text-sky-500"
-                  href={data?.email}
-                >
-               {data?.email}
+                <a className="text-xs hover:text-sky-500" href={data?.email}>
+                  {data?.email}
                 </a>
               </p>
             </div>
@@ -93,7 +88,7 @@ const DetailUnvCard = ({ departments }) => {
                   href={data?.web}
                   target="_blank"
                 >
-            {data?.web}
+                  {data?.web}
                 </a>
               </p>
             </div>

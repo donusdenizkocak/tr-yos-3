@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { HomeContext } from "../../context/HomeContext";
+import settingGif from "../../helper/Settings.gif"
 
 const framerItem = {
   hidden: { opacity: 0, translateY: 20 },
@@ -40,19 +41,20 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
   return (
     <motion.div
-      className=" container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-10"
+      className="w-[25rem]  md:w-[45rem] lg:w-[65rem] flex flex-col justify-center items-center md:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-10"
       key={id}
       variants={framerItem}
+      
     >
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
         <img
-          src={logo}
-          className="w-full h-full object-cover"
+          src={logo || settingGif }
+          className="w-44 h-44 object-fill"
         />
       </div>
 
       <div className="my-6">
-        <div className="flex">
+        <div className="flex ">
           <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500">
             {facultyCount} Faculties
           </p>
@@ -76,7 +78,7 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
           </button>)}
     
           <button className="mt-2 p-3 text-sm font-medium border-2 border-green-500 rounded-md bg-green-100 text-green-500  hover:bg-green-500 hover:text-white">
-            M Send Massege{" "}
+            M Send Massege
           </button>
         </div>
       </div>

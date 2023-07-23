@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../helper/Icons";
-import { Offcanvas, Dropdown, Ripple, initTE } from "tw-elements";
 import { AuthContext } from "../context/AuthContext";
 import BarMenu from "./BarMenu";
+import DropDownNavbar from "./DropDownNavbar";
 
 const navbarMenu = [
   { title: "Home", url: "/" },
@@ -93,14 +93,7 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
-            {currentUser && (
-              <div  className="w-[115px] flex items-center justify-center h-[50px]">
-               <Link to="/myaccount" className={`w-full h-full flex items-center justify-center transition delay-75 hover:text-[#017efa] font-semibold ${
-                        isScrolled ? "text-[#022f5d]" : "text-white"
-                      }`}>MyAccount ▼</Link> 
-
-              </div>
-            )}
+            {currentUser && <DropDownNavbar isScrolled={isScrolled} />}
           </div>
         </div>
       </nav>

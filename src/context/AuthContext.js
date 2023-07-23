@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { SlideshowLightbox } from "lightbox.js-react";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
@@ -12,7 +11,7 @@ const AuthContextProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(false);
   const navigate = useNavigate();
-  console.log(currentUser.user);
+  console.log(currentUser);
 
   const createUser = async (info) => {
     const formData = new FormData();
@@ -44,6 +43,7 @@ const AuthContextProvider = ({ children }) => {
         },
       });
       setCurrentUser(data);
+      // sessionStorage.setItem("user", JSON.stringify(data.userID));
       navigate("/");
     } catch (error) {
       console.log(`Login Error:${error}`);
@@ -51,7 +51,18 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const values = { createUser, loginUser, currentUser ,setCurrentUser};
+  const logoutUser = () => {
+    setCurrentUser(false);
+    sessionStorage.clear();
+  };
+
+  const values = {
+    createUser,
+    loginUser,
+    currentUser,
+    setCurrentUser,
+    logoutUser,
+  };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
