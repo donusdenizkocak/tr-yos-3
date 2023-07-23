@@ -44,12 +44,10 @@ const DetailHeader = ({ universityImage, departments }) => {
     price,
     scholarship,
     data,
-  } = departments;
-  //  console.log(departments)
+  } = departments;  
 
   const departmentName = university?.tr;
-  // console.log(universityImage)
-  // console.log(departmentName);
+
   const departmentImage = Object.entries(universityImage).find(
     ([universityName, imageUrl]) =>
       universityName.trim().toLowerCase() ===

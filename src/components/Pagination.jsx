@@ -6,7 +6,7 @@ const Pagination = ({ handlePageClick, pageCount }) => {
       <ReactPaginate
         breakLabel="..."
         nextLabel={
-          <span className="w-16 h-10 flex items-center justify-center bg-[#022f5d] text-white rounded-md ">
+          <span className="w-20 h-10 flex items-center justify-center bg-[#022f5d] text-white rounded-md ">
             next ▶
           </span>
         }
@@ -14,7 +14,7 @@ const Pagination = ({ handlePageClick, pageCount }) => {
         pageRangeDisplayed={3}
         pageCount={pageCount}
         previousLabel={
-          <span className="w-16 h-10 flex items-center justify-center bg-[#022f5d] text-white rounded-md ">
+          <span className="w-20  h-10 flex items-center justify-center bg-[#022f5d] text-white rounded-md ">
             ◀ prev
           </span>
         }

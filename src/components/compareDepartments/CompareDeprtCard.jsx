@@ -1,7 +1,4 @@
-import React from 'react'
-
- const CompareDeprtCard = (item) => {
-    console.log(item)
+ const CompareDeprtCard = (item) => {   
     const {city,
       bolum,
       faculty,

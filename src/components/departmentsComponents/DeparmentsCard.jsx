@@ -1,10 +1,10 @@
-import DeparmentsIntro from "./DeparmentsIntro";
 import { HomeContext } from "../../context/HomeContext";
-import {useContext}  from  'react'
+import { useContext } from "react";
 import CardHome from "../homeComponents/CardHome";
 
 const DeparmentsCard = () => {
-  const {allDepartments,filteredDepartments,universities}=useContext(HomeContext)
+  const { allDepartments, filteredDepartments, universities } =
+    useContext(HomeContext);
   const someDeps = allDepartments.slice(0, 12);
 
   const universityImagesMap = universities.reduce((map, university) => {
@@ -13,20 +13,24 @@ const DeparmentsCard = () => {
     }
     return map;
   }, {});
-  // console.log(universityImagesMap);
+
   return (
-
-
     <div className="container m-auto flex justify-center items-center flex-wrap  gap-5">
-      
-      { filteredDepartments.length? (filteredDepartments?.map((item, index) => (
-        <CardHome{...item}  key={item.id} universityImage={universityImagesMap} />
-      ))):(
-        someDeps?.map((item,id)=>(
-          <CardHome{...item} key={item.id}  universityImage={universityImagesMap}/>
-        )
-        )
-      )}
+      {filteredDepartments.length
+        ? filteredDepartments?.map((item, index) => (
+            <CardHome
+              {...item}
+              key={item.id}
+              universityImage={universityImagesMap}
+            />
+          ))
+        : someDeps?.map((item, id) => (
+            <CardHome
+              {...item}
+              key={item.id}
+              universityImage={universityImagesMap}
+            />
+          ))}
     </div>
   );
 };

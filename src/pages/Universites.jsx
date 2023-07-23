@@ -4,7 +4,7 @@ import { HomeContext } from "../context/HomeContext";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
-import ImageSpinner from "../helper/Spinner-2.gif"
+import ImageSpinner from "../helper/Spinner-2.gif";
 
 const framerContainer = {
   visible: {
@@ -13,22 +13,6 @@ const framerContainer = {
     },
   },
 };
-// const paginationVariants = {
-//   hidden: {
-//     opacity: 0,
-//     y: 200,
-//   },
-//   visible: {
-//     opacity: 1,
-//     y: 0,
-//     transition: {
-//       type: "spring",
-//       stiffness: 260,
-//       damping: 20,
-//       duration: 2,
-//     },
-//   },
-// };
 
 const Universites = () => {
   const { universities, cities } = useContext(HomeContext);
@@ -76,39 +60,43 @@ const Universites = () => {
           </div>
         </div>
         <div className="min-h-screen flex justify-center items-center">
-          <img src={ImageSpinner} /> 
+          <img src={ImageSpinner} />
         </div>
       </>
     );
-  }
-
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <div
-        className="h-[240px] w-full "
-        style={{
-          backgroundImage: "url(./image/bnr4.jpg)",
-          backgroundPosition: "top",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="h-full flex flex-col justify-end text-white mx-auto md:container pb-8">
-          <h2 className=" font-bold text-[50px] ">Universites</h2>
-          <p className="text-sm font-medium">
-            Tüm Üniversiteleri Kontrol Edebilirsiniz
-          </p>
+  } else {
+    return (
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <div
+          className="h-[240px] w-full "
+          style={{
+            backgroundImage: "url(./image/bnr4.jpg)",
+            backgroundPosition: "top",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="h-full flex flex-col justify-end text-white mx-auto md:container pb-8">
+            <h2 className=" font-bold text-[50px] ">Universites</h2>
+            <p className="text-sm font-medium">
+              Tüm Üniversiteleri Kontrol Edebilirsiniz
+            </p>
+          </div>
         </div>
-      </div>
-      <motion.div initial="hidden" animate="visible" variants={framerContainer}>
-        {currentItems.map((uni, index) => (
-          <CardUniversites {...uni} key={index} cities={cities} />
-        ))}
-      </motion.div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={framerContainer}
+        >
+          {currentItems.map((uni, index) => (
+            <CardUniversites {...uni} key={index} cities={cities} />
+          ))}
+        </motion.div>
 
-      <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
-    </motion.div>
-  );
+        <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+      </motion.div>
+    );
+  }
 };
 
 export default Universites;

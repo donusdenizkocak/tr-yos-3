@@ -7,13 +7,14 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 
-const Header2 = () => {
+const Header = () => {
   return (
     <>
       <Swiper
         effect={"fade"}
         spaceBetween={30}
         centeredSlides={true}
+        loop={true}
         autoplay={{
           delay: 5500,
           disableOnInteraction: false,
@@ -74,4 +75,4 @@ const Header2 = () => {
   );
 };
 
-export default Header2;
+export default Header;

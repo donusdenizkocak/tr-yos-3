@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Dashboard = () => {
+const MyAccountForm = () => {
 
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState([]);
@@ -9,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     getCountry();
   }, []);
-  // console.log(country);
+ 
   const API_KEY =
     "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
   const COUNTRY_API = `https://tr-yös.com/api/v1/location/allcountries.php?token=${API_KEY}`;
@@ -17,14 +17,11 @@ const Dashboard = () => {
 
   const getCountry = async () => {
     try {
-      const { data } = await axios.get(COUNTRY_API);
-      // console.log(data);
+      const { data } = await axios.get(COUNTRY_API);     
       setCountry(data);
-    } catch (error) {
-      // console.log(error);
+    } catch (error) {     
     }
   };
-
   const selectedCountres = async (e) => {
     setSelectedCountry(e.target.value);
     try {
@@ -32,11 +29,8 @@ const Dashboard = () => {
       setCities(data);
     } catch (error) {}
   };
-  // console.log(selectedCountry);
-  // console.log(cities);
-
   return (
-    <div className="container mt-40">
+    <div>
       <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
         <form>
           <div className="text-xl text-darkBlue font-bold mb-2 mx-3">
@@ -183,4 +177,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default MyAccountForm;
