@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const HomeContext = createContext();
 
@@ -11,6 +12,8 @@ const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${AP
 const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`;
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
+const COMPARE_API =`https://tr-yös.com/api/v1/users/addcompare.php?`
+
 
 const HomeContextProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
@@ -24,6 +27,15 @@ const HomeContextProvider = ({ children }) => {
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps,   setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [userID, setUserID] = useState(
+    JSON.parse(localStorage.getItem("user") || null)
+  );
+    const [compare, setCompare] = useState([])
+    const [deleteCompare, setDeleteCompare] = useState([])
+    const [active, setActive] = useState([])
+    const navigate =useNavigate()
+    
+  
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -33,12 +45,25 @@ const HomeContextProvider = ({ children }) => {
     return array;
   };
 
-  useEffect(() => {
+  useEffect((id,userID) => {
     getCities();
     getUniversities();
     getDepartments();
     getAllDepartments();
+    if(userID){
+      getCompare(id)
+    }
   }, []);
+
+ const handleCompare  =(id) =>{
+  if(!compare.includes(id)){
+    setCompare((item) => [...item,id])
+    // console.log(compare)
+  }else{
+    postCompare(id)
+    // console.log(compare)
+  }
+ }
 
   const getCities = async () => {
     try {
@@ -95,6 +120,30 @@ const HomeContextProvider = ({ children }) => {
     
   }
   // console.log(selectedCities)
+
+  const getCompare = async(id) =>{
+    try {
+      const {data} = await axios.get(`${COMPARE_API}&user_id=${id}&token=${API_KEY}`)
+      setCompare(data.departments)
+      console.log(compare)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const postCompare = async (id) =>{
+    try {
+     const {data}= await axios.post(`${COMPARE_API}id=${id}&user_id=${userID}&token=${API_KEY}`);
+    //  console.log( data)
+    // console.log(compare)
+    getCompare(userID)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+    
+
 
 
   const city= cities?.map((city) => ({ value: city.id, label: city.tr }))
@@ -158,7 +207,6 @@ const values = {
     setUniversities,
     departments,
     setAllDepartments,
-
     allDepartments,
     selectedIds,
     selectedCities,
@@ -173,7 +221,12 @@ const values = {
     filteredAllUniList,
     selectedItems,
     setSelectedItems,
-    filteredDepartments,  };
+    filteredDepartments,
+    handleCompare,
+    postCompare,
+    compare,
+    setCompare,
+  };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
 

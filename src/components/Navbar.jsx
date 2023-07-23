@@ -13,7 +13,9 @@ const navbarMenu = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+
   const [openBarMenu, setOpenBarMenu] = useState(false);
+
 
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {
