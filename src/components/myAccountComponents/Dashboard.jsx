@@ -9,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     getCountry();
   }, []);
-  console.log(country);
+  // console.log(country);
   const API_KEY =
     "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
   const COUNTRY_API = `https://tr-yös.com/api/v1/location/allcountries.php?token=${API_KEY}`;

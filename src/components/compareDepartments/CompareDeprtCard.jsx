@@ -17,7 +17,7 @@ import React from 'react'
     <a href="#">
       <img
         className="rounded-t-lg"
-        src={images ? images[0]:logo}
+        src={images ? images[0]:"https://cdn.pixabay.com/photo/2021/02/18/12/03/people-6027028_1280.jpg"}
         alt=""
       />
     </a>

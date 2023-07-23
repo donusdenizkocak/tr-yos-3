@@ -16,11 +16,11 @@ const CardHome = ({
   code,  
   id
 }) => {
-  // console.log(universityImage);
+
 
   const navigate=useNavigate()
   const {currentUser} =useContext(AuthContext)
-  const {handleCompares,active,handleDelete,compares}=useContext(HomeContext)
+  const {handleCompare}=useContext(HomeContext)
 
   const departmentName = university?.tr;
   // console.log(departmentName);
@@ -45,7 +45,7 @@ const CardHome = ({
           alt="image"
         />
         <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" 
-        onClick={()=>handleCompares(id)}>
+        onClick={()=>handleCompare(id)}>
 
           <span className="pt-1">
             <svg

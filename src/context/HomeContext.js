@@ -30,7 +30,7 @@ const HomeContextProvider = ({ children }) => {
   const [userID, setUserID] = useState(
     JSON.parse(localStorage.getItem("user") || null)
   );
-    const [compares, setCompares] = useState([])
+    const [compare, setCompare] = useState([])
     const [deleteCompare, setDeleteCompare] = useState([])
     const [active, setActive] = useState([])
     const navigate =useNavigate()
@@ -55,7 +55,15 @@ const HomeContextProvider = ({ children }) => {
     }
   }, []);
 
- 
+ const handleCompare  =(id) =>{
+  if(!compare.includes(id)){
+    setCompare((item) => [...item,id])
+    // console.log(compare)
+  }else{
+    postCompare(id)
+    // console.log(compare)
+  }
+ }
 
   const getCities = async () => {
     try {
@@ -113,18 +121,28 @@ const HomeContextProvider = ({ children }) => {
   }
   // console.log(selectedCities)
 
-  const postCompares = async (departmentID) =>{
+  const getCompare = async(id) =>{
     try {
-      await axios.post(`${COMPARE_API}id=${departmentID}&user_id=${userID}&token=${API_KEY}`);
-    //  getCompares()
+      const {data} = await axios.get(`${COMPARE_API}&user_id=${id}&token=${API_KEY}`)
+      setCompare(data.departments)
+      console.log(compare)
     } catch (error) {
       console.log(error)
     }
   }
 
-    const getCompare = () =>{
-      
+  const postCompare = async (id) =>{
+    try {
+     const {data}= await axios.post(`${COMPARE_API}id=${id}&user_id=${userID}&token=${API_KEY}`);
+    //  console.log( data)
+    // console.log(compare)
+    getCompare(userID)
+    } catch (error) {
+      console.log(error)
     }
+  }
+
+    
 
 
 
@@ -189,7 +207,6 @@ const values = {
     setUniversities,
     departments,
     setAllDepartments,
-
     allDepartments,
     selectedIds,
     selectedCities,
@@ -204,7 +221,12 @@ const values = {
     filteredAllUniList,
     selectedItems,
     setSelectedItems,
-    filteredDepartments,  };
+    filteredDepartments,
+    handleCompare,
+    postCompare,
+    compare,
+    setCompare,
+  };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
 
