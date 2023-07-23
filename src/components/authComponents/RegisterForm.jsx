@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form } from "formik";
 
 const RegisterForm = ({ values, handleChange, handleBlur, isSubmitting }) => {
+ 
   return (
-
     <Form>
       <div className="flex -mx-3 relative">
         <div className="w-full px-3 mb-5">
