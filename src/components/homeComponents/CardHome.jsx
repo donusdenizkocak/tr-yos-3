@@ -1,8 +1,13 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import uuid from 'react-uuid';
 import { AuthContext } from "../../context/AuthContext";
 import { CompareContext } from "../../context/CompareContext";
+=======
+import { HomeContext } from "../../context/HomeContext";
+
+>>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
 const CardHome = ({
   id,
   city,
@@ -14,12 +19,20 @@ const CardHome = ({
   department,
   images,
   code,  
+  id
 }) => {
   // console.log(universityImage);
+<<<<<<< HEAD
   const navigate=useNavigate()
   const {currentUser} =useContext(AuthContext)
   const {putCompares,compares}=useContext(CompareContext)
 
+=======
+  // console.log(id)
+  const navigate=useNavigate()
+
+  const {setSelectedItems,selectedItems} =useContext(HomeContext)
+>>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
 
   const departmentName = university?.tr;
   // console.log(departmentName);
@@ -28,7 +41,9 @@ const CardHome = ({
       universityName.trim().toLowerCase() ===
       departmentName?.trim().toLowerCase()
   )?.[1];
-
+  const handleDetailClick = () => {
+    navigate(`/detail/${id}`);
+  };
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
@@ -38,11 +53,16 @@ const CardHome = ({
         <img
 
           className="rounded-t-lg w-full h-[215px] object-fill hover:scale-90 hover:ease-in-out hover:duration-300 "
-          src={departmentImage}
+          src={departmentImage ||  "https://iatkv.tmgrup.com.tr/c4c003/616/321/0/0/800/416?u=https%3A%2F%2Fitkv.tmgrup.com.tr%2F2020%2F08%2F07%2Fmaas-gibi-burs-destegi-1596775964948.jpeg"}
           alt="image"
         />
         <button className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200" 
+<<<<<<< HEAD
         onClick={(e)=>putCompares({id:currentUser?.userID,code})}>
+=======
+        // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
+        >
+>>>>>>> 09b5fc2fc11fdd13b1156490d8c8cb68581fb26d
           <span className="pt-1">
             <svg
               fill="#000000"
@@ -116,7 +136,7 @@ const CardHome = ({
           </svg>
           <p className="">{city?.tr}</p>
         </div>
-        <div className="text-md font-bold h-[2rem] my-1 flex justify-center items-center" onClick={()=>navigate("/detail")}>
+        <div className="text-md font-bold h-[2rem] my-1 flex justify-center items-center" onClick={handleDetailClick}>
           <button className="mx-5 h-full px-3 bg-[#00000080] text-white rounded-lg">
             Detail
           </button>

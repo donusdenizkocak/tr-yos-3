@@ -1,6 +1,28 @@
+import { HomeContext } from "../../context/HomeContext";
 import { Icon } from "../../helper/Icons";
+import { useContext } from "react";
 
-const DetailUnvCard = () => {
+const DetailUnvCard = ({ departments }) => {
+  const {universities}=useContext(HomeContext)
+  if (!departments) {
+    return null;
+  }
+
+  const {
+   department,
+    faculty,
+ 
+    content,
+    city,
+    language,
+    university,
+    price,
+    scholarship,
+    data,
+    // data: { adress, web, email, phone, fax },
+  } = departments;
+  const filteredLogo=universities.filter((item)=>item.tr===university.tr).map((item)=>item.logo)
+  // console.log(filteredLogo)
   return (
     <div className="flex flex-col  gap-5">
       <div className="bg-white flex  justify-center p-3 rounded-md ">
@@ -9,20 +31,24 @@ const DetailUnvCard = () => {
         </button>
       </div>
 
-      <div className="flex flex-col bg-white p-4 w-80">
+      <div className="flex flex-col rounded-md  bg-white p-4 w-80">
         <div className="flex items-center mb-10">
           <div className="flex-shrink-0">
             <img
-              src="https://www.tr-yös.com/test/6984215678913/logo/acibadem-mehmet-ali-aydinlar-universitesi-logo-1683762727498.png"
+              src={filteredLogo}
+              // className="w-16 h-16 rounded-full"
               className="w-16 h-16 rounded-full"
               alt=""
             />
           </div>
           <div className="ml-4">
-            <h4 className="text-lg font-bold">
-              ACIBADEM MEHMET ALI AYDINLAR UNIVERSITY
+          <h4 className="text-lg font-bold">
+              {department?.tr}
             </h4>
-            <p className="text-gray-600 text-xs">K Istanbul</p>
+            <h4 className="text-lg font-bold">
+              {university.tr}
+            </h4>
+            <p className="text-gray-600 text-xs">{city.tr}</p>
           </div>
         </div>
 
@@ -36,22 +62,22 @@ const DetailUnvCard = () => {
                   className="text-xs hover:text-sky-500"
                   href="tel:(216) 500-4444"
                 >
-                  (216) 500-4444
+                {data?.phone}
                 </a>
               </p>
             </div>
           </div>
 
           <div>
-            <div>{/* <Icon name="fav"/> */}</div>
+           <div> {/*  <Icon name="fav"/>*/} </div> 
             <div className="ml-2 mb-5">
-              <h6 className="font-sm font-bold">E-Mail</h6>
+              <h6 className="font-sm font-bold">Email</h6>
               <p>
                 <a
                   className="text-xs hover:text-sky-500"
-                  href="mailto:info@acibadem.edu.tr"
+                  href={data?.email}
                 >
-                  info@acibadem.edu.tr
+               {data?.email}
                 </a>
               </p>
             </div>
@@ -64,10 +90,10 @@ const DetailUnvCard = () => {
               <p>
                 <a
                   className="text-xs hover:text-sky-500"
-                  href="https://www.acibadem.edu.tr"
+                  href={data?.web}
                   target="_blank"
                 >
-                  https://www.acibadem.edu.tr
+            {data?.web}
                 </a>
               </p>
             </div>

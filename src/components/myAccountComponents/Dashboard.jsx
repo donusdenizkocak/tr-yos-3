@@ -1,65 +1,131 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Dashboard = () => {
+
+  const [country, setCountry] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  useEffect(() => {
+    getCountry();
+  }, []);
+  console.log(country);
+  const API_KEY =
+    "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
+  const COUNTRY_API = `https://tr-yös.com/api/v1/location/allcountries.php?token=${API_KEY}`;
+  const CITY_API = `https://tr-yös.com/api/v1/location/citiesbycountry.php?country_id=${selectedCountry}&token=${API_KEY}`;
+
+  const getCountry = async () => {
+    try {
+      const { data } = await axios.get(COUNTRY_API);
+      // console.log(data);
+      setCountry(data);
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+  const selectedCountres = async (e) => {
+    setSelectedCountry(e.target.value);
+    try {
+      const { data } = await axios.get(CITY_API);
+      setCities(data);
+    } catch (error) {}
+  };
+  // console.log(selectedCountry);
+  // console.log(cities);
+
   return (
     <div className="container mt-40">
-      <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+      <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
         <form>
           <div className="text-xl text-darkBlue font-bold mb-2 mx-3">
             <h3>My Account</h3>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {/* //? birinci input */}
-            {/*Name input*/}
+            {/*Your Name input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>Your Name*</h2>
               <input
                 type="text"
-                className="border border-gray-100 peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                className="border border-gray-100 peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-1"
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
-                placeholder="First name"
+                // placeholder="First name"
               />
-              <label
-                htmlFor="emailHelp123"
-                className=" pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              ></label>
+              {/* <label
+                htmlFor="exampleInput123"
+                className=" pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.5rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+              >Your Name*</label> */}
             </div>
             {/*email input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>Email Adres*</h2>
               <input
                 type="email"
-                className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="exampleInput125"
-                placeholder="Email address"
+                // placeholder="Email address"
+                value="Hocam buraya gelicek burası Sabit "
               />
-              <label
+              {/* <label
                 htmlFor="exampleInput125"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-neutral-200"
-              ></label>
+                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.5rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+              >Email Adres*</label> */}
             </div>
 
             {/* //?ikinci input */}
             {/* Country input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>Country*</h2>
-              <input
-                type="text"
-                className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-auto">
+                <i className="fas fa-chevron-down text-gray-500"></i>
+              </div>
+              {/* <select
+                className="border absolute inset-0 peer p-3 w-full min-h-[auto] opacity-0 cursor-pointer outline-none focus:outline-none bg-transparent"
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
-                placeholder="First name"
-              />
+              >
+                <option value="country1">Country 1</option>
+                <option value="country2">Country 2</option>
+                <option value="country3">Country 3</option>
+                
+              </select> */}
+
+              <select
+                className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                data-te-select-init
+                onChange={selectedCountres}
+              >
+                <option value="">Select a country</option>
+                {country.map((country) => (
+                  <option key={country.id} value={country.id}>
+                    {country.tr}
+                  </option>
+                ))}
+              </select>
+
               <label
                 htmlFor="emailHelp123"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
               ></label>
             </div>
             {/*City input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>City*</h2>
-              <input
+
+              <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0">
+
+                <option value="">Select a city</option>
+                {cities.map((city) => (
+                  <option key={city.id} value={city.id}>
+                    {city.en}
+                  </option>
+                ))}
+              </select>
+              {/* <input
                 type="text"
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="exampleInput124"
@@ -69,7 +135,7 @@ const Dashboard = () => {
               <label
                 htmlFor="exampleInput124"
                 className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              ></label>
+              ></label> */}
             </div>
           </div>
 
@@ -84,14 +150,14 @@ const Dashboard = () => {
             />
             <label
               htmlFor="exampleFormControlInputTel"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
             ></label>
           </div>
           {/*Password input*/}
           <div className=" relative mb-6" data-te-input-wrapper-init>
             <h2>About</h2>
             <textarea
-              className="border peer block min-h-[auto] w-full rounded  bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              className="border peer block min-h-[auto] w-full rounded  bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
               id="exampleFormControlTextarea1"
               rows={4}
               placeholder="Your message"
@@ -99,28 +165,9 @@ const Dashboard = () => {
             />
             <label
               htmlFor="exampleFormControlTextarea1"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none  "
             ></label>
           </div>
-          <div className="text-xl text-darkBlue font-bold mb-2 mx-3">
-            <h3>Social Accounts</h3>
-          </div>
-
-          <div className="border relative mb-3" data-te-input-wrapper-init>
-            <input
-              type="url"
-              className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="exampleFormControlInputURL"
-              placeholder="Example label"
-            />
-            <label
-              htmlFor="exampleFormControlInputURL"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-            >
-              https://facebook.com/
-            </label>
-          </div>
-
           {/*Submit button*/}
           <button
             type="submit"
@@ -136,4 +183,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard
+export default Dashboard;
