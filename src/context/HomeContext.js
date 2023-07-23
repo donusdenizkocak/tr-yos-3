@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const HomeContext = createContext();
 
@@ -11,6 +12,7 @@ const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${AP
 const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`;
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
+const COMPARE_API =`https://tr-yös.com/api/v1/users/addcompare.php?`
 
 
 const HomeContextProvider = ({ children }) => {
@@ -25,6 +27,15 @@ const HomeContextProvider = ({ children }) => {
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps,   setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [userID, setUserID] = useState(
+    JSON.parse(localStorage.getItem("user") || null)
+  );
+    const [compares, setCompares] = useState([])
+    const [deleteCompare, setDeleteCompare] = useState([])
+    const [active, setActive] = useState([])
+    const navigate =useNavigate()
+    
+  
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -34,11 +45,14 @@ const HomeContextProvider = ({ children }) => {
     return array;
   };
 
-  useEffect(() => {
+  useEffect((id,userID) => {
     getCities();
     getUniversities();
     getDepartments();
     getAllDepartments();
+    if(userID){
+      getCompare(id)
+    }
   }, []);
 
  
@@ -98,6 +112,20 @@ const HomeContextProvider = ({ children }) => {
     
   }
   // console.log(selectedCities)
+
+  const postCompares = async (departmentID) =>{
+    try {
+      await axios.post(`${COMPARE_API}id=${departmentID}&user_id=${userID}&token=${API_KEY}`);
+    //  getCompares()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+    const getCompare = () =>{
+      
+    }
+
 
 
   const city= cities?.map((city) => ({ value: city.id, label: city.tr }))
