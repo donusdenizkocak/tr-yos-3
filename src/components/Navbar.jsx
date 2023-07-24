@@ -97,8 +97,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-<<<<<<< Updated upstream
-=======
+
 
 
       <div
@@ -156,7 +155,7 @@ const Navbar = () => {
         </div>
       </div>
 
->>>>>>> Stashed changes
+
     </>
   );
 };
