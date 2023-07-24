@@ -17,7 +17,8 @@ const CardHome = ({
 }) => {
   const navigate = useNavigate();
 
-  const { postFavAdd,postCompare,setCompare,compare } = useContext(HomeContext);
+  const { addLikes, removeLikes, like, postCompare, compare, deleteCompare } =
+    useContext(HomeContext);
 
   const departmentName = university?.tr;
 
@@ -31,10 +32,18 @@ const CardHome = ({
     navigate(`/detail/${id}`);
   };
   const handleCompare = (id) => {
-    if (!compare.includes(id)) {
-      setCompare((item) => [...item, id]);
-    } else {
+    console.log(compare.includes(id));
+    if (compare.includes(id) == false) {
       postCompare(id);
+    } else if (compare.includes(id) == true) {
+      deleteCompare(id);
+    }
+  };
+  const handleLikeClick = (id) => {
+    if (like.includes(id) == false) {
+      addLikes(id);
+    } else {
+      removeLikes(id);
     }
   };
 
@@ -56,10 +65,9 @@ const CardHome = ({
         <button
           className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200"
           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
-        >
-          <span className="pt-1 " 
           onClick={() => handleCompare(id)}
-          >
+        >
+          <span className="pt-1 ">
             <Icon name="compare" size="1rem" />
           </span>
           <span>Compare</span>
@@ -78,9 +86,7 @@ const CardHome = ({
           <p className="text-gray-400 text-[12px]">{departmentName}</p>
         </div>
 
-        <div className="cursor-pointer " 
-        onClick={() => postFavAdd(id)}
-        >
+        <div className="cursor-pointer " onClick={() => handleLikeClick(id)}>
           <Icon name="fav" size="20" />
         </div>
       </div>

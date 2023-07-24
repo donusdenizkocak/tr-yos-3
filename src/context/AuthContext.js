@@ -9,7 +9,9 @@ const REGISTER_API = `https://tr-yös.com/api/v1/users/newuser.php?token=${API_K
 const LOGİN_API = `https://tr-yös.com/api/v1/users/login.php?token=${API_KEY}`;
 
 const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem("user"))|| false);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user")) || false
+  );
   const navigate = useNavigate();
 
   const createUser = async (info) => {
@@ -24,11 +26,11 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      setCurrentUser(data);
-      sessionStorage.setItem("user", JSON.stringify(data));
+      setCurrentUser(data.userId);
+      sessionStorage.setItem("user", JSON.stringify(data.userId));
       navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -42,11 +44,11 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      setCurrentUser(data);
-      sessionStorage.setItem("user", JSON.stringify(data));
+      setCurrentUser(data.userID);
+      sessionStorage.setItem("user", JSON.stringify(data.userID));
       navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       navigate("/");
     }
   };

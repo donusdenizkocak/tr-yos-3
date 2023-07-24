@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
@@ -15,6 +15,7 @@ const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
 const COMPARE_ADD_API = `https://tr-yös.com/api/v1/users/addcompare.php?`;
 const COMPARE_GET_API = `https://tr-yös.com/api/v1/users/allcompares.php?`;
+const COMPARE_DEL_API = `https://tr-yös.com/api/v1/users/deletecompare.php?`;
 
 const HomeContextProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
@@ -29,10 +30,11 @@ const HomeContextProvider = ({ children }) => {
   const [selectedDeps, setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [compare, setCompare] = useState([]);
-  console.log(compare);
+  const [like, setLike] = useState([]);
 
-  // const currentUserID = JSON.parse(sessionStorage.getItem("user")) || false;
-   const {currentUser}=useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
+  console.log(like);
+  console.log(currentUser);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -47,11 +49,11 @@ const HomeContextProvider = ({ children }) => {
     getUniversities();
     getDepartments();
     getAllDepartments();
-    if(currentUser){
-      getCompare(currentUser?.userID);
-
+    if (currentUser) {
+      getLikes();
+      getCompare();
     }
-  }, []);
+  }, [currentUser]);
 
   const getCities = async () => {
     try {
@@ -92,10 +94,12 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  const getCompare = async (userID) => {
+
+  //! *********** COMPARE (KARŞILAŞTIRMA) **************
+  const getCompare = async () => {
     try {
       const { data } = await axios.get(
-        `${COMPARE_GET_API}&id=${userID}&token=${API_KEY}`
+        `${COMPARE_GET_API}&id=${currentUser}&token=${API_KEY}`
       );
       setCompare(data.departments);
     } catch (error) {
@@ -105,9 +109,59 @@ const HomeContextProvider = ({ children }) => {
   const postCompare = async (id) => {
     try {
       const { data } = await axios.post(
-        `${COMPARE_ADD_API}id=${id}&user_id=${currentUser.userID}&token=${API_KEY}`
+        `${COMPARE_ADD_API}id=${id}&user_id=${currentUser}&token=${API_KEY}`
       );
+      getCompare(currentUser);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteCompare = async (id) => {
+    try {
+      await axios.delete(
+        `${COMPARE_DEL_API}id=${id}&user_id=${currentUser}&token=${API_KEY}`
+      );
+      console.log(`DELETE İŞLEMİ BAŞARILI OLDU BRAVO`);
       getCompare(currentUser.userID);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // ! ********* LİKE (BEĞENME) ************
+
+  const addLikes = async (id, userID) => {
+    try {
+      const { data } = await axios.post(
+        `https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${API_KEY}`
+      );
+      setLike([...like, id]);
+      getLikes(userID);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getLikes = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUser}&token=${API_KEY}`
+      );
+      console.log(data.departments);
+
+      setLike(data.departments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const removeLikes = async (id, userID) => {
+    try {
+      await axios.delete(
+        `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${API_KEY}`
+      );
+      console.log("Successfully removed from favorites.");
     } catch (error) {
       console.log(error);
     }
@@ -188,7 +242,12 @@ const HomeContextProvider = ({ children }) => {
     filteredDepartments,
 
     postCompare,
+    deleteCompare,
     compare,
+
+    addLikes,
+    removeLikes,
+    like,
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
