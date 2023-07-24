@@ -3,15 +3,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 
-const AuthContextProvider = ({ children }) => {
-  const API_KEY =
-    "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
-  const REGISTER_API = `https://tr-yös.com/api/v1/users/newuser.php?token=${API_KEY}`;
-  const LOGİN_API = `https://tr-yös.com/api/v1/users/login.php?token=${API_KEY}`;
+const API_KEY =
+  "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
+const REGISTER_API = `https://tr-yös.com/api/v1/users/newuser.php?token=${API_KEY}`;
+const LOGİN_API = `https://tr-yös.com/api/v1/users/login.php?token=${API_KEY}`;
 
-  const [currentUser, setCurrentUser] = useState(false);
+const AuthContextProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(
+    sessionStorage.getItem("user") || false
+  );
   const navigate = useNavigate();
-  console.log(currentUser);
+  console.log(currentUser.userID);
 
   const createUser = async (info) => {
     const formData = new FormData();
@@ -43,7 +45,7 @@ const AuthContextProvider = ({ children }) => {
         },
       });
       setCurrentUser(data);
-      // sessionStorage.setItem("user", JSON.stringify(data.userID));
+      sessionStorage.setItem("user", JSON.stringify(data));
       navigate("/");
     } catch (error) {
       console.log(`Login Error:${error}`);
