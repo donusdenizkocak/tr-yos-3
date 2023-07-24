@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { HomeContext } from "../../context/HomeContext";
+import settingGif from "../../helper/Settings.gif"
 
 const framerItem = {
   hidden: { opacity: 0, translateY: 20 },
@@ -8,9 +9,7 @@ const framerItem = {
 };
 const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
-
   const {universities,allDepartments}=useContext(HomeContext)
-
 
   // const universityDepartments = allDepartments.filter(
   //   (department) => department?.university?.code === code
@@ -29,10 +28,7 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
   const facultyCount = facultySet.size;
   const departmentCount = departmentSet.size
-  // console.log(universityDepartments)
- 
-// console.log(facultyCount)
-// console.log(departmentCount)
+
 
   const filteredCity=cities.filter((item)=>item.id===city).map((item)=>item.tr)
 
@@ -40,19 +36,20 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
   return (
     <motion.div
-      className=" container flex flex-col justify-center items-center sm:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-10"
+      className="w-[25rem]  md:w-[45rem] lg:w-[65rem] flex flex-col justify-center items-center md:flex-row sm:justify-start border-2 border-gray-300 rounded-md mx-auto my-10"
       key={id}
       variants={framerItem}
+      
     >
       <div className="w-44 h-44 m-6 border-2 border-gray-300 rounded-md">
         <img
-          src={logo}
-          className="w-full h-full object-cover"
+          src={logo || settingGif }
+          className="w-44 h-44 object-fill"
         />
       </div>
 
       <div className="my-6">
-        <div className="flex">
+        <div className="flex ">
           <p className="text-xs mr-2 mb-2 p-2 font-medium border-none rounded-md bg-orange-100 text-orange-500">
             {facultyCount} Faculties
           </p>
@@ -72,11 +69,13 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
           </p>
           {data?.phone &&
            ( <button className="mt-2 mr-3 p-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">
-            P {data?.phone}
+          +90 {data?.phone}
           </button>)}
     
           <button className="mt-2 p-3 text-sm font-medium border-2 border-green-500 rounded-md bg-green-100 text-green-500  hover:bg-green-500 hover:text-white">
-            M Send Massege{" "}
+
+          Send Massege
+
           </button>
         </div>
       </div>

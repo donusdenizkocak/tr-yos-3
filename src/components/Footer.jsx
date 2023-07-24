@@ -1,5 +1,3 @@
-import React from "react";
-
 const navigations = ["About Us", "FAQs Page", "Checkout", "Contact", "Blog"];
 const myAccount = ["My Profile", "My Account", "Favorites"];
 

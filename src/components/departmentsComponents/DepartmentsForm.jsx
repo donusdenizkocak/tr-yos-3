@@ -37,14 +37,12 @@ const DepartmentsForm = () => {
     filteredAllUniList,
   } = useContext(HomeContext);
 
-  // console.log(selectedIds);
-  // console.log(filteredUniList);
-  // console.log(cities);
+
 
   return (
     <div
       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      style={{ maxWidth: "450px",minWidth:"265px" }}
+      style={{ maxWidth: "450px", minWidth: "265px" }}
     >
       <form className="w-full h-full">
         <div className="grid grid-row gap-4  w-full">
