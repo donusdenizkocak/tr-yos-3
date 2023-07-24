@@ -8,6 +8,9 @@ const MyAccountForm = () => {
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [name, setName] = useState(""); // Kullanıcının adını tutacak bir state ekleyin
+  const [email, setEmail] = useState(""); // Kullanıcının e-posta adresini tutacak bir state ekleyin
+
   useEffect(() => {
     getCountry();
   }, []);
@@ -50,8 +53,11 @@ const MyAccountForm = () => {
                 className="border border-gray-100 peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-1"
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
-                // placeholder="First name"
+                placeholder="First name"
+                value={name} // Input değerini 'name' state ile bağlayın
+                onChange={(e) => setName(e.target.value)} // Inputtaki değişiklikleri ele alacak ve 'name' state'i güncelleyecek olay işleyicisi ekleyin
               />
+              
               {/* <label
                 htmlFor="exampleInput123"
                 className=" pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.5rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
@@ -64,8 +70,9 @@ const MyAccountForm = () => {
                 type="email"
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="exampleInput125"
-                // placeholder="Email address"
-                value="Hocam buraya gelicek burası Sabit "
+                placeholder="Email address"
+                value={email} // Input değerini 'email' state ile bağlayın
+                onChange={(e) => setEmail(e.target.value)} // Inputtaki değişiklikleri ele alacak ve 'email' state'i güncelleyecek olay işleyicisi ekleyin
               />
               {/* <label
                 htmlFor="exampleInput125"
