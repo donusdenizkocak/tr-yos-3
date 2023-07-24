@@ -142,7 +142,8 @@ const HomeContextProvider = ({ children }) => {
     }
   }
 
-    
+   const compareFilter=departments?.filter((item)=> compare?.includes(item.id))
+   console.log(compareFilter) 
 
 
 
@@ -226,6 +227,7 @@ const values = {
     postCompare,
     compare,
     setCompare,
+    compareFilter
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
