@@ -4,20 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const DropDownNavbar = ({ isScrolled }) => {
   const [open, setOpen] = useState(false);
-  const { logoutUser } = useContext(AuthContext);
-  // const dropdownRef = useRef(null);
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener("click", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutside);
-  // ref={dropdownRef}
-  //   };
-  // }, []);
+  const { logoutUser } = useContext(AuthContext); 
   return (
     <div className="relative" >
       <div

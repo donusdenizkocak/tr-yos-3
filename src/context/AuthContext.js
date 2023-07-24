@@ -13,7 +13,6 @@ const AuthContextProvider = ({ children }) => {
     sessionStorage.getItem("user") || false
   );
   const navigate = useNavigate();
-  console.log(currentUser.userID);
 
   const createUser = async (info) => {
     const formData = new FormData();
@@ -30,7 +29,7 @@ const AuthContextProvider = ({ children }) => {
       setCurrentUser(data.user);
       navigate("/");
     } catch (error) {
-      console.log(`CreateUserError: ${error}`);
+   
     }
   };
 
@@ -48,7 +47,7 @@ const AuthContextProvider = ({ children }) => {
       sessionStorage.setItem("user", JSON.stringify(data));
       navigate("/");
     } catch (error) {
-      console.log(`Login Error:${error}`);
+  
       navigate("/");
     }
   };
