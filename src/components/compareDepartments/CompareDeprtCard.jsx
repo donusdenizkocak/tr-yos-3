@@ -44,6 +44,7 @@
       </p>      
 
     </div>
+    </div>
   );
 };
 export default CompareDeprtCard;

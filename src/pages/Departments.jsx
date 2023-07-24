@@ -1,4 +1,4 @@
-import React from "react";
+
 import DepartmentsForm from "../components/departmentsComponents/DepartmentsForm";
 import DeparmentsCard from "../components/departmentsComponents/DeparmentsCard";
 import { motion } from "framer-motion";

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { HomeContext } from "../../context/HomeContext";
 import CompareDeprtCard from "./CompareDeprtCard";
 
 const CompareDepartments = () => {
   const { selectedItems, setSelectedItems } = useContext(HomeContext);
   return (
+    <>
     <div className="bg-[#f8f6f6]">
       <div
         className="h-[240px] w-full "
@@ -62,7 +63,7 @@ const CompareDepartments = () => {
       </div>
     </div>
 
-  </div>   
+    
      
   <div className="max-w-sm bg-white border border-gray-400 rounded-lg p-4 shadow m-5">
     <a href="#">
@@ -96,7 +97,8 @@ const CompareDepartments = () => {
       
     </div>
   </div>
-    </div>
+   
+    </>
 
   )
 }

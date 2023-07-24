@@ -1,22 +1,20 @@
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const HomeContext = createContext();
 
 const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
 
-const FEATURED_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
+// const FEATURED_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
 const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
 const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`;
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
-
-const COMPARE_API = `https://tr-yös.com/api/v1/users/addcompare.php?`;
-
-const FAVADD_API = `https://tr-yös.com/api/v1/users/addcompare.php?id=departmentID&user_id=userID&token=YourToken`;
-
+const COMPARE_ADD_API = `https://tr-yös.com/api/v1/users/addcompare.php?`;
+const COMPARE_GET_API = `https://tr-yös.com/api/v1/users/allcompares.php?`;
 
 const HomeContextProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
@@ -30,15 +28,11 @@ const HomeContextProvider = ({ children }) => {
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps, setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [userID, setUserID] = useState(
-    JSON.parse(localStorage.getItem("user") || null)
-  );
   const [compare, setCompare] = useState([]);
-  const [deleteCompare, setDeleteCompare] = useState([]);
-  const [active, setActive] = useState([]);
-  const navigate = useNavigate();
+  console.log(compare);
 
-  const userID = JSON.parse(sessionStorage.getItem("user")) || false;
+  // const currentUserID = JSON.parse(sessionStorage.getItem("user")) || false;
+   const {currentUser}=useContext(AuthContext)
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -48,23 +42,16 @@ const HomeContextProvider = ({ children }) => {
     return array;
   };
 
-  useEffect((id, userID) => {
+  useEffect(() => {
     getCities();
     getUniversities();
     getDepartments();
     getAllDepartments();
-    if (userID) {
-      getCompare(id);
+    if(currentUser){
+      getCompare(currentUser?.userID);
+
     }
   }, []);
-
-  const handleCompare = (id) => {
-    if (!compare.includes(id)) {
-      setCompare((item) => [...item, id]);
-    } else {
-      postCompare(id);
-    }
-  };
 
   const getCities = async () => {
     try {
@@ -79,6 +66,7 @@ const HomeContextProvider = ({ children }) => {
   const getUniversities = async () => {
     try {
       const { data } = await axios.get(UNIVERSITIES_API);
+
       setUniversities(data);
     } catch (error) {
       console.log(error);
@@ -104,129 +92,105 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const getCompare = async (userID) => {
+    try {
+      const { data } = await axios.get(
+        `${COMPARE_GET_API}&id=${userID}&token=${API_KEY}`
+      );
+      setCompare(data.departments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const postCompare = async (id) => {
+    try {
+      const { data } = await axios.post(
+        `${COMPARE_ADD_API}id=${id}&user_id=${currentUser.userID}&token=${API_KEY}`
+      );
+      getCompare(currentUser.userID);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleFirstInputChange = (selectedOptions) => {
     const selectedIds = selectedOptions.map((option) => option.value);
-    // const selectedCities=selectedOptions.map((option) => option.label)
+
     setSelectedCities(selectedOptions);
     setSelectedIds(selectedIds);
+  };
 
+  const city = cities?.map((city) => ({ value: city.id, label: city.tr }));
 
-    const getCompare = async (id) => {
-      try {
-        const { data } = await axios.get(
-          `${COMPARE_API}&user_id=${id}&token=${API_KEY}`
-        );
-        setCompare(data.departments);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const handleSecondInputChange = (selectedOptions2) => {
+    const selectedSecondIds = selectedOptions2.map((option) => option.label);
 
-    const postCompare = async (id) => {
-      try {
-        const { data } = await axios.post(
-          `${COMPARE_API}id=${id}&user_id=${userID}&token=${API_KEY}`
-        );
-        getCompare(userID);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const postFavAdd = async (id) => {
-      const FAVADD_API = `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${userID}&token=${API_KEY}`;
-      try {
-        const { data } = await axios.post(FAVADD_API);
-        console.log(data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
+    setSelectedSecondIds(selectedSecondIds);
+    setSelectedUnies(selectedOptions2);
+  };
+  const handleThirdInputChange = (selectedOptions3) => {
+    const selectedThirdIds = selectedOptions3.map((option) => option.label);
 
-    const city = cities?.map((city) => ({ value: city.id, label: city.tr }));
+    setSelectedThirdIds(selectedThirdIds);
+    setSelectedDeps(selectedOptions3);
+  };
 
-    const handleSecondInputChange = (selectedOptions2) => {
-      const selectedSecondIds = selectedOptions2.map((option) => option.label);
+  const filteredUniList = selectedIds.length
+    ? universities
+        ?.filter((item) => selectedIds.includes(item.city))
+        .map((item) => ({ ...item, value: item.code, label: item.tr }))
+    : universities?.map((item) => ({
+        ...item,
+        value: item.code,
+        label: item.tr,
+      }));
 
-      setSelectedSecondIds(selectedSecondIds);
-      setSelectedUnies(selectedOptions2);
-    };
-    const handleThirdInputChange = (selectedOptions3) => {
-      const selectedThirdIds = selectedOptions3.map((option) => option.label);
-      // const selectedDeps= selectedOptions3.map((option) => ({label:option.department.tr,value:option.department.code}));
-
-      setSelectedThirdIds(selectedThirdIds);
-      setSelectedDeps(selectedOptions3);
-    };
-
-    const filteredUniList = selectedIds.length
-      ? universities
-          ?.filter((item) => selectedIds.includes(item.city))
-          .map((item) => ({ ...item, value: item.code, label: item.tr }))
-      : universities?.map((item) => ({
-          ...item,
-          value: item.code,
-          label: item.tr,
-        }));
-    // const UniversityImages = universities.map((item) => item.images);
-
-    // const allImages = UniversityImages.flat();
-
-    // for (const image of allImages) {
-
-    // }
-
-    const filteredAllUniList = selectedSecondIds.length
-      ? allDepartments
-          ?.filter((item) => selectedSecondIds.includes(item.university.tr))
-          .map((item) => ({
-            ...item,
-            label: item.department.tr,
-            value: item.department.code,
-          }))
-      : allDepartments.map((item) => ({
+  const filteredAllUniList = selectedSecondIds.length
+    ? allDepartments
+        ?.filter((item) => selectedSecondIds.includes(item.university.tr))
+        .map((item) => ({
           ...item,
           label: item.department.tr,
           value: item.department.code,
-        }));
+        }))
+    : allDepartments.map((item) => ({
+        ...item,
+        label: item.department.tr,
+        value: item.department.code,
+      }));
 
-    const filteredDepartments = filteredAllUniList?.filter((item) =>
-      selectedThirdIds?.includes(item.label)
-    );
+  const filteredDepartments = filteredAllUniList?.filter((item) =>
+    selectedThirdIds?.includes(item.label)
+  );
 
-    const values = {
-      cities,
-      setCities,
-      city,
-      universities,
-      setUniversities,
-      departments,
-      setAllDepartments,
-      allDepartments,
-      selectedIds,
-      selectedCities,
-      selectedUnies,
-      selectedDeps,
+  const values = {
+    cities,
+    setCities,
+    city,
+    universities,
+    setUniversities,
+    departments,
+    setAllDepartments,
 
-      selectedSecondIds,
-      handleFirstInputChange,
-      handleSecondInputChange,
-      handleThirdInputChange,
-      filteredUniList,
-      filteredAllUniList,
-      selectedItems,
-      setSelectedItems,
-      filteredDepartments,
-      handleCompare,
-      postCompare,
-      compare,
-      setCompare,
-      postFavAdd,
-    };
-    return (
-      <HomeContext.Provider value={values}>{children}</HomeContext.Provider>
-    );
+    allDepartments,
+    selectedIds,
+    selectedCities,
+    selectedUnies,
+    selectedDeps,
+    selectedSecondIds,
+    handleFirstInputChange,
+    handleSecondInputChange,
+    handleThirdInputChange,
+    filteredUniList,
+    filteredAllUniList,
+    selectedItems,
+    setSelectedItems,
+    filteredDepartments,
+
+    postCompare,
+    compare,
   };
-
+  return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
+
 export default HomeContextProvider;
