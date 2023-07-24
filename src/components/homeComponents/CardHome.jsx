@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../context/HomeContext";
 import { Icon } from "../../helper/Icons";
@@ -30,9 +30,15 @@ const CardHome = ({
       departmentName?.trim().toLowerCase()
   )?.[1];
 
+  const [iconSelected, setIconSelected] = useState(false);
+
   const handleDetailClick = () => {
     navigate(`/detail/${id}`);
   };
+  const handleIconClick = () => {
+    setIconSelected(!iconSelected);
+  };
+
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
@@ -49,7 +55,8 @@ const CardHome = ({
         />
 
         <button
-          className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200"
+          className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-${iconSelected ? "red" : "green"}-200`}
+          onClick={handleIconClick}
           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
         >
 
