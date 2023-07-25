@@ -1,10 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { HomeContext } from "../../context/HomeContext";
 import CompareDeprtCard from "./CompareDeprtCard";
 
 const CompareDepartments = () => {
-  const { selectedItems, setSelectedItems } = useContext(HomeContext);
+  const { compare,getCompare,userID,allDepartments,universities } = useContext(HomeContext);
+  console.log(compare)
+  const filterCompare=allDepartments?.filter((item) => compare?.includes(item.id))
+  console.log(filterCompare)
+  useEffect(() => {
+      getCompare();
+  }, [])
+  const image=universities?.filter((item) => compare?.includes(item.id))
+  const universityImagesMap = image?.reduce((map, university) => {
+    if (university && university.images && university.images.length > 0) {
+      map[university.tr] = university.images[0];
+    }
+    return map;
+  }, {}); 
   return (
+    <>
     <div className="bg-[#f8f6f6]">
       <div
         className="h-[240px] w-full "
@@ -21,83 +35,17 @@ const CompareDepartments = () => {
             İstediğiniz bölümleri karşılaştırabilirsiniz
           </p>
         </div>
-      </div>
+        </div> 
 
-      <div>
-        {selectedItems.map((item, i) => (
-          <CompareDeprtCard item={item} key={i} />
+      <div className="flex items-center flex-wrap gap-5 ">
+        {filterCompare?.map((item) => (
+          <CompareDeprtCard item={item} key={item.id}  
+           universityImage={universityImagesMap}
+          />
         ))}
       </div>
-
-      <div className="max-w-sm bg-white border border-gray-400 rounded-lg p-4 shadow m-5">
-        <a href="#">
-          <img
-            className="rounded-t-lg"
-            src="https://cdn.pixabay.com/photo/2021/02/18/12/03/people-6027028_1280.jpg"
-            alt=""
-          />
-        </a>
-        <div className="p-5">
-          <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 border-b-2 p-4 text-center">
-              Turkish Folklare
-            </h5>
-          </a>
-          <p className="mb-3 font-normal text-gray-700 border-b-2 p-4 text-center">
-            Faculty Of Arts And Sciences
-          </p>
-          <p className="mb-3 font-normal text-gray-700 border-b-2 p-4 text-center">
-            ANKARA UNIVERSITY
-          </p>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 border-b-2 p-4 text-center">
-            $15000 / year
-          </p>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 border-b-2 p-4 text-center">
-            Turkish
-          </p>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 p-4 text-center">
-            4 Years
-          </p>
-        </div>
-      </div>
-    </div>
-
-  </div>   
-     
-  <div className="max-w-sm bg-white border border-gray-400 rounded-lg p-4 shadow m-5">
-    <a href="#">
-      <img
-        className="rounded-t-lg"
-        src="https://cdn.pixabay.com/photo/2021/02/18/12/03/people-6027028_1280.jpg"
-        alt=""
-      />
-    </a>
-    <div className="p-5">
-      <a href="#">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 border-b-2 p-4 text-center">
-          Turkish Folklare
-        </h5>
-      </a>
-      <p className="mb-3 font-normal text-gray-700 border-b-2 p-4 text-center">
-        Faculty Of Arts And Sciences
-      </p>
-      <p className="mb-3 font-normal text-gray-700 border-b-2 p-4 text-center">
-       ANKARA UNIVERSITY
-      </p>
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 border-b-2 p-4 text-center">
-        $15000 / year
-      </p>
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 border-b-2 p-4 text-center">
-        Turkish
-      </p>
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 p-4 text-center">
-        4 Years
-      </p>
-      
-    </div>
-  </div>
-    </div>
-
+      </div>    
+    </>
   )
 }
 export default CompareDepartments;
