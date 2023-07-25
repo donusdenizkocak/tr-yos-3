@@ -18,10 +18,13 @@ const CardHome = ({
 }) => {
   const [iconColor, setIconColor] = useState("#017EFA");
   const navigate = useNavigate();
+  const {compare}=useContext(HomeContext)
+
 
   const { addLikes, removeLikes, like, postCompare, compare, deleteCompare } =
     useContext(HomeContext);
   const { currentUser } = useContext(AuthContext);
+
 
   const departmentName = university?.tr;
 
@@ -36,6 +39,7 @@ const CardHome = ({
   const handleDetailClick = () => {
     navigate(`/detail/${id}`);
   };
+
 
   const handleCompare = (id) => {
     if (currentUser) {
@@ -95,12 +99,19 @@ const CardHome = ({
 
         <button
 
-          className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200`}
+          className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold  ${
+            compare.includes(id) ? "activeCompare" : "bg-slate-200"
+          }` }
+          onClick={()=>handleCompare(id)}>
+          <span className="pt-1">
 
-          // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
-          onClick={() => handleCompare(id)}
-        >
-          <span className="pt-1 ">
+
+//           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200`}
+
+//           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
+//           onClick={() => handleCompare(id)}
+//         >
+//           <span className="pt-1 ">
             <Icon name="compare" size="1rem" />
           </span>
           <span>Compare</span>
