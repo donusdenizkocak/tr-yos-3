@@ -61,7 +61,7 @@ const CompareDepartments = () => {
   )
 }
 
-      </div>
+     
 
 //       <div className="flex flex-wrap justify-center ">
 //         {records.map((item, i) => (

@@ -18,28 +18,26 @@ const CardHome = ({
 }) => {
   const [iconColor, setIconColor] = useState("#017EFA");
   const navigate = useNavigate();
-  const {compare}=useContext(HomeContext)
-
 
   const { addLikes, removeLikes, like, postCompare, compare, deleteCompare } =
     useContext(HomeContext);
   const { currentUser } = useContext(AuthContext);
 
-
   const departmentName = university?.tr;
 
-  const departmentImage =universityImage &&   Object.entries(universityImage).find(
-    ([universityName, imageUrl]) =>
-      universityName.trim().toLowerCase() ===
-      departmentName?.trim().toLowerCase()
-  )?.[1];
+  const departmentImage =
+    universityImage &&
+    Object.entries(universityImage).find(
+      ([universityName, imageUrl]) =>
+        universityName.trim().toLowerCase() ===
+        departmentName?.trim().toLowerCase()
+    )?.[1];
 
   const [iconSelected, setIconSelected] = useState(false);
 
   const handleDetailClick = () => {
     navigate(`/detail/${id}`);
   };
-
 
   const handleCompare = (id) => {
     if (currentUser) {
@@ -81,7 +79,6 @@ const CardHome = ({
     }
   };
 
-
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
@@ -98,20 +95,18 @@ const CardHome = ({
         />
 
         <button
-
           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold  ${
+<<<<<<< HEAD
             compare?.includes(id) ? "activeCompare" : ""
           }` }
           onClick={()=>handleCompare(id)}>
+=======
+            compare.includes(id) ? "activeCompare" : "bg-slate-200"
+          }`}
+          onClick={() => handleCompare(id)}
+        >
+>>>>>>> 03c33c32d1903937a1bc424122e89018ed01ad45
           <span className="pt-1">
-
-
-//           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200`}
-
-//           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
-//           onClick={() => handleCompare(id)}
-//         >
-//           <span className="pt-1 ">
             <Icon name="compare" size="1rem" />
           </span>
           <span>Compare</span>
