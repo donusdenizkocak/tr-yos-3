@@ -1,4 +1,4 @@
-import React from "react";
+
 import DepartmentsForm from "../components/departmentsComponents/DepartmentsForm";
 import DeparmentsCard from "../components/departmentsComponents/DeparmentsCard";
 import { motion } from "framer-motion";
@@ -25,7 +25,7 @@ const Departments = () => {
         </div>
       </div>
 
-      <div className="flex flex-row container mx-auto ">
+      <div className="flex flex-col sm:flex-row container mx-auto ">
         <div>
           <DepartmentsForm />
         </div>

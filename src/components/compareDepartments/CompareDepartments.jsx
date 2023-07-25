@@ -1,8 +1,11 @@
+
 import React, { useContext, useEffect } from "react";
+
 import { HomeContext } from "../../context/HomeContext";
 import CompareDeprtCard from "./CompareDeprtCard";
 
 const CompareDepartments = () => {
+
   const { compare,getCompare,userID,allDepartments,universities } = useContext(HomeContext);
   console.log(compare)
   const filterCompare=allDepartments?.filter((item) => compare?.includes(item.id))
@@ -17,6 +20,14 @@ const CompareDepartments = () => {
     }
     return map;
   }, {}); 
+
+//   const { selectedItems, allDepartments, compare } = useContext(HomeContext);
+//   console.log(allDepartments);
+
+//   const records = allDepartments.filter((item) => compare.includes(item.id));
+//   console.log(records);
+
+
   return (
     <>
     <div className="bg-[#f8f6f6]">
@@ -35,6 +46,7 @@ const CompareDepartments = () => {
             İstediğiniz bölümleri karşılaştırabilirsiniz
           </p>
         </div>
+
         </div> 
 
       <div className="flex items-center flex-wrap gap-5 ">
@@ -48,5 +60,16 @@ const CompareDepartments = () => {
     </>
   )
 }
-export default CompareDepartments;
 
+      </div>
+
+//       <div className="flex flex-wrap justify-center ">
+//         {records.map((item, i) => (
+//           <CompareDeprtCard {...item} key={i} />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+export default CompareDepartments;

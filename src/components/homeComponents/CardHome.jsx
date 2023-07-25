@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../context/HomeContext";
 import { Icon } from "../../helper/Icons";
+import { AuthContext } from "../../context/AuthContext";
 
 const CardHome = ({
   city,
@@ -15,23 +16,71 @@ const CardHome = ({
   code,
   id,
 }) => {
+  const [iconColor, setIconColor] = useState("#017EFA");
   const navigate = useNavigate();
   const {compare}=useContext(HomeContext)
 
 
-  const { postFavAdd,handleCompare} =useContext(HomeContext);
+  const { addLikes, removeLikes, like, postCompare, compare, deleteCompare } =
+    useContext(HomeContext);
+  const { currentUser } = useContext(AuthContext);
+
 
   const departmentName = university?.tr;
 
-  const departmentImage = Object.entries(universityImage).find(
+  const departmentImage =universityImage &&   Object.entries(universityImage).find(
     ([universityName, imageUrl]) =>
       universityName.trim().toLowerCase() ===
       departmentName?.trim().toLowerCase()
   )?.[1];
 
+  const [iconSelected, setIconSelected] = useState(false);
+
   const handleDetailClick = () => {
     navigate(`/detail/${id}`);
   };
+
+
+  const handleCompare = (id) => {
+    if (currentUser) {
+      console.log(compare.includes(id));
+      if (compare.includes(id)) {
+        postCompare(id);
+      } else {
+        deleteCompare(id);
+      }
+    } else {
+      alert("LÜTFEN GİRİŞ YAPINIZ");
+    }
+  };
+  // console.log(like.includes(id))
+  // const handleLikeClick = (id) => {
+  //   if (iconColor === "#017EFA") {
+  //     if (like.includes(id)) {
+  //       addLikes(id,currentUser);
+  //       setIconColor("bebe");
+  //     } else {
+  //       removeLikes(id,currentUser);
+  //       console.log("delete kısmı ");
+  //       setIconColor("#017EFA");
+  //     }
+  //   } else {
+  //     alert("LÜTFEN GİRİŞ YAPINIZ");
+  //   }
+
+  // };
+  const handleLikeClick = (id) => {
+    if (iconColor === "#017EFA") {
+      // Card is not in favorites, add it to favorites
+      addLikes(id, currentUser);
+      setIconColor("red");
+    } else {
+      // Card is already in favorites, remove it from favorites
+      removeLikes(id, currentUser);
+      setIconColor("#017EFA");
+    }
+  };
+
 
   return (
     <div
@@ -49,11 +98,20 @@ const CardHome = ({
         />
 
         <button
+
           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold  ${
             compare.includes(id) ? "activeCompare" : "bg-slate-200"
           }` }
           onClick={()=>handleCompare(id)}>
           <span className="pt-1">
+
+
+//           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200`}
+
+//           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
+//           onClick={() => handleCompare(id)}
+//         >
+//           <span className="pt-1 ">
             <Icon name="compare" size="1rem" />
           </span>
           <span>Compare</span>
@@ -72,8 +130,8 @@ const CardHome = ({
           <p className="text-gray-400 text-[12px]">{departmentName}</p>
         </div>
 
-        <div className="cursor-pointer " onClick={() => postFavAdd(id)}>
-          <Icon name="fav" size="20" />
+        <div className={`cursor-pointer  `} onClick={() => handleLikeClick(id)}>
+          <Icon name="fav" size="20" fill={`${iconColor}`} />
         </div>
       </div>
 
