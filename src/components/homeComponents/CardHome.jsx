@@ -25,7 +25,7 @@ const CardHome = ({
 
   const departmentName = university?.tr;
 
-  const departmentImage = Object.entries(universityImage).find(
+  const departmentImage =universityImage &&   Object.entries(universityImage).find(
     ([universityName, imageUrl]) =>
       universityName.trim().toLowerCase() ===
       departmentName?.trim().toLowerCase()
@@ -50,21 +50,33 @@ const CardHome = ({
     }
   };
   // console.log(like.includes(id))
-  const handleLikeClick = (id) => {
-    if (currentUser) {
-      if (like.includes(id)) {
-        addLikes(id);
-        setIconColor("bebe");
-      } else {
-        removeLikes(id);
-        console.log("delete kısmı ");
-        setIconColor("#017EFA");
-      }
-    } else {
-      alert("LÜTFEN GİRİŞ YAPINIZ");
-    }
+  // const handleLikeClick = (id) => {
+  //   if (iconColor === "#017EFA") {
+  //     if (like.includes(id)) {
+  //       addLikes(id,currentUser);
+  //       setIconColor("bebe");
+  //     } else {
+  //       removeLikes(id,currentUser);
+  //       console.log("delete kısmı ");
+  //       setIconColor("#017EFA");
+  //     }
+  //   } else {
+  //     alert("LÜTFEN GİRİŞ YAPINIZ");
+  //   }
 
+  // };
+  const handleLikeClick = (id) => {
+    if (iconColor === "#017EFA") {
+      // Card is not in favorites, add it to favorites
+      addLikes(id, currentUser);
+      setIconColor("red");
+    } else {
+      // Card is already in favorites, remove it from favorites
+      removeLikes(id, currentUser);
+      setIconColor("#017EFA");
+    }
   };
+
 
   return (
     <div

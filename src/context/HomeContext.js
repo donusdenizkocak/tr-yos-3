@@ -44,17 +44,19 @@ const HomeContextProvider = ({ children }) => {
     return array;
   };
 
-  useEffect(() => {
+  useEffect((id) => {
     getCities();
     getUniversities();
     getDepartments();
     getAllDepartments();
     if (currentUser) {
-      getLikes();
+      getLikes(id);
       getCompare();
     }
   }, [currentUser]);
 
+
+                              // ! ********* CITIES ************
   const getCities = async () => {
     try {
       const { data } = await axios.get(CITIES_API);
@@ -64,7 +66,7 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
+                                  // ! ********* UNIVERSITIES ************
   const getUniversities = async () => {
     try {
       const { data } = await axios.get(UNIVERSITIES_API);
@@ -74,7 +76,7 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
+                                     // ! ********* DEPARTMENT ************
   const getDepartments = async () => {
     try {
       const { data } = await axios.get(DEPARTMENTS_API);
@@ -84,6 +86,8 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+                     // ! ********* ALL DEPARTMENTS  ************
   const getAllDepartments = async () => {
     try {
       const { data } = await axios.get(ALLDEPARTMENTS_API);
@@ -130,7 +134,7 @@ const HomeContextProvider = ({ children }) => {
     }
   };
 
-  // ! ********* LİKE (BEĞENME) ************
+                            // ! ********* LİKE (BEĞENME) ************
 
   const addLikes = async (id) => {
     try {
@@ -144,7 +148,7 @@ const HomeContextProvider = ({ children }) => {
     }
   };
 
-  const getLikes = async () => {
+  const getLikes = async (id) => {
     try {
       const { data } = await axios.get(
         `https://tr-yös.com/api/v1/users/allfavorites.php?id=${currentUser}&token=${API_KEY}`
@@ -155,16 +159,30 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const filteredLikes=allDepartments?.filter((item)=>like?.includes(item.id))
+// console.log(filteredLikes)
+
+                                       /*   Handle Like */
+  const handleLike=(id,currentUser)=>{
+addLikes(id,currentUser)
+  }
+
+
   const removeLikes = async (id) => {
     try {
       await axios.delete(
         `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       );
       console.log("Successfully removed from favorites.");
+      setLike((like) => like.filter((item) => item !== id));
+      
     } catch (error) {
       console.log(error);
     }
   };
+
+
+                                 // ! ********* MULTIINPUT ************
 
   const handleFirstInputChange = (selectedOptions) => {
     const selectedIds = selectedOptions.map((option) => option.value);
@@ -215,7 +233,7 @@ const HomeContextProvider = ({ children }) => {
   const filteredDepartments = filteredAllUniList?.filter((item) =>
     selectedThirdIds?.includes(item.label)
   );
-
+                            // ! ********* VALUES ************
   const values = {
     cities,
     setCities,
@@ -246,6 +264,7 @@ const HomeContextProvider = ({ children }) => {
 
     addLikes,
     removeLikes,
+    filteredLikes,
     like,
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
