@@ -26,8 +26,10 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
+
       setCurrentUser(data.userId);
       sessionStorage.setItem("user", JSON.stringify(data.userId));
+
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -44,8 +46,10 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
+
       setCurrentUser(data.userID);
       sessionStorage.setItem("user", JSON.stringify(data.userID));
+
       navigate("/");
     } catch (error) {
       console.log(error);
