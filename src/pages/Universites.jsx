@@ -21,7 +21,12 @@ const Universites = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 12;
+
   useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(universities.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(universities.length / itemsPerPage));
@@ -29,17 +34,12 @@ const Universites = () => {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % universities.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    // console.log(
+    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+    // );
     setItemOffset(newOffset);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
   if (isLoading) {
     return (
       <>
