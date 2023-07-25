@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+
 import axios from "axios";
 
-const Dashboard = () => {
-
+const MyAccountForm = () => {
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [name, setName] = useState(""); // Kullanıcının adını tutacak state
+  const [email, setEmail] = useState(""); // Kullanıcının e-posta adresini tutacak state
+
   useEffect(() => {
     getCountry();
   }, []);
-  // console.log(country);
   const API_KEY =
     "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
   const COUNTRY_API = `https://tr-yös.com/api/v1/location/allcountries.php?token=${API_KEY}`;
@@ -18,11 +20,8 @@ const Dashboard = () => {
   const getCountry = async () => {
     try {
       const { data } = await axios.get(COUNTRY_API);
-      // console.log(data);
       setCountry(data);
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
   };
 
   const selectedCountres = async (e) => {
@@ -32,13 +31,20 @@ const Dashboard = () => {
       setCities(data);
     } catch (error) {}
   };
-  // console.log(selectedCountry);
-  // console.log(cities);
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Formun gönderim davranışını engelledik
+    // 'name' ve 'email' state'leri kullanarak ilgili işlem yapıldı
+    console.log("Ad:", name);
+    console.log("E-posta:", email);
+    // api işlemi yap
+  };
 
   return (
-    <div className="container mt-40">
+    <div>
       <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-        <form>
+        <form onSubmit={handleSubmit}> 
+        {/* form gönderildiğinde handleSubmit fnk çağrıldı*/}
           <div className="text-xl text-darkBlue font-bold mb-2 mx-3">
             <h3>My Account</h3>
           </div>
@@ -52,8 +58,11 @@ const Dashboard = () => {
                 className="border border-gray-100 peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-1"
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
-                // placeholder="First name"
+                placeholder="First name"
+                value={name} // Input değerini 'name' state ile bağladık
+                onChange={(e) => setName(e.target.value)} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
               />
+
               {/* <label
                 htmlFor="exampleInput123"
                 className=" pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.5rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
@@ -66,8 +75,9 @@ const Dashboard = () => {
                 type="email"
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="exampleInput125"
-                // placeholder="Email address"
-                value="Hocam buraya gelicek burası Sabit "
+                placeholder="Email address"
+                value={email} // Input değerini 'email' state ile bağladık
+                onChange={(e) => setEmail(e.target.value)} 
               />
               {/* <label
                 htmlFor="exampleInput125"
@@ -117,7 +127,6 @@ const Dashboard = () => {
               <h2>City*</h2>
 
               <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0">
-
                 <option value="">Select a city</option>
                 {cities.map((city) => (
                   <option key={city.id} value={city.id}>
@@ -183,4 +192,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default MyAccountForm;

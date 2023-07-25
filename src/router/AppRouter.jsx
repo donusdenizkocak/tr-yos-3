@@ -9,7 +9,9 @@ import Register from "../pages/Register";
 import Action from "../components/Action";
 import Detail from "../pages/Detail";
 import MyAccount from "../pages/MyAccount";
-import CompareDepartments from "../components/compareDepartments/CompareDepartments"
+import CompareDepartments from "../components/compareDepartments/CompareDepartments";
+import FavoriUni from "../pages/FavoriUni";
+import PrivateRouter from "./PrivateRouter";
 
 const AppRouter = () => {
   return (
@@ -21,11 +23,14 @@ const AppRouter = () => {
         <Route path="/departments" element={<Departments />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/myaccount" element={<MyAccount />} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/compare" element={<CompareDepartments/>}/>
+        <Route path="" element={<PrivateRouter/>}>
+          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/compare" element={<CompareDepartments />} />
+          <Route path="/favori" element={<FavoriUni />} />
+        </Route>
       </Routes>
-     
+
       <Action />
       <Footer />
     </>

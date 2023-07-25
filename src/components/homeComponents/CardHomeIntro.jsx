@@ -1,21 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import CardHome from "./CardHome";
 import { HomeContext } from "../../context/HomeContext";
 
 const CardHomeIntro = () => {
   const { universities, allDepartments } = useContext(HomeContext);
-
   const records = allDepartments.slice(0, 12);
-
-  // console.log(allDepartments);
-
   const universityImagesMap = universities.reduce((map, university) => {
     if (university && university.images && university.images.length > 0) {
       map[university.tr] = university.images[0];
     }
     return map;
-  }, {});
-  // console.log(universityImagesMap);
+  }, {}); 
 
   return (
     <div className=" px-4 text-center p-5">

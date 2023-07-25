@@ -229,7 +229,7 @@ const MarkerLocationsIcon = ({ size, color }) => {
   );
 };
 
-const paymentIcon = ({ size, color }) => {
+const PaymentIcon = ({ size, color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +243,7 @@ const paymentIcon = ({ size, color }) => {
   );
 };
 
-const loginIcon = ({ size, color }) => {
+const LoginIcon = ({ size, color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -256,47 +256,49 @@ const loginIcon = ({ size, color }) => {
   );
 };
 
-const favIcon = ({ size, color }) => {
+const FavIcon = ({ size, color, fill }) => {
   return (
     <svg
-      className=" w-32 h-7 absolute top-2 -right-7  text-gray-400"
+      className="rounded-full "      
       aria-hidden="true"
+      fill={fill}
       viewBox="0 0 576 512"
-      height={size}
       width={size}
-      fill={color}
+      height={size}
+      style={{ outline: "1px solid #c0c0c0", outlineOffset: "5px" }}
     >
       <path d="M256 368C256 403.7 266.6 436.9 284.9 464.6L279.4 470.3C266.4 483.2 245.5 483.2 233.5 470.3L39.71 270.5C-16.22 212.5-13.23 116.6 49.7 62.68C103.6 15.73 186.5 24.72 236.5 75.67L256.4 96.64L275.4 75.67C325.4 24.72 407.3 15.73 463.2 62.68C506.1 100.1 520.7 157.6 507 208.7C484.3 198 458.8 192 432 192C334.8 192 256 270.8 256 368zM576 368C576 447.5 511.5 512 432 512C352.5 512 288 447.5 288 368C288 288.5 352.5 224 432 224C511.5 224 576 288.5 576 368zM476.7 324.7L416 385.4L387.3 356.7C381.1 350.4 370.9 350.4 364.7 356.7C358.4 362.9 358.4 373.1 364.7 379.3L404.7 419.3C410.9 425.6 421.1 425.6 427.3 419.3L499.3 347.3C505.6 341.1 505.6 330.9 499.3 324.7C493.1 318.4 482.9 318.4 476.7 324.7H476.7z" />
     </svg>
   );
 };
 
-
-  
-
-const arrowUpIcon = ({ size, color }) => {
+const ArrowUpIcon = ({ size, color }) => {
   return (
-<svg xmlns="http://www.w3.org/2000/svg"
- height={size}
- fill={color}
-  viewBox="0 0 512 512">
-  <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/>
-  </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      fill={color}
+      viewBox="0 0 512 512"
+    >
+      <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z" />
+    </svg>
   );
 };
 
-const arrowDownIcon = ({ size, color }) => {
+const ArrowDownIcon = ({ size, color }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg"
-   height={size}
-   fill={color}
-   viewBox="0 0 512 512">
-    <path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z"/>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      fill={color}
+      viewBox="0 0 512 512"
+    >
+      <path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z" />
     </svg>
-  )
-}
+  );
+};
 
-const bedIcon = ({ size, color }) => {
+const BedIcon = ({ size, color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -309,66 +311,112 @@ const bedIcon = ({ size, color }) => {
   );
 };
 
-const groupIcon = ({ size, color }) => {
+const GroupIcon = ({ size, color }) => {
   return (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height={size}
-    fill={color}
-    viewBox="0 0 576 512"
-  >
-    <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z" />
-  </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      fill={color}
+      viewBox="0 0 576 512"
+    >
+      <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z" />
+    </svg>
   );
 };
 
-const warehouseIcon = ({ size, color }) => {
+const WarehouseIcon = ({ size, color }) => {
   return (
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  height={size}
-  fill={color}
-  viewBox="0 0 640 512"
->
-  <path d="M0 488V171.3c0-26.2 15.9-49.7 40.2-59.4L308.1 4.8c7.6-3.1 16.1-3.1 23.8 0L599.8 111.9c24.3 9.7 40.2 33.3 40.2 59.4V488c0 13.3-10.7 24-24 24H568c-13.3 0-24-10.7-24-24V224c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32V488c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zm488 24l-336 0c-13.3 0-24-10.7-24-24V432H512l0 56c0 13.3-10.7 24-24 24zM128 400V336H512v64H128zm0-96V224H512l0 80H128z" />
-</svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      fill={color}
+      viewBox="0 0 640 512"
+    >
+      <path d="M0 488V171.3c0-26.2 15.9-49.7 40.2-59.4L308.1 4.8c7.6-3.1 16.1-3.1 23.8 0L599.8 111.9c24.3 9.7 40.2 33.3 40.2 59.4V488c0 13.3-10.7 24-24 24H568c-13.3 0-24-10.7-24-24V224c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32V488c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zm488 24l-336 0c-13.3 0-24-10.7-24-24V432H512l0 56c0 13.3-10.7 24-24 24zM128 400V336H512v64H128zm0-96V224H512l0 80H128z" />
+    </svg>
   );
 };
 
-const buildingCircleCheckIcon = ({ size, color }) => {
+const BuildingCircleCheckIcon = ({ size, color }) => {
   return (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height={size}
-    fill={color}
-    
-    viewBox="0 0 640 512"
-  >
-    <path d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c15.1 0 28.5-6.9 37.3-17.8C340.4 462.2 320 417.5 320 368c0-54.7 24.9-103.5 64-135.8V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zM640 368a144 144 0 1 0 -288 0 144 144 0 1 0 288 0zm-76.7-43.3c6.2 6.2 6.2 16.4 0 22.6l-72 72c-6.2 6.2-16.4 6.2-22.6 0l-40-40c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L480 385.4l60.7-60.7c6.2-6.2 16.4-6.2 22.6 0z" />
-  </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      fill={color}
+      viewBox="0 0 640 512"
+    >
+      <path d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c15.1 0 28.5-6.9 37.3-17.8C340.4 462.2 320 417.5 320 368c0-54.7 24.9-103.5 64-135.8V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zM640 368a144 144 0 1 0 -288 0 144 144 0 1 0 288 0zm-76.7-43.3c6.2 6.2 6.2 16.4 0 22.6l-72 72c-6.2 6.2-16.4 6.2-22.6 0l-40-40c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L480 385.4l60.7-60.7c6.2-6.2 16.4-6.2 22.6 0z" />
+    </svg>
   );
 };
 
+const CompareIcon = ({ size, color }) => {
+  return (
+    <svg
+      fill="#000000"
+      height={size}
+      width={size}
+      version="1.1"
+      id="Capa_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 51.4 51.4"
+      xmlSpace="preserve"
+      stroke="#000000"
+      strokeWidth="0.7196"
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <g id="SVGRepo_iconCarrier">
+        <g>
+          <path d="M1.7,25.2c0.553,0,1-0.447,1-1c0-6.065,4.935-11,11-11h24v8.964L51.4,12.2L37.7,2.236V11.2h-24c-7.168,0-13,5.832-13,13 C0.7,24.753,1.147,25.2,1.7,25.2z" />
+          <path d="M49.7,26.2c-0.553,0-1,0.447-1,1c0,6.065-4.935,11-11,11h-24v-8.964L0,39.2l13.7,9.964V40.2h24c7.168,0,13-5.832,13-13 C50.7,26.647,50.253,26.2,49.7,26.2z" />
+        </g>
+      </g>
+    </svg>
+  );
+};
+const CityIcon = ({ size, color }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      fill="currentColor"
+      className="bi bi-geo-alt-fill"
+      viewBox="0 0 16 16"
+    >
+      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+    </svg>
+  );
+};
 
-const Icon = ({ name, size, color, style }) => {
+const Icon = ({ name, size, color, style, className ,fill}) => {
   const icons = {
     home: HomeIcon,
-    arrowUp: arrowUpIcon,
-    arrowdown: arrowDownIcon,
-    bed: bedIcon,
-    group: groupIcon,
-    warehouse: warehouseIcon,
-    buildingCircleCheck: buildingCircleCheckIcon,
+    arrowUp: ArrowUpIcon,
+    arrowdown: ArrowDownIcon,
+    bed: BedIcon,
+    group: GroupIcon,
+    warehouse: WarehouseIcon,
+    buildingCircleCheck: BuildingCircleCheckIcon,
     register: RegisterIcon,
     marker: MarkerLocationsIcon,
-    payment: paymentIcon,
-    login: loginIcon,
-    fav:favIcon
-
+    payment: PaymentIcon,
+    login: LoginIcon,
+    fav: FavIcon,
+    compare: CompareIcon,
+    city: CityIcon,
   };
 
   const Component = icons[name];
-  return <Component size={size} color={color} style={style}/>;
+  return (
+    <Component size={size} color={color} style={style} className={className} fill={fill} />
+  );
 };
 
 export { Icon };
