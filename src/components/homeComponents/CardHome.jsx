@@ -31,9 +31,12 @@ const CardHome = ({
       departmentName?.trim().toLowerCase()
   )?.[1];
 
+  const [iconSelected, setIconSelected] = useState(false);
+
   const handleDetailClick = () => {
     navigate(`/detail/${id}`);
   };
+
   const handleCompare = (id) => {
     if (currentUser) {
       console.log(compare.includes(id));
@@ -60,6 +63,7 @@ const CardHome = ({
     } else {
       alert("LÜTFEN GİRİŞ YAPINIZ");
     }
+
   };
 
   return (
@@ -78,7 +82,9 @@ const CardHome = ({
         />
 
         <button
+
           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200`}
+
           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
           onClick={() => handleCompare(id)}
         >
