@@ -31,7 +31,7 @@ const BarMenu = ({ setOpenBarMenu, openBarMenu }) => {
         </div>
         <div className="flex flex-col justify-center gap-2">
           {navbarMenu.map((i, j) => (
-            <Link to={i.url} onClick={() => setOpenBarMenu(false)}>
+            <Link to={i.url} key={j} onClick={() => setOpenBarMenu(false)}>
               {i.title}
             </Link>
           ))}
