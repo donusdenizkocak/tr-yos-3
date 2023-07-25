@@ -256,12 +256,12 @@ const LoginIcon = ({ size, color }) => {
   );
 };
 
-const FavIcon = ({ size, color }) => {
+const FavIcon = ({ size, color, fill }) => {
   return (
     <svg
-      className="rounded-full "
+      className="rounded-full "      
       aria-hidden="true"
-      fill="#017EFA"
+      fill={fill}
       viewBox="0 0 576 512"
       width={size}
       height={size}
@@ -395,7 +395,7 @@ const CityIcon = ({ size, color }) => {
   );
 };
 
-const Icon = ({ name, size, color, style }) => {
+const Icon = ({ name, size, color, style, className ,fill}) => {
   const icons = {
     home: HomeIcon,
     arrowUp: ArrowUpIcon,
@@ -414,7 +414,9 @@ const Icon = ({ name, size, color, style }) => {
   };
 
   const Component = icons[name];
-  return <Component size={size} color={color} style={style} />;
+  return (
+    <Component size={size} color={color} style={style} className={className} fill={fill} />
+  );
 };
 
 export { Icon };
