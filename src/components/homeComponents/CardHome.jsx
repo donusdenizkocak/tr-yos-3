@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../context/HomeContext";
 import { Icon } from "../../helper/Icons";
+import { AuthContext } from "../../context/AuthContext";
 
 const CardHome = ({
   city,
@@ -15,10 +16,12 @@ const CardHome = ({
   code,
   id,
 }) => {
+  const [iconColor, setIconColor] = useState("#017EFA");
   const navigate = useNavigate();
 
   const { addLikes, removeLikes, like, postCompare, compare, deleteCompare } =
     useContext(HomeContext);
+  const { currentUser } = useContext(AuthContext);
 
   const departmentName = university?.tr;
 
@@ -32,18 +35,30 @@ const CardHome = ({
     navigate(`/detail/${id}`);
   };
   const handleCompare = (id) => {
-    console.log(compare.includes(id));
-    if (compare.includes(id) == false) {
-      postCompare(id);
-    } else if (compare.includes(id) == true) {
-      deleteCompare(id);
+    if (currentUser) {
+      console.log(compare.includes(id));
+      if (compare.includes(id)) {
+        postCompare(id);
+      } else {
+        deleteCompare(id);
+      }
+    } else {
+      alert("LÜTFEN GİRİŞ YAPINIZ");
     }
   };
+  // console.log(like.includes(id))
   const handleLikeClick = (id) => {
-    if (like.includes(id) == false) {
-      addLikes(id);
+    if (currentUser) {
+      if (like.includes(id)) {
+        addLikes(id);
+        setIconColor("bebe");
+      } else {
+        removeLikes(id);
+        console.log("delete kısmı ");
+        setIconColor("#017EFA");
+      }
     } else {
-      removeLikes(id);
+      alert("LÜTFEN GİRİŞ YAPINIZ");
     }
   };
 
@@ -63,7 +78,7 @@ const CardHome = ({
         />
 
         <button
-          className="absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200"
+          className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold bg-green-200`}
           // onClick={(e)=> setSelectedItems([...selectedItems, {id,data,logo,images,tr}])}
           onClick={() => handleCompare(id)}
         >
@@ -86,8 +101,8 @@ const CardHome = ({
           <p className="text-gray-400 text-[12px]">{departmentName}</p>
         </div>
 
-        <div className="cursor-pointer " onClick={() => handleLikeClick(id)}>
-          <Icon name="fav" size="20" />
+        <div className={`cursor-pointer  `} onClick={() => handleLikeClick(id)}>
+          <Icon name="fav" size="20" fill={`${iconColor}`} />
         </div>
       </div>
 
