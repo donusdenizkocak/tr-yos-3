@@ -65,7 +65,7 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
           <p className="text-xs mb-1"> {filteredCity}</p>
          
           <p className="text-xs mb-2">
-         {data?.adress ? data?.adress : null }
+         {data?.adress || null }
           </p>
           {data?.phone &&
            ( <button className="mt-2 mr-3 p-3 text-sm font-medium border-2 border-orange-500 rounded-md bg-orange-100 text-orange-500 hover:bg-orange-500 hover:text-white">

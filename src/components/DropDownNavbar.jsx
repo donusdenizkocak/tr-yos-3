@@ -1,12 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const DropDownNavbar = ({ isScrolled }) => {
   const [open, setOpen] = useState(false);
-  const { logoutUser } = useContext(AuthContext); 
+  const { logoutUser } = useContext(AuthContext);
   return (
-    <div className="relative" >
+    <div className="relative">
       <div
         className="w-[115px] flex items-center justify-center h-[50px]"
         onMouseEnter={() => setOpen(true)}
@@ -24,8 +24,8 @@ const DropDownNavbar = ({ isScrolled }) => {
       {/* Dropdown menu */}
       {open && (
         <div
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
           className={`z-[150] ${
             open ? "visible" : "hidden"
           }   bg-white divide-y divide-gray-100 rounded-lg shadow w-44 absolute top-15 right-1 `}
