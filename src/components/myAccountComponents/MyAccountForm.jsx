@@ -30,7 +30,6 @@ const MyAccountForm = () => {
       setCities(data);
     } catch (error) {}
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // Formun gönderim davranışını engelledik
     // 'name' ve 'email' state'leri kullanarak ilgili işlem yapıldı
