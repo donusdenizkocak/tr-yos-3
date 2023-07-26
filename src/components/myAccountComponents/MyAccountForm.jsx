@@ -23,7 +23,6 @@ const MyAccountForm = () => {
       setCountry(data);
     } catch (error) {}
   };
-
   const selectedCountres = async (e) => {
     setSelectedCountry(e.target.value);
     try {
@@ -31,7 +30,6 @@ const MyAccountForm = () => {
       setCities(data);
     } catch (error) {}
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // Formun gönderim davranışını engelledik
     // 'name' ve 'email' state'leri kullanarak ilgili işlem yapıldı
