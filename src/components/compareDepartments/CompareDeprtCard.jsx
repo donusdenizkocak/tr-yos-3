@@ -4,7 +4,7 @@ import { HomeContext } from "../../context/HomeContext";
 
  const CompareDeprtCard = ({item,universityImage}) => {
   // const {id,city:{tr},university:{tr}}=item 
-   console.log(item)
+  //  console.log(item)
    
    const {userID,handleDelete}=useContext(HomeContext)
   
@@ -20,7 +20,7 @@ import { HomeContext } from "../../context/HomeContext";
     <>
    
     <div className="max-w-sm bg-white border border-gray-400 rounded-lg p-4 shadow m-5 relative">
-           <button className=" bg-gray-100 font-bold p-2 text-center rounded-full absolute top-2 right-2" onClick={() => handleDelete(item?.id)}>
+           <button className=" bg-gray-100 font-bold p-2 text-center  absolute top-6 right-6 comparedelet" onClick={() => handleDelete(item?.id)}>
               X
             </button>
     <a href="#">

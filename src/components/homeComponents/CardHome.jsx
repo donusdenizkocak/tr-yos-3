@@ -96,16 +96,11 @@ const CardHome = ({
 
         <button
           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold  ${
-<<<<<<< HEAD
-            compare?.includes(id) ? "activeCompare" : ""
+            compare?.includes(id) ? "activeCompare" : "bg-gray-200"
           }` }
           onClick={()=>handleCompare(id)}>
-=======
-            compare.includes(id) ? "activeCompare" : "bg-slate-200"
-          }`}
-          onClick={() => handleCompare(id)}
-        >
->>>>>>> 03c33c32d1903937a1bc424122e89018ed01ad45
+
+           
           <span className="pt-1">
             <Icon name="compare" size="1rem" />
           </span>

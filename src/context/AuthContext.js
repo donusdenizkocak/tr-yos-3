@@ -10,7 +10,7 @@ const LOGİN_API = `https://tr-yös.com/api/v1/users/login.php?token=${API_KEY}`
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("user")) || false
+     sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : false 
   );
   const navigate = useNavigate();
 
@@ -46,16 +46,16 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-<<<<<<< HEAD
+
       setCurrentUser(data);
       sessionStorage.setItem("user", JSON.stringify(data));
 
       // sessionStorage.setItem("user", JSON.stringify(data.userID))
-=======
 
-      setCurrentUser(data.userID);
-      sessionStorage.setItem("user", JSON.stringify(data.userID));
->>>>>>> 4f15af9b3c454718ec440241832282bc45f41b55
+
+      // setCurrentUser(data.userID);
+      // sessionStorage.setItem("user", JSON.stringify(data.userID));
+
 
       navigate("/");
     } catch (error) {
