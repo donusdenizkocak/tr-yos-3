@@ -43,7 +43,7 @@ const MyAccountForm = () => {
     };
     try {
       // axios POST isteği kullanarak kullanıcı verilerini sunucuya gönderin
-      const response = await axios.post("SUNUCU_API_ENDPOINT_URL", userData);
+      const response = await axios.post("https://tr-yös.com/api/v1/users/user.php?id=${id}&token=${API_KEY}", userData);
   
       console.log("Server Response:", response.data); // gelen yanıt 
   
