@@ -12,7 +12,7 @@ const MyAccount = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://tr-yös.com/api/v1/users/user.php?id=${id}&token=${API_KEY}`
+          `API_KEY`
         );
         if (!response.ok) {
           throw new Error("API request failed!");
