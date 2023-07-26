@@ -23,7 +23,6 @@ const MyAccountForm = () => {
       setCountry(data);
     } catch (error) {}
   };
-
   const selectedCountres = async (e) => {
     setSelectedCountry(e.target.value);
     try {
