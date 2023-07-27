@@ -54,7 +54,7 @@ const HomeContextProvider = ({ children }) => {
     }
     return array;
   };
-
+  console.log(userID);
   useEffect(
     (id) => {
       getCities();
@@ -78,22 +78,21 @@ const HomeContextProvider = ({ children }) => {
     }
   };
 
-
-  
-  
-  const handleDelete = async(id) => {
-   deleteCompare(id)
-    setCompare((compare) =>compare.filter((item)=> item!==id))
+  const handleDelete = async (id) => {
+    deleteCompare(id);
+    setCompare((compare) => compare.filter((item) => item !== id));
   };
-  const deleteCompare = async(id)=>{ 
+  const deleteCompare = async (id) => {
     try {
-      await axios.delete(`${DELETE_APİ}id=${id}&user_id=${userID}&token=${API_KEY}`);
-      console.log("delete")
-      getCompare((item)=> item !== id)
+      await axios.delete(
+        `${DELETE_APİ}id=${id}&user_id=${userID}&token=${API_KEY}`
+      );
+      console.log("delete");
+      getCompare((item) => item !== id);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   // ! ********* CITIES ************
   const getCities = async () => {
@@ -160,7 +159,6 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
 
   // ! ********* LİKE (BEĞENME) ************
 
@@ -377,6 +375,7 @@ const HomeContextProvider = ({ children }) => {
     removeLikes,
     filteredLikes,
     like,
+    userID,
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
