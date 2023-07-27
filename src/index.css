@@ -19,3 +19,19 @@
   display: block !important;
   width: 100% !important;
 }
+.ucnokta {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.compareAktif{
+  color: green;
+}
+.comparedelet{
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: rgb(238, 106, 106);
+}

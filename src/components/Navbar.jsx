@@ -4,17 +4,14 @@ import { Icon } from "../helper/Icons";
 import { AuthContext } from "../context/AuthContext";
 import BarMenu from "./BarMenu";
 import DropDownNavbar from "./DropDownNavbar";
-
 const navbarMenu = [
   { title: "Home", url: "/" },
   { title: "Universites", url: "/universites" },
   { title: "Departments", url: "/departments" },
 ];
-
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openBarMenu, setOpenBarMenu] = useState(false);
-
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {
     const handleScroll = () => {
@@ -30,11 +27,11 @@ const Navbar = () => {
     };
   }, []);
   return (
-    <>
+<>
       <nav
         className={`w-full  top-0 z-[100] py-3 bg-opacity-100 shadow-lg  ${
           isScrolled
-            ? "bg-white border-b border-[#e9ecef] fixed animate-wiggle"
+            ? "bg-white border-b border-[#E9ECEF] fixed animate-wiggle"
             : "bg-[#00000080] absolute"
         }`}
       >
@@ -67,8 +64,8 @@ const Navbar = () => {
                     <Link
                       to={item.url}
                       key={index}
-                      className={`inline-block no-underline transition delay-75 hover:text-[#017efa] font-semibold text-sm py-2 px-4 ${
-                        isScrolled ? "text-[#022f5d]" : "text-white"
+                      className={`inline-block no-underline transition delay-75 hover:text-[#017EFA] font-semibold text-sm py-2 px-4 ${
+                        isScrolled ? "text-[#022F5D]" : "text-white"
                       }`}
                     >
                       {item.title}
@@ -86,7 +83,7 @@ const Navbar = () => {
               <div className="w-[115px] flex items-center  h-[50px]">
                 <Link
                   to="/login"
-                  className="w-full  h-[50px] bg-[#022f5d] text-white flex justify-center items-center  rounded text-sm font-semibold"
+                  className="w-full  h-[50px] bg-[#022F5D] text-white flex justify-center items-center  rounded text-sm font-semibold"
                 >
                   <Icon name="login" size="25" color="white" />
                   Sign In
@@ -97,9 +94,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
-
-
       <div
         className="invisible fixed left-0 right-0 top-0 z-[1045] flex h-1/3 max-h-full max-w-full -translate-y-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out  [&[data-te-offcanvas-show]]:transform-none"
         tabIndex={-1}
@@ -114,9 +108,7 @@ const Navbar = () => {
           >
             Offcanvas top
           </h5> */}
-
           <ul className=" h-full flex flex-col justify-center  ">
-
         <li className=" mb-0 p-2 font-semibold leading-normal">
           <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >HomePage</a>
         </li>
@@ -127,9 +119,6 @@ const Navbar = () => {
           <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700">Departments</a>
         </li>
       </ul>
-
-
-
           <button
             type="button"
             className=" my-1 box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
@@ -154,10 +143,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-
-
     </>
   );
 };
-
 export default Navbar;

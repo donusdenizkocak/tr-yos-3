@@ -1,35 +1,57 @@
 import { HomeContext } from "../../context/HomeContext";
+
+import { AuthContext } from "../../context/AuthContext";
 import { Icon } from "../../helper/Icons";
 import { useContext } from "react";
+import { useState } from "react";
 
 const DetailUnvCard = ({ departments }) => {
-  const { universities } = useContext(HomeContext);
+  const { universities,removeLikes,addLikes } = useContext(HomeContext);
+  const { currentUser } = useContext(AuthContext);
+  const [isLiked, setIsLiked] = useState(false);
+
   if (!departments) {
     return null;
   }
 
   const {
     department,
-    faculty,
-
-    content,
     city,
-    language,
     university,
-    price,
-    scholarship,
     data,
     // data: { adress, web, email, phone, fax },
   } = departments;
+
+
+
   const filteredLogo = universities
     .filter((item) => item.tr === university.tr)
     .map((item) => item.logo);
 
+     //handleLike
+
+    const handleLikeClick = (id) => {
+      if (isLiked) {
+        // Card is already in favorites, remove it from favorites
+        removeLikes(id, currentUser);
+      } else {
+        // Card is not in favorites, add it to favorites
+        addLikes(id,currentUser);
+      }
+  
+      // Toggle the isLiked state
+      setIsLiked(!isLiked);
+    };
+  
+  
+
   return (
     <div className="flex flex-col  gap-5">
-      <div className="bg-white flex  justify-center p-3 rounded-md ">
-        <button className=" w-40  p-3  text-sm font-medium border-[1px] border-orange-500 rounded-md bg-red-100 text-red-500 hover:bg-red-500 hover:text-white">
-          Add Favorite
+      <div className="bg-white flex  justify-center p-3 rounded-md " onClick={handleLikeClick}>
+        <button     className={`w-40 p-3 text-sm font-medium border-[1px] border-orange-500 rounded-md ${
+            isLiked ? "bg-red-500 text-white" : "bg-red-100 text-red-500"
+          } hover:bg-red-500 hover:text-white`}>
+           {isLiked ? "Remove Favorite" : "Add Favorite"}
         </button>
       </div>
 

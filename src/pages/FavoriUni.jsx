@@ -1,14 +1,17 @@
 
 import { AuthContext } from "../context/AuthContext";
+
+import { HomeContext } from "../context/HomeContext"
 import { useContext } from "react";
 
 import CardHome from "../components/homeComponents/CardHome";
 
 const FavoriUni = () => {
-  const { allDepartments,like } = useContext(AuthContext);
-  const filteredLikes = allDepartments?.filter((item) =>
-    like?.includes(item.id)
-  );
+  const {like,filteredLikes} =useContext(HomeContext)
+  // const { allDepartments,like } = useContext(AuthContext);
+  // const filteredLikes = allDepartments?.filter((item) =>
+  //   like?.includes(item.id)
+  // );
   // const [dataFav, setDataFav] = useState([]);
 
   // console.log(currentUser.userID);
@@ -45,9 +48,12 @@ const FavoriUni = () => {
           <h2 className=" font-bold text-[50px]">Favori Universities</h2>
         </div>
       </div>
-      {filteredLikes?.map((item, index) => (
+      <div className="container flex justify-center  mx-auto items-center flex-wrap gap-5 my-5">
+        {filteredLikes?.map((item, index) => (
         <CardHome {...item} key={index} />
-      ))}
+      ))} 
+      </div>
+     
     </div>
   );
 };
