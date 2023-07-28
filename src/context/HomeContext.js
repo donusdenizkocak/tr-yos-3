@@ -36,6 +36,7 @@ const HomeContextProvider = ({ children }) => {
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps, setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isLiked, setIsLiked] = useState([])
 
   // const [userID, setUserID] = useState(
   //   currentUser.userID || null)
@@ -61,12 +62,12 @@ const HomeContextProvider = ({ children }) => {
       getUniversities();
       getDepartments();
       getAllDepartments();
-      if (currentUser) {
-        getLikes(id);
+      if (userID) {
+        getLikes();
         getCompare(id);
       }
     },
-    [currentUser]
+    []
   );
 
   const handleCompare = (id) => {
@@ -165,19 +166,22 @@ const HomeContextProvider = ({ children }) => {
   const addLikes = async (id) => {
     try {
       const { data } = await axios.post(
-        `https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
+        `https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${API_KEY}`
       );
+      if(data){
+        setIsLiked([...isLiked,id])
+      }
       setLike([...like, id]);
-      getLikes(currentUser);
+      getLikes(userID);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getLikes = async (id) => {
+  const getLikes = async () => {
     try {
       const { data } = await axios.get(
-        `https://tr-yös.com/api/v1/users/allfavorites.php?id=${currentUser}&token=${API_KEY}`
+        `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${userID}&token=${API_KEY}`
       );
       console.log(data.departments);
       setLike(data.departments);
@@ -194,11 +198,10 @@ const HomeContextProvider = ({ children }) => {
   const handleLike = (id, currentUser) => {
     addLikes(id, currentUser);
   };
-
   const removeLikes = async (id) => {
     try {
       await axios.delete(
-        `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
+        `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${API_KEY}`
       );
       console.log("Successfully removed from favorites.");
       setLike((like) => like.filter((item) => item !== id));
@@ -206,7 +209,6 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
   // ! ********* MULTIINPUT ************
 
   const handleFirstInputChange = (selectedOptions) => {
@@ -375,6 +377,7 @@ const HomeContextProvider = ({ children }) => {
     removeLikes,
     filteredLikes,
     like,
+    isLiked,
     userID,
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
