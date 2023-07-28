@@ -36,7 +36,7 @@ const HomeContextProvider = ({ children }) => {
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps, setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [isLiked, setIsLiked] = useState([])
+
 
   // const [userID, setUserID] = useState(
   //   currentUser.userID || null)
@@ -45,7 +45,7 @@ const HomeContextProvider = ({ children }) => {
   const [like, setLike] = useState([]);
   const [compare, setCompare] = useState([]);
   // const [deleteCompare, setDeleteCompare] = useState([])
-  const [active, setActive] = useState([]);
+ 
   const navigate = useNavigate();
 
   const shuffleArray = (array) => {
@@ -168,9 +168,7 @@ const HomeContextProvider = ({ children }) => {
       const { data } = await axios.post(
         `https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${API_KEY}`
       );
-      if(data){
-        setIsLiked([...isLiked,id])
-      }
+  
       setLike([...like, id]);
       getLikes(userID);
     } catch (error) {
@@ -377,7 +375,7 @@ const HomeContextProvider = ({ children }) => {
     removeLikes,
     filteredLikes,
     like,
-    isLiked,
+  
     userID,
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;

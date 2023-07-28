@@ -68,7 +68,7 @@ const CardHome = ({
 
   // };
   const handleLikeClick = (id) => {
-    if (iconColor === "#017EFA") {
+    if (!like.includes (id)) {
       // Card is not in favorites, add it to favorites
       addLikes(id, userID);
       setIconColor("red");
@@ -119,8 +119,12 @@ const CardHome = ({
           <p className="text-gray-400 text-[12px]">{departmentName}</p>
         </div>
 
-        <div id={id} className={`cursor-pointer ${like.includes (id) ? "isLiked" : ""} `} onClick={() => handleLikeClick(id)}>
-          <Icon name="fav" size="20" fill={`${iconColor}`} />
+        <div id={id} className={`cursor-pointer }`} onClick={() => handleLikeClick(id)}>
+        {like.includes(id) ? (
+    <Icon name="fav" size="20" fill="red" />
+  ) : (
+    <Icon name="fav" size="20" fill="blue"/>
+  )}
         </div>
       </div>
 
