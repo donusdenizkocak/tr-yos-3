@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-
 import axios from "axios";
-
-const MyAccountForm = () => {
+import { useContext } from "react";
+import { HomeContext } from "../../context/HomeContext";
+const MyAccountForm = ({ userData }) => {
+  const { userID } = useContext(HomeContext);
+  const { user } = userData;
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [userDetail, setUserDetail] = useState(userData);
   const [name, setName] = useState(""); // Kullanıcının adını tutacak state
   const [email, setEmail] = useState(""); // Kullanıcının e-posta adresini tutacak state
-
   useEffect(() => {
     getCountry();
   }, []);
@@ -16,14 +18,12 @@ const MyAccountForm = () => {
     "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
   const COUNTRY_API = `https://tr-yös.com/api/v1/location/allcountries.php?token=${API_KEY}`;
   const CITY_API = `https://tr-yös.com/api/v1/location/citiesbycountry.php?country_id=${selectedCountry}&token=${API_KEY}`;
-
   const getCountry = async () => {
     try {
       const { data } = await axios.get(COUNTRY_API);
       setCountry(data);
     } catch (error) {}
   };
-
   const selectedCountres = async (e) => {
     setSelectedCountry(e.target.value);
     try {
@@ -31,20 +31,43 @@ const MyAccountForm = () => {
       setCities(data);
     } catch (error) {}
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Formun gönderim davranışını engelledik
     // 'name' ve 'email' state'leri kullanarak ilgili işlem yapıldı
-    console.log("Ad:", name);
-    console.log("E-posta:", email);
-    // api işlemi yap
+    // const updatedUser = { ...user, name: e.target.value };
+    // setUser(updatedUser);
+    // console.log("name:", name);
+    // console.log("e-mail:", email);
+   
+
+    try {
+      // axios POST isteği kullanarak kullanıcı verilerini sunucuya gönderin
+      const response = await axios.post(
+        `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${API_KEY}`,
+        userData
+      );
+      console.log("Server Response:", response.data); // gelen yanıt
+    } catch (error) {
+      // POST isteği sırasında oluşan hata
+      console.error("Error:", error);
+      // hata mesajı
+    }
+  }; 
+  const handleChangeName = (e) => {
+    const updatedUser = { ...user, name: e.target.value };
+    setUserDetail(updatedUser);
   };
 
+  const handleChangeEmail = (e) => {
+    const updatedUser = { ...user, email: e.target.value };
+    setUserDetail(updatedUser);
+  };
+  console.log(userData);
   return (
     <div>
       <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-        <form onSubmit={handleSubmit}> 
-        {/* form gönderildiğinde handleSubmit fnk çağrıldı*/}
+        <form onSubmit={handleSubmit}>
+          {/* form gönderildiğinde handleSubmit fnk çağrıldı*/}
           <div className="text-xl text-darkBlue font-bold mb-2 mx-3">
             <h3>My Account</h3>
           </div>
@@ -59,14 +82,9 @@ const MyAccountForm = () => {
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
                 placeholder="First name"
-                value={name} // Input değerini 'name' state ile bağladık
-                onChange={(e) => setName(e.target.value)} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
+                value={user?.name} // Input değerini 'name' state ile bağladık
+                onChange={handleChangeName} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
               />
-
-              {/* <label
-                htmlFor="exampleInput123"
-                className=" pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.5rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
-              >Your Name*</label> */}
             </div>
             {/*email input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
@@ -76,34 +94,17 @@ const MyAccountForm = () => {
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="exampleInput125"
                 placeholder="Email address"
-                value={email} // Input değerini 'email' state ile bağladık
-                onChange={(e) => setEmail(e.target.value)} 
+                value={user?.email} // Input değerini 'email' state ile bağladık
+                onChange={handleChangeEmail}
               />
-              {/* <label
-                htmlFor="exampleInput125"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.5rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
-              >Email Adres*</label> */}
             </div>
-
             {/* //?ikinci input */}
             {/* Country input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>Country*</h2>
-
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-auto">
                 <i className="fas fa-chevron-down text-gray-500"></i>
               </div>
-              {/* <select
-                className="border absolute inset-0 peer p-3 w-full min-h-[auto] opacity-0 cursor-pointer outline-none focus:outline-none bg-transparent"
-                id="exampleInput123"
-                aria-describedby="emailHelp123"
-              >
-                <option value="country1">Country 1</option>
-                <option value="country2">Country 2</option>
-                <option value="country3">Country 3</option>
-                
-              </select> */}
-
               <select
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 data-te-select-init
@@ -116,7 +117,6 @@ const MyAccountForm = () => {
                   </option>
                 ))}
               </select>
-
               <label
                 htmlFor="emailHelp123"
                 className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
@@ -125,7 +125,6 @@ const MyAccountForm = () => {
             {/*City input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>City*</h2>
-
               <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0">
                 <option value="">Select a city</option>
                 {cities.map((city) => (
@@ -134,20 +133,8 @@ const MyAccountForm = () => {
                   </option>
                 ))}
               </select>
-              {/* <input
-                type="text"
-                className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                id="exampleInput124"
-                aria-describedby="emailHelp124"
-                placeholder="Last name"
-              />
-              <label
-                htmlFor="exampleInput124"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              ></label> */}
             </div>
           </div>
-
           {/*Pone input*/}
           <div className="  relative mb-6" data-te-input-wrapper-init>
             <h2>Phone</h2>
@@ -180,7 +167,7 @@ const MyAccountForm = () => {
           {/*Submit button*/}
           <button
             type="submit"
-            className="inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+            className="inline-block w-full rounded bg-[#3b71ca] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
             data-te-ripple-init
             data-te-ripple-color="light"
           >

@@ -259,7 +259,7 @@ const LoginIcon = ({ size, color }) => {
 const FavIcon = ({ size, color, fill }) => {
   return (
     <svg
-      className="rounded-full "      
+      className="rounded-full "
       aria-hidden="true"
       fill={fill}
       viewBox="0 0 576 512"
@@ -395,7 +395,33 @@ const CityIcon = ({ size, color }) => {
   );
 };
 
-const Icon = ({ name, size, color, style, className ,fill}) => {
+const CloseBarMenuIcon = ({ size, color }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      width={size}
+      fill="darkBlue"
+      viewBox="0 0 384 512"
+    >
+      <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+    </svg>
+  );
+};
+const OpenBarMenuIcon = ({ size, className }) => {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 20 20"
+    >
+      <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+    </svg>
+  );
+};
+const Icon = ({ name, size, color, style, className, fill }) => {
   const icons = {
     home: HomeIcon,
     arrowUp: ArrowUpIcon,
@@ -411,11 +437,19 @@ const Icon = ({ name, size, color, style, className ,fill}) => {
     fav: FavIcon,
     compare: CompareIcon,
     city: CityIcon,
+    close: CloseBarMenuIcon,
+    open: OpenBarMenuIcon,
   };
 
   const Component = icons[name];
   return (
-    <Component size={size} color={color} style={style} className={className} fill={fill} />
+    <Component
+      size={size}
+      color={color}
+      style={style}
+      className={className}
+      fill={fill}
+    />
   );
 };
 

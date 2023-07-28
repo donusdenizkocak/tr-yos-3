@@ -31,6 +31,8 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
 
 
   const filteredCity=cities.filter((item)=>item.id===city).map((item)=>item.tr)
+  const cityName = filteredCity.length > 0 ? filteredCity[0].tr : null;
+
 
 
 
@@ -62,7 +64,12 @@ const CardUniversites = ({ id,code,tr,data,logo,cities,city}) => {
           <p className="font-bold text-xl mb-2">
             {tr}
           </p>
-          <p className="text-xs mb-1"> {filteredCity}</p>
+          {cityName ? (
+             <p className="text-xs mb-1"> {filteredCity}</p>
+          ):(
+            <p className="text-xs mb-1  text-white" style={{ fontStyle: "italic" }}>No City Available </p>
+          )}
+         
          
           {data && data.address ? (
         <p className="text-xs mb-2">

@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { HomeContext } from "../context/HomeContext"
 import { useContext } from "react";
 
-import CardHome from "../components/homeComponents/CardHome";
+import FavoriCard from "../components/FavoriComponents/FavoriCard";
 
 const FavoriUni = () => {
   const {like,filteredLikes} =useContext(HomeContext)
@@ -50,7 +50,7 @@ const FavoriUni = () => {
       </div>
       <div className="container flex justify-center  mx-auto items-center flex-wrap gap-5 my-5">
         {filteredLikes?.map((item, index) => (
-        <CardHome {...item} key={index} />
+        <FavoriCard {...item} key={index} />
       ))} 
       </div>
      

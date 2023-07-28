@@ -15,11 +15,14 @@ const CardHome = ({
   images,
   code,
   id,
+  item,
+index,
 }) => {
-  const [iconColor, setIconColor] = useState("#017EFA");
+  const [iconColor, setIconColor] = useState("red");
+  const [isLiked, setIsLiked] = useState(false)
   const navigate = useNavigate();
 
-  const { addLikes, removeLikes, like, postCompare,userID, compare, deleteCompare } =
+  const { addLikes, removeLikes, like, postCompare, userID,compare, deleteCompare } =
     useContext(HomeContext);
   const { currentUser } = useContext(AuthContext);
 
@@ -68,20 +71,21 @@ const CardHome = ({
 
   // };
   const handleLikeClick = (id) => {
-    if (iconColor === "#017EFA") {
+    if (isLiked) {
       // Card is not in favorites, add it to favorites
       addLikes(id, userID);
-      setIconColor("red");
+      // setIconColor("red");
     } else {
       // Card is already in favorites, remove it from favorites
       removeLikes(id, userID);
-      setIconColor("#017EFA");
+      // setIconColor("#017EFA");
     }
   };
+
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
-      key={code}
+      key={id}
     >
       <div className="relative">
         <img
@@ -119,7 +123,7 @@ const CardHome = ({
           <p className="text-gray-400 text-[12px]">{departmentName}</p>
         </div>
 
-        <div id={id} className={`cursor-pointer ${like.includes (id) ? "isLiked" : ""} `} onClick={() => handleLikeClick(id)}>
+        <div id={id} className={`cursor-pointer ${like.includes(id) ? "isLiked" : ""} `} onClick={() => handleLikeClick(id)}>
           <Icon name="fav" size="20" fill={`${iconColor}`} />
         </div>
       </div>
