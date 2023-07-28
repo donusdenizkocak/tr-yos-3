@@ -139,10 +139,10 @@ const HomeContextProvider = ({ children }) => {
   };
 
   //! *********** COMPARE (KARŞILAŞTIRMA) **************
-  const getCompare = async () => {
+  const getCompare = async (id) => {
     try {
       const { data } = await axios.get(
-        `${COMPARE_GET_API}&id=${currentUser}&token=${API_KEY}`
+        `${COMPARE_GET_API}&id=${id}&token=${API_KEY}`
       );
       setCompare(data.departments);
     } catch (error) {
@@ -152,9 +152,9 @@ const HomeContextProvider = ({ children }) => {
   const postCompare = async (id) => {
     try {
       const { data } = await axios.post(
-        `${COMPARE_ADD_API}id=${id}&user_id=${currentUser}&token=${API_KEY}`
+        `${COMPARE_ADD_API}id=${id}&user_id=${userID}&token=${API_KEY}`
       );
-      getCompare(currentUser);
+      getCompare(id);
       console.log(data);
     } catch (error) {
       console.log(error);
