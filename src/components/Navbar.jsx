@@ -4,6 +4,7 @@ import { Icon } from "../helper/Icons";
 import { AuthContext } from "../context/AuthContext";
 import BarMenu from "./BarMenu";
 import DropDownNavbar from "./DropDownNavbar";
+
 const navbarMenu = [
   { title: "Home", url: "/" },
   { title: "Universites", url: "/universites" },
@@ -13,6 +14,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openBarMenu, setOpenBarMenu] = useState(false);
   const { currentUser } = useContext(AuthContext);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -27,7 +29,7 @@ const Navbar = () => {
     };
   }, []);
   return (
-<>
+    <>
       <nav
         className={`w-full  top-0 z-[100] py-3 bg-opacity-100 shadow-lg  ${
           isScrolled
@@ -37,20 +39,13 @@ const Navbar = () => {
       >
         <div className="w-full md:container md:mx-auto flex items-center  justify-between mt-0 px-6 py-2">
           <button
-            className="cursor-pointer md:hidden block"
+            className="cursor-pointer md:hidden block "
             onClick={() => setOpenBarMenu(true)}
           >
-            <svg
-              className={`fill-current  ${
+           
+            <Icon name="open" size="20" className={`fill-current ${
                 isScrolled ? "text-black" : "text-white"
-              }`}
-              xmlns="http://www.w3.org/2000/svg"
-              width={20}
-              height={20}
-              viewBox="0 0 20 20"
-            >
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
+              }`}/>
           </button>
           <BarMenu setOpenBarMenu={setOpenBarMenu} openBarMenu={openBarMenu} />
           <div
@@ -109,16 +104,31 @@ const Navbar = () => {
             Offcanvas top
           </h5> */}
           <ul className=" h-full flex flex-col justify-center  ">
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >HomePage</a>
-        </li>
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >Universites</a>
-        </li>
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700">Departments</a>
-        </li>
-      </ul>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                HomePage
+              </a>
+            </li>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                Universites
+              </a>
+            </li>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                Departments
+              </a>
+            </li>
+          </ul>
           <button
             type="button"
             className=" my-1 box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
