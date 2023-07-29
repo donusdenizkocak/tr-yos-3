@@ -4,10 +4,11 @@ import { AuthContext } from "../context/AuthContext";
 import { HomeContext } from "../context/HomeContext"
 import { useContext } from "react";
 
-import FavoriCard from "../components/FavoriComponents/FavoriCard";
+
+import CardHome from "../components/homeComponents/CardHome";
 
 const FavoriUni = () => {
-  const {like,filteredLikes} =useContext(HomeContext)
+  const {like,filteredLikes,universities} =useContext(HomeContext)
   // const { allDepartments,like } = useContext(AuthContext);
   // const filteredLikes = allDepartments?.filter((item) =>
   //   like?.includes(item.id)
@@ -32,6 +33,12 @@ const FavoriUni = () => {
   // useEffect(() => {
   //   getFav();
   // }, []);
+  const universityImagesMap = universities.reduce((map, university) => {
+    if (university && university.images && university.images.length > 0) {
+      map[university.tr] = university.images[0];
+    }
+    return map;
+  }, {}); 
 
   return (
     <div>
@@ -50,7 +57,7 @@ const FavoriUni = () => {
       </div>
       <div className="container flex justify-center  mx-auto items-center flex-wrap gap-5 my-5">
         {filteredLikes?.map((item, index) => (
-        <FavoriCard {...item} key={index} />
+        <CardHome {...item} key={index}   universityImage={universityImagesMap}/>
       ))} 
       </div>
      
