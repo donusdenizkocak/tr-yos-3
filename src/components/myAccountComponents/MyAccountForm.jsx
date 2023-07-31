@@ -6,11 +6,17 @@ const MyAccountForm = ({ userData }) => {
   const { userID } = useContext(HomeContext);
   const { user } = userData;
   const [country, setCountry] = useState([]);
-  const [cities, setCities] = useState([]);
+ 
+  const [selectedCity, setSelectedCity] = useState("");
+
   const [selectedCountry, setSelectedCountry] = useState("");
-  const [userDetail, setUserDetail] = useState(userData);
-  const [name, setName] = useState(""); // Kullanıcının adını tutacak state
-  const [email, setEmail] = useState(""); // Kullanıcının e-posta adresini tutacak state
+  const [selectedCountryName, setSelectedCountryName] = useState("");
+  const [cities, setCities] = useState([]);
+  const [isLoadingCities, setIsLoadingCities] = useState(false);
+  
+  const [isCountrySelected, setIsCountrySelected] = useState(false);
+  const [updatedUser, setUpdatedUser] = useState([])
+  const [userDetail, setUserDetail] = useState(userData)
   useEffect(() => {
     getCountry();
   }, []);
@@ -21,16 +27,72 @@ const MyAccountForm = ({ userData }) => {
   const getCountry = async () => {
     try {
       const { data } = await axios.get(COUNTRY_API);
+      // console.log(data)
       setCountry(data);
     } catch (error) {}
   };
-  const selectedCountres = async (e) => {
-    setSelectedCountry(e.target.value);
-    try {
-      const { data } = await axios.get(CITY_API);
-      setCities(data);
-    } catch (error) {}
+
+  console.log(user?.name)
+
+  // const selectedCountres = async (e) => {
+  //   setSelectedCountry(e.target.value);
+  //   setSelectedCountryName ( e.target.options[e.target.selectedIndex].text);
+  //   setIsLoadingCities(true);
+  //   setCities([]);
+  //   console.log(selectedCountryName)
+  //   try {
+  //     const { data } = await axios.get(CITY_API);
+  //     setCities(data);
+  //     console.log(cities)
+  //   } catch (error) {}finally{
+  //     setIsLoadingCities(false);
+  // }
+
+  // };
+  const getCitiesByCountry = async () => {
+    if (selectedCountry) {
+      setIsLoadingCities(true);
+      try {
+        const { data } = await axios.get(CITY_API);
+        setCities(data);
+        console.log(data)
+       
+      } catch (error) {
+        // Handle error
+      } finally {
+        setIsLoadingCities(false);
+      }
+    } else {
+      setCities([]); // Reset cities if no country is selected
+    }
   };
+
+  const selectedCountres = (e) => {
+
+    setSelectedCountry(e.target.value);
+    setSelectedCountryName(e.target.options[e.target.selectedIndex].text);
+    setUpdatedUser({...updatedUser,country:e.target.options[e.target.selectedIndex].text})
+    setIsCountrySelected(true); // Set the flag to indicate that a country has been selected
+  };
+  console.log(selectedCountryName)
+  console.log(selectedCountry)
+
+  const selectedCities=(e)=>{
+   
+setSelectedCity(e.target.value)
+setUpdatedUser({...updatedUser,city:e.target.value})
+// console.log(selectedCity)
+// console.log(prevSelectedCity)
+
+  }
+  //Trigger getCitiesByCountry whenever isCountrySelected changes
+  useEffect(() => {
+    if (isCountrySelected) {
+      getCitiesByCountry();
+    }
+  }, [isCountrySelected,selectedCountry]);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Formun gönderim davranışını engelledik
     // 'name' ve 'email' state'leri kullanarak ilgili işlem yapıldı
@@ -38,31 +100,43 @@ const MyAccountForm = ({ userData }) => {
     // setUser(updatedUser);
     // console.log("name:", name);
     // console.log("e-mail:", email);
-   
+    //    const updatedUser = {
+    //   ...user,
+    //    name,
+     
+    //   country: selectedCountryName,
+    //   city: selectedCity,
+    // };
 
     try {
       // axios POST isteği kullanarak kullanıcı verilerini sunucuya gönderin
-      const response = await axios.post(
+      const {data} = await axios.post(
         `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${API_KEY}`,
-        userData
+       updatedUser,
+               { headers: { "Content-Type": "multipart/form-data" } }
       );
-      console.log("Server Response:", response.data); // gelen yanıt
+       console.log(data)
+     
+      setUserDetail(data)
+  
+
     } catch (error) {
       // POST isteği sırasında oluşan hata
       console.error("Error:", error);
       // hata mesajı
     }
   }; 
+ 
   const handleChangeName = (e) => {
-    const updatedUser = { ...user, name: e.target.value };
-    setUserDetail(updatedUser);
+    setUpdatedUser({...updatedUser,name:e.target.value})
   };
 
   const handleChangeEmail = (e) => {
-    const updatedUser = { ...user, email: e.target.value };
-    setUserDetail(updatedUser);
+    setUpdatedUser({...updatedUser,email:e.target.value})
   };
   console.log(userData);
+  console.log(updatedUser);
+
   return (
     <div>
       <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
@@ -81,8 +155,9 @@ const MyAccountForm = ({ userData }) => {
                 className="border border-gray-100 peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-1"
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
-                placeholder="First name"
-                value={user?.name} // Input değerini 'name' state ile bağladık
+                placeholder={user?.name}
+                defaultValue={user?.name}
+                // value={user?.name} // Input değerini 'name' state ile bağladık
                 onChange={handleChangeName} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
               />
             </div>
@@ -93,8 +168,8 @@ const MyAccountForm = ({ userData }) => {
                 type="email"
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="exampleInput125"
-                placeholder="Email address"
-                value={user?.email} // Input değerini 'email' state ile bağladık
+                placeholder={user?.email}
+                defaultValue={user?.email}
                 onChange={handleChangeEmail}
               />
             </div>
@@ -109,7 +184,9 @@ const MyAccountForm = ({ userData }) => {
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 data-te-select-init
                 onChange={selectedCountres}
+               
               >
+            
                 <option value="">Select a country</option>
                 {country.map((country) => (
                   <option key={country.id} value={country.id}>
@@ -125,13 +202,18 @@ const MyAccountForm = ({ userData }) => {
             {/*City input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>City*</h2>
-              <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0">
-                <option value="">Select a city</option>
-                {cities.map((city) => (
-                  <option key={city.id} value={city.id}>
-                    {city.en}
-                  </option>
-                ))}
+              <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              onChange={selectedCities}>
+             <option value="">Select a city</option>
+    {isLoadingCities ? (
+      <option disabled>Loading cities...</option>
+    ) : (
+      cities.map((city) => (
+        <option key={city.id} value={city.en}>
+          {city.en}
+        </option>
+      ))
+    )}
               </select>
             </div>
           </div>
@@ -170,6 +252,7 @@ const MyAccountForm = ({ userData }) => {
             className="inline-block w-full rounded bg-[#3b71ca] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
             data-te-ripple-init
             data-te-ripple-color="light"
+       
           >
             Save Changes
           </button>

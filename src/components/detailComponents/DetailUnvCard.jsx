@@ -6,9 +6,9 @@ import { useContext } from "react";
 import { useState } from "react";
 
 const DetailUnvCard = ({ departments }) => {
-  const { universities,removeLikes,addLikes } = useContext(HomeContext);
+  const { universities,removeLikes,addLikes ,userID,like} = useContext(HomeContext);
   const { currentUser } = useContext(AuthContext);
-  const [isLiked, setIsLiked] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
 
   if (!departments) {
     return null;
@@ -19,6 +19,7 @@ const DetailUnvCard = ({ departments }) => {
     city,
     university,
     data,
+    id,
     // data: { adress, web, email, phone, fax },
   } = departments;
 
@@ -29,29 +30,28 @@ const DetailUnvCard = ({ departments }) => {
     .map((item) => item.logo);
 
      //handleLike
-
-    const handleLikeClick = (id) => {
-      if (isLiked) {
+     const handleLikeClick = (id) => {
+      if (like.includes(id)) {
         // Card is already in favorites, remove it from favorites
-        removeLikes(id, currentUser);
+        removeLikes(id);
       } else {
         // Card is not in favorites, add it to favorites
-        addLikes(id,currentUser);
+        addLikes(id);
       }
   
       // Toggle the isLiked state
-      setIsLiked(!isLiked);
+      // setIsLiked(!isLiked);
     };
   
   
 
   return (
     <div className="flex flex-col  gap-5">
-      <div className="bg-white flex  justify-center p-3 rounded-md " onClick={handleLikeClick}>
+      <div id={id} className="bg-white flex  justify-center p-3 rounded-md " onClick={()=>handleLikeClick(id)}>
         <button     className={`w-40 p-3 text-sm font-medium border-[1px] border-orange-500 rounded-md ${
-            isLiked ? "bg-red-500 text-white" : "bg-red-100 text-red-500"
+            like.includes(id) ? "bg-red-500 text-white" : "bg-red-100 text-red-500"
           } hover:bg-red-500 hover:text-white`}>
-           {isLiked ? "Remove Favorite" : "Add Favorite"}
+           {like.includes(id) ? "Remove Favorite" : "Add Favorite"}
         </button>
       </div>
 

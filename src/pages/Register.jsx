@@ -1,22 +1,13 @@
 import { Icon } from "../helper/Icons";
 import { Formik } from "formik";
-import { object, string } from "yup";
+
 import RegisterForm from "../components/authComponents/RegisterForm";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link} from "react-router-dom";
+import { RegisterSchema } from "../components/authComponents/ValidationSchema";
 
-export const registerSchema = object({
-  name: string().required("full name zorunludur"),
-  email: string().email().required("email zorunludur"),
-  password: string()
-    .required("password zorunludur")
-    .min(8, "password en az 8 karakter olmalıdır")
-    .matches(/\d+/, "Password bir sayı içermelidir")
-    .matches(/[a-z]/, "Password bir küçük harf içermelidir")
-    .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
-    .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
-});
+
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -51,7 +42,7 @@ const Register = () => {
                 email: "",
                 password1: "",
               }}
-              // validationSchema={registerSchema}
+              validationSchema={RegisterSchema}
               onSubmit={(values, actions) => {
                 createUser({ ...values, password2: values.password1 });
                 actions.resetForm();

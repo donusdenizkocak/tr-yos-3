@@ -19,7 +19,7 @@ const CardHome = ({
   const [iconColor, setIconColor] = useState("#017EFA");
   const navigate = useNavigate();
 
-  const { addLikes, removeLikes, like, postCompare, compare, deleteCompare } =
+  const { addLikes, removeLikes, like, postCompare,userID, compare, deleteCompare } =
     useContext(HomeContext);
   const { currentUser } = useContext(AuthContext);
 
@@ -68,17 +68,16 @@ const CardHome = ({
 
   // };
   const handleLikeClick = (id) => {
-    if (iconColor === "#017EFA") {
+    if (!like.includes (id)) {
       // Card is not in favorites, add it to favorites
-      addLikes(id, currentUser);
+      addLikes(id, userID);
       setIconColor("red");
     } else {
       // Card is already in favorites, remove it from favorites
-      removeLikes(id, currentUser);
+      removeLikes(id, userID);
       setIconColor("#017EFA");
     }
   };
-
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
@@ -120,8 +119,12 @@ const CardHome = ({
           <p className="text-gray-400 text-[12px]">{departmentName}</p>
         </div>
 
-        <div className={`cursor-pointer  `} onClick={() => handleLikeClick(id)}>
-          <Icon name="fav" size="20" fill={`${iconColor}`} />
+        <div id={id} className={`cursor-pointer }`} onClick={() => handleLikeClick(id)}>
+        {like.includes(id) ? (
+    <Icon name="fav" size="20" fill="red" />
+  ) : (
+    <Icon name="fav" size="20" fill="blue"/>
+  )}
         </div>
       </div>
 

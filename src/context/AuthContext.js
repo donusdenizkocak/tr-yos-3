@@ -10,9 +10,10 @@ const LOGİN_API = `https://tr-yös.com/api/v1/users/login.php?token=${API_KEY}`
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("user")) || false
+    sessionStorage.getItem("user") || false
   );
   const navigate = useNavigate();
+  console.log(typeof currentUser);
 
   const createUser = async (info) => {
     const formData = new FormData();
@@ -27,8 +28,8 @@ const AuthContextProvider = ({ children }) => {
         },
       });
 
-      setCurrentUser(data.userId);
-      sessionStorage.setItem("user", JSON.stringify(data.userId));
+      setCurrentUser(data.user.userId);
+      sessionStorage.setItem("user", data.user.userId);
 
       navigate("/");
     } catch (error) {
@@ -47,10 +48,10 @@ const AuthContextProvider = ({ children }) => {
         },
       });
 
-      setCurrentUser(data);
-      sessionStorage.setItem("user", JSON.stringify(data));
+      setCurrentUser(data.userID);
+      // sessionStorage.setItem("user", JSON.stringify(data));
 
-      // sessionStorage.setItem("user", JSON.stringify(data.userID))
+      sessionStorage.setItem("user", data.userID);
 
       // setCurrentUser(data.userID);
       // sessionStorage.setItem("user", JSON.stringify(data.userID));

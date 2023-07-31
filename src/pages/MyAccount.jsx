@@ -52,7 +52,7 @@ const MyAccount = () => {
       </div>
       {userData && (
         <div className="flex justify-center items-center gap-9 container mx-auto my-10">
-          <Profil name={userData.name} email={userData.email} />
+          <Profil userData={userData}  />
           <MyAccountForm userData={userData} />
         </div>
       )}
