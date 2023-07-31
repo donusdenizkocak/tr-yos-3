@@ -9,10 +9,8 @@ const CompareDepartments = () => {
   const { compare,getCompare,userID,allDepartments,universities } = useContext(HomeContext);
   console.log(compare)
   const filterCompare=allDepartments?.filter((item) => compare?.includes(item.id))
-  console.log(filterCompare)
-  useEffect(() => {
-      getCompare();
-  }, [])
+ 
+
   const image=universities?.filter((item) => compare?.includes(item.id))
   const universityImagesMap = image?.reduce((map, university) => {
     if (university && university.images && university.images.length > 0) {

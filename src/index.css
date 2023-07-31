@@ -27,7 +27,7 @@
 
 
 .compareAktif{
-  color: green;
+  color: green !important;
 }
 .comparedelet{
   width: 3.2rem;
