@@ -9,6 +9,7 @@ const CompareDepartments = () => {
   const { compare,getCompare,userID,allDepartments,universities } = useContext(HomeContext);
   console.log(compare)
   const filterCompare=allDepartments?.filter((item) => compare?.includes(item.id))
+  
  
 
   const image=universities?.filter((item) => compare?.includes(item.id))

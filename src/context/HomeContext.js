@@ -80,13 +80,16 @@ const HomeContextProvider = ({ children }) => {
   };
 
   const handleDelete = async (id) => {
+    console.log(id)
     try {
       const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${userID}&token=${API_KEY}`;
-      await axios.delete(
+      await axios.get(
         `${DELETE_APİ}`
       );
-      console.log("delete");
-      setCompare((compare)=> compare !== id);
+      console.log("delete",DELETE_APİ);
+      setCompare((compare) =>
+      compare.filter((item) => item !== id)
+    );
     } catch (error) {
       console.log(error);
     }
@@ -137,7 +140,7 @@ const HomeContextProvider = ({ children }) => {
   };
 
   //! *********** COMPARE (KARŞILAŞTIRMA) **************
-  const COMPARE_ADD_API = `https://tr-yös.com/api/v1/users/addcompare.php?`;
+  
 
   
   
@@ -166,10 +169,6 @@ const HomeContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  const deleteCompare = async (id) => {
-     
-      console.log(" silme fonk")
-    };
 
   // ! ********* LİKE (BEĞENME) ************
 
@@ -376,7 +375,6 @@ const HomeContextProvider = ({ children }) => {
     filteredDepartments,
     postCompare,
     getCompare,
-    deleteCompare,
     handleCompare,
     handleDelete,
     compare,
