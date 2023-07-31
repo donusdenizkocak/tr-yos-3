@@ -6,11 +6,16 @@ const MyAccountForm = ({ userData }) => {
   const { userID } = useContext(HomeContext);
   const { user } = userData;
   const [country, setCountry] = useState([]);
-  const [cities, setCities] = useState([]);
+ 
+  const [selectedCity, setSelectedCity] = useState("");
+  const [name, setName] = useState(user?.name);
+  const [email, setEmail] = useState(user?.email || "");
   const [selectedCountry, setSelectedCountry] = useState("");
-  const [userDetail, setUserDetail] = useState(userData);
-  const [name, setName] = useState(""); // Kullanıcının adını tutacak state
-  const [email, setEmail] = useState(""); // Kullanıcının e-posta adresini tutacak state
+  const [selectedCountryName, setSelectedCountryName] = useState("");
+  const [cities, setCities] = useState([]);
+  const [isLoadingCities, setIsLoadingCities] = useState(false);
+  const [prevSelectedCity, setPrevSelectedCity] = useState("");
+  const [isCountrySelected, setIsCountrySelected] = useState(false);
   useEffect(() => {
     getCountry();
   }, []);
@@ -21,16 +26,69 @@ const MyAccountForm = ({ userData }) => {
   const getCountry = async () => {
     try {
       const { data } = await axios.get(COUNTRY_API);
+      // console.log(data)
       setCountry(data);
     } catch (error) {}
   };
-  const selectedCountres = async (e) => {
-    setSelectedCountry(e.target.value);
-    try {
-      const { data } = await axios.get(CITY_API);
-      setCities(data);
-    } catch (error) {}
+  console.log(name)
+  console.log(email)
+  console.log(user?.name)
+
+  // const selectedCountres = async (e) => {
+  //   setSelectedCountry(e.target.value);
+  //   setSelectedCountryName ( e.target.options[e.target.selectedIndex].text);
+  //   setIsLoadingCities(true);
+  //   setCities([]);
+  //   console.log(selectedCountryName)
+  //   try {
+  //     const { data } = await axios.get(CITY_API);
+  //     setCities(data);
+  //     console.log(cities)
+  //   } catch (error) {}finally{
+  //     setIsLoadingCities(false);
+  // }
+
+  // };
+  const getCitiesByCountry = async () => {
+    if (selectedCountry) {
+      setIsLoadingCities(true);
+      try {
+        const { data } = await axios.get(CITY_API);
+        setCities(data);
+        console.log(data)
+       
+      } catch (error) {
+        // Handle error
+      } finally {
+        setIsLoadingCities(false);
+      }
+    } else {
+      setCities([]); // Reset cities if no country is selected
+    }
   };
+
+  const selectedCountres = (e) => {
+
+    setSelectedCountry(e.target.value);
+    setSelectedCountryName(e.target.options[e.target.selectedIndex].text);
+    setIsCountrySelected(true); // Set the flag to indicate that a country has been selected
+  };
+  console.log(selectedCountryName)
+  const selectedCities=(e)=>{
+    setPrevSelectedCity(selectedCity); 
+setSelectedCity(e.target.value)
+// console.log(selectedCity)
+// console.log(prevSelectedCity)
+
+  }
+  //Trigger getCitiesByCountry whenever isCountrySelected changes
+  useEffect(() => {
+    if (isCountrySelected) {
+      getCitiesByCountry();
+    }
+  }, [isCountrySelected,selectedCountry]);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Formun gönderim davranışını engelledik
     // 'name' ve 'email' state'leri kullanarak ilgili işlem yapıldı
@@ -38,14 +96,20 @@ const MyAccountForm = ({ userData }) => {
     // setUser(updatedUser);
     // console.log("name:", name);
     // console.log("e-mail:", email);
-   
+       const updatedUser = {
+      ...user,
+       name,
+     
+      country: selectedCountryName,
+      city: selectedCity,
+    };
 
     try {
       // axios POST isteği kullanarak kullanıcı verilerini sunucuya gönderin
       const response = await axios.post(
         `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${API_KEY}`,
-        userData
-      );
+       updatedUser
+      ); console.log(updatedUser)
       console.log("Server Response:", response.data); // gelen yanıt
     } catch (error) {
       // POST isteği sırasında oluşan hata
@@ -53,16 +117,16 @@ const MyAccountForm = ({ userData }) => {
       // hata mesajı
     }
   }; 
-  const handleChangeName = (e) => {
-    const updatedUser = { ...user, name: e.target.value };
-    setUserDetail(updatedUser);
-  };
+ 
+//   const handleChangeName = (e) => {
+//  setName(e.target.value)
+//   };
 
   const handleChangeEmail = (e) => {
-    const updatedUser = { ...user, email: e.target.value };
-    setUserDetail(updatedUser);
+   setEmail(e.target.value)
   };
   console.log(userData);
+
   return (
     <div>
       <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
@@ -83,7 +147,7 @@ const MyAccountForm = ({ userData }) => {
                 aria-describedby="emailHelp123"
                 placeholder="First name"
                 value={user?.name} // Input değerini 'name' state ile bağladık
-                onChange={handleChangeName} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
+                // onChange={handleChangeName} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
               />
             </div>
             {/*email input*/}
@@ -109,7 +173,9 @@ const MyAccountForm = ({ userData }) => {
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 data-te-select-init
                 onChange={selectedCountres}
+               
               >
+            
                 <option value="">Select a country</option>
                 {country.map((country) => (
                   <option key={country.id} value={country.id}>
@@ -125,13 +191,18 @@ const MyAccountForm = ({ userData }) => {
             {/*City input*/}
             <div className=" relative mb-6" data-te-input-wrapper-init>
               <h2>City*</h2>
-              <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0">
-                <option value="">Select a city</option>
-                {cities.map((city) => (
-                  <option key={city.id} value={city.id}>
-                    {city.en}
-                  </option>
-                ))}
+              <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              onChange={selectedCities}>
+             <option value="">Select a city</option>
+    {isLoadingCities ? (
+      <option disabled>Loading cities...</option>
+    ) : (
+      cities.map((city) => (
+        <option key={city.id} value={city.en}>
+          {city.en}
+        </option>
+      ))
+    )}
               </select>
             </div>
           </div>

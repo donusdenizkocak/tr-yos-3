@@ -87,6 +87,7 @@ const Universites = () => {
           initial="hidden"
           animate="visible"
           variants={framerContainer}
+          className="container flex flex-col justify-center items-center mx-auto  my-5 gap-5 w-full"
         >
           {currentItems.map((uni, index) => (
             <CardUniversites {...uni} key={index} cities={cities} />
