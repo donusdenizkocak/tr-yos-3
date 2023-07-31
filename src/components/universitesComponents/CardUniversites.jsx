@@ -65,7 +65,7 @@ const CardUniversites = ({ id, code, tr, data, logo, cities, city }) => {
             </p>
           )}
 
-          {data ? (
+          {data?.address ? (
             <p className="text-xs text-gray mb-2">{data?.adress}</p>
           ) : (
             <p
