@@ -1,4 +1,5 @@
 import ReactPaginate from "react-paginate";
+import { Icon } from "../helper/Icons";
 
 const Pagination = ({ handlePageClick, pageCount }) => {
   return (
@@ -7,7 +8,7 @@ const Pagination = ({ handlePageClick, pageCount }) => {
         breakLabel="..."
         nextLabel={
           <span className="sm:w-20 md:before:content-['next'] h-10 flex items-center justify-center bg-[#022f5d] text-white rounded-md ">
-            ▶
+           <Icon name="rightpagination" size="1.5rem" color="white"/>
           </span>
         }
         onPageChange={handlePageClick}
@@ -15,7 +16,7 @@ const Pagination = ({ handlePageClick, pageCount }) => {
         pageCount={pageCount}
         previousLabel={
           <span className=" sm:w-20 md:after:content-['prev']  h-10 flex items-center justify-center bg-[#022f5d] text-white rounded-md ">
-            ◀
+            <Icon name="letfpagination" size="1.5rem" color="white"/>
           </span>
         }
         renderOnZeroPageCount={null}

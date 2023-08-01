@@ -8,7 +8,7 @@ const framerItem = {
   visible: { opacity: 1, translateY: 0 },
 };
 const CardUniversites = ({ id, code, tr, data, logo, cities, city }) => {
-  const { universities, allDepartments } = useContext(HomeContext);
+  const { allDepartments } = useContext(HomeContext);
 
   // const universityDepartments = allDepartments.filter(
   //   (department) => department?.university?.code === code
@@ -55,7 +55,7 @@ const CardUniversites = ({ id, code, tr, data, logo, cities, city }) => {
         <div className="flex flex-col justify-center md:justify-start">
           <p className="font-bold text-xl mb-2">{tr}</p>
           {filteredCity ? (
-            <p className="text-xs mb-1">{filteredCity}</p>
+            <p className="text-xs mb-1 text-gray-400">{filteredCity}</p>
           ) : (
             <p
               className="text-xs mb-1  text-white"
@@ -65,8 +65,8 @@ const CardUniversites = ({ id, code, tr, data, logo, cities, city }) => {
             </p>
           )}
 
-          {data?.address ? (
-            <p className="text-xs text-gray mb-2">{data?.adress}</p>
+          {data?.adress ? (
+            <p className="text-xs text-gray-400 mb-2">{data?.adress}</p>
           ) : (
             <p
               className="text-xs mb-2 text-white"
