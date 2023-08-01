@@ -62,7 +62,7 @@ const HomeContextProvider = ({ children }) => {
       getAllDepartments();
       if (currentUser) {
         getLikes();
-        getCompare(userID);
+        getCompare(currentUser);
       }
     },
     []
@@ -84,7 +84,7 @@ const HomeContextProvider = ({ children }) => {
     console.log(id)
     try {
 
-      const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${userID}&token=${API_KEY}`;
+      const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
       await axios.get(
         `${DELETE_APİ}`
 
@@ -161,12 +161,12 @@ const HomeContextProvider = ({ children }) => {
   };
   const postCompare = async (id) => {  
     try {
-      const COMPARE_POST= `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${userID}&token=${API_KEY}`
+      const COMPARE_POST= `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       const { data } = await axios.post(
         `${COMPARE_POST}`
       );
       setCompare([...compare,id])
-      getCompare(userID);
+      getCompare(currentUser);
       console.log(data);
     } catch (error) {
       console.log(error);
