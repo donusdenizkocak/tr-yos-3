@@ -19,7 +19,7 @@ const CardHome = ({
   const [iconColor, setIconColor] = useState("#017EFA");
   const navigate = useNavigate();
 
-  const { addLikes, removeLikes, like, postCompare,userID, compare, deleteCompare } =
+  const { addLikes,removeLikes,like,userID, compare,handleCompare} =
     useContext(HomeContext);
   const { currentUser } = useContext(AuthContext);
 
@@ -37,18 +37,7 @@ const CardHome = ({
     navigate(`/detail/${id}`);
   };
 
-  const handleCompare = (id) => {
-    if (currentUser) {
-      console.log(compare.includes(id));
-      if (compare.includes(id)) {
-        postCompare(id);
-      } else {
-        deleteCompare(id);
-      }
-    } else {
-      alert("LÜTFEN GİRİŞ YAPINIZ");
-    }
-  };
+  
   // console.log(like.includes(id))
   // const handleLikeClick = (id) => {
   //   if (iconColor === "#017EFA") {

@@ -16,10 +16,7 @@ const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.p
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
 
-const COMPARE_ADD_API = `https://tr-yös.com/api/v1/users/addcompare.php?`;
-const COMPARE_GET_API = `https://tr-yös.com/api/v1/users/allcompares.php?`;
-const COMPARE_DEL_API = `https://tr-yös.com/api/v1/users/deletecompare.php?`;
-const DELETE_APİ = ` https://tr-yös.com/api/v1/users/deletecompare.php?`;
+
 
 const HomeContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -49,41 +46,52 @@ const HomeContextProvider = ({ children }) => {
     return array;
   };
 
-  useEffect((id) => {
-    getCities();
-    getUniversities();
-    getDepartments();
-    getAllDepartments();
-    if (currentUser) {
-      getLikes();
-      getCompare(id);
-    }
-  }, []);
+  console.log(currentUser);
+  useEffect(
+    (id) => {
+      getCities();
+      getUniversities();
+      getDepartments();
+      getAllDepartments();
+      if (currentUser) {
+        getLikes();
+        getCompare(currentUser);
+      }
+    },
+    []
+  );
 
+
+  // const handleCompare = (id) => {
+  //   if (!compare?.includes(id)) {
+  //     setCompare([...compare, id]);
+  //     console.log(compare);
+  //   } else {
+  //     postCompare(id);
+  //   }
+  // };
   const handleCompare = (id) => {
-    if (!compare?.includes(id)) {
-      setCompare([...compare, id]);
-      console.log(compare);
-    } else {
-      postCompare(id);
-    }
+        postCompare(id);
   };
 
   const handleDelete = async (id) => {
-    deleteCompare(id);
-    setCompare((compare) => compare.filter((item) => item !== id));
-  };
-  const deleteCompare = async (id) => {
+    console.log(id)
     try {
-      await axios.delete(
-        `${DELETE_APİ}id=${id}&user_id=${currentUser}&token=${API_KEY}`
+
+      const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
+      await axios.get(
+        `${DELETE_APİ}`
+
       );
-      console.log("delete");
-      getCompare((item) => item !== id);
+      console.log("delete",DELETE_APİ);
+      setCompare((compare) =>
+      compare.filter((item) => item !== id)
+    );
     } catch (error) {
       console.log(error);
     }
-  };
+   };
+  
 
   // ! ********* CITIES ************
   const getCities = async () => {
@@ -129,21 +137,29 @@ const HomeContextProvider = ({ children }) => {
   };
 
   //! *********** COMPARE (KARŞILAŞTIRMA) **************
-  const getCompare = async () => {
+  
+
+  
+  
+  const getCompare = async (userID) => {
     try {
+      const COMPARE_GET=`https://tr-yös.com/api/v1/users/allcompares.php?user_id=${userID}&token=${API_KEY}`
       const { data } = await axios.get(
-        `${COMPARE_GET_API}&id=${currentUser}&token=${API_KEY}`
+        `${COMPARE_GET}`
       );
-      setCompare(data.departments);
+    console.log(data)
+     setCompare(data?.departments)
     } catch (error) {
       console.log(error);
     }
   };
-  const postCompare = async (id) => {
+  const postCompare = async (id) => {  
     try {
+      const COMPARE_POST= `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       const { data } = await axios.post(
-        `${COMPARE_ADD_API}id=${id}&user_id=${currentUser}&token=${API_KEY}`
+        `${COMPARE_POST}`
       );
+      setCompare([...compare,id])
       getCompare(currentUser);
       console.log(data);
     } catch (error) {
@@ -267,7 +283,6 @@ const HomeContextProvider = ({ children }) => {
     filteredDepartments,
     postCompare,
     getCompare,
-    deleteCompare,
     handleCompare,
     handleDelete,
     compare,
@@ -276,8 +291,11 @@ const HomeContextProvider = ({ children }) => {
     removeLikes,
     filteredLikes,
     like,
+
     getLikes,
+
     currentUser,
+
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };
