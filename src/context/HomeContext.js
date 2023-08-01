@@ -41,6 +41,7 @@ const HomeContextProvider = ({ children }) => {
   // const currentUserID = JSON.parse(sessionStorage.getItem("user")) || false;
   const [like, setLike] = useState([]);
   const [compare, setCompare] = useState([]);
+  const [aktifCompare, setAktifCompare] = useState(false)
   
  
   const navigate = useNavigate();
@@ -76,24 +77,33 @@ const HomeContextProvider = ({ children }) => {
   //   }
   // };
   const handleCompare = (id) => {
-        postCompare(id);
+    if(! compare.includes(id)){
+      postCompare(id);
+     
+    }else{
+      // setCompare((compare) =>
+      // compare.filter((item) => item !== id) );
+      deletCompare(id)
+    }     
   };
 
   const handleDelete = async (id) => {
-    console.log(id)
-    try {
-      const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${userID}&token=${API_KEY}`;
-      await axios.get(
-        `${DELETE_APİ}`
-      );
-      console.log("delete",DELETE_APİ);
-      setCompare((compare) =>
-      compare.filter((item) => item !== id)
-    );
-    } catch (error) {
-      console.log(error);
-    }
+   deletCompare(id)
    };
+   const deletCompare = async(id) =>{
+      console.log(id)
+      try {
+        const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${userID}&token=${API_KEY}`;
+        await axios.get(
+          `${DELETE_APİ}`
+        );
+        setCompare((compare) =>
+        compare.filter((item) => item !== id)
+      );
+      } catch (error) {
+        console.log(error);
+      }
+    }
   
 
   // ! ********* CITIES ************
@@ -190,7 +200,7 @@ const HomeContextProvider = ({ children }) => {
       const { data } = await axios.get(
         `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${userID}&token=${API_KEY}`
       );
-      console.log(data.departments);
+      // console.log(data.departments);
       setLike(data.departments);
     } catch (error) {
       console.log(error);
