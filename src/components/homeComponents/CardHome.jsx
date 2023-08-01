@@ -33,8 +33,6 @@ const CardHome = ({
         departmentName?.trim().toLowerCase()
     )?.[1];
 
-  const [iconSelected, setIconSelected] = useState(false);
-
   const handleDetailClick = () => {
     navigate(`/detail/${id}`);
   };

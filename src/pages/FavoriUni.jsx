@@ -1,44 +1,22 @@
-
-import { AuthContext } from "../context/AuthContext";
-
-import { HomeContext } from "../context/HomeContext"
-import { useContext } from "react";
-
-
+import { HomeContext } from "../context/HomeContext";
+import { useContext, useEffect } from "react";
 import CardHome from "../components/homeComponents/CardHome";
+import heart from "../helper/Running heart.gif";
 
 const FavoriUni = () => {
-  const {like,filteredLikes,universities} =useContext(HomeContext)
-  // const { allDepartments,like } = useContext(AuthContext);
-  // const filteredLikes = allDepartments?.filter((item) =>
-  //   like?.includes(item.id)
-  // );
-  // const [dataFav, setDataFav] = useState([]);
+  const { getLikes, filteredLikes, universities } = useContext(HomeContext);
 
-  // console.log(currentUser.userID);
-  // const getFav = async () => {
-  //   const API_KEY =
-  //     "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
-  //   const GETFAV_API = `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUser.userID}?token=${API_KEY}`;
+  useEffect(() => {
+    getLikes();
+  }, []);
 
-  //   if (currentUser) {
-  //     try {
-  //       const { data } = await axios.get(GETFAV_API);
-  //       setDataFav(data.departments);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-  // useEffect(() => {
-  //   getFav();
-  // }, []);
   const universityImagesMap = universities.reduce((map, university) => {
     if (university && university.images && university.images.length > 0) {
       map[university.tr] = university.images[0];
     }
     return map;
-  }, {}); 
+  }, {});
+  
 
   return (
     <div>
@@ -56,11 +34,25 @@ const FavoriUni = () => {
         </div>
       </div>
       <div className="container flex justify-center  mx-auto items-center flex-wrap gap-5 my-5">
-        {filteredLikes?.map((item, index) => (
-        <CardHome {...item} key={index}   universityImage={universityImagesMap}/>
-      ))} 
+        {(filteredLikes.length > 0) ? (
+          filteredLikes?.map((item, index) => (
+            <CardHome
+              {...item}
+              key={index}
+              universityImage={universityImagesMap}
+            />
+          ))
+        ) : (
+          <div className="min-h-screen flex flex-col gap-4 justify-center items-center w-full ">
+            <h1 className="text-lg font-bold ">
+              You don't have a favorite university...
+            </h1>
+            <div >
+              <img src={heart} alt="heart" />
+            </div>
+          </div>
+        )}
       </div>
-     
     </div>
   );
 };
