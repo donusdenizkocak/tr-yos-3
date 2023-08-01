@@ -15,7 +15,7 @@ const Action = () => {
     postEmailAdd(emailPost);
   };
 
-  console.log(emailPost)
+  // console.log(emailPost)
 
   const postEmailAdd = async (info) => {
     const formData = new FormData();
