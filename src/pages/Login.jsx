@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { Icon } from "../helper/Icons";
 import { Formik } from "formik";
 import LoginForm from "../components/authComponents/LoginForm";
-// import { registerSchema } from "./Register";
+
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { LoginSchema } from "../components/authComponents/ValidationSchema";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -37,9 +38,8 @@ const Login = () => {
                 email: "",
                 password: "",
               }}
-              
-              // validationSchema={registerSchema}
-              onSubmit={(values, actions) => {               
+              validationSchema={LoginSchema}
+              onSubmit={(values, actions) => {
                 loginUser(values);
                 actions.resetForm();
                 actions.setSubmitting(false);
