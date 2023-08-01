@@ -13,7 +13,7 @@ const AuthContextProvider = ({ children }) => {
     sessionStorage.getItem("user") || false
   );
   const navigate = useNavigate();
-  console.log(typeof currentUser);
+ 
 
   const createUser = async (info) => {
     const formData = new FormData();

@@ -2,21 +2,32 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { HomeContext } from "../../context/HomeContext";
-const MyAccountForm = ({ userData }) => {
-  const { userID } = useContext(HomeContext);
+const MyAccountForm = ({
+  userData,
+  setUpdatedUser,
+  updatedUser,
+  getUserData,
+}) => {
+  const { currentUser } = useContext(HomeContext);
   const { user } = userData;
   const [country, setCountry] = useState([]);
- 
+
   const [selectedCity, setSelectedCity] = useState("");
 
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedCountryName, setSelectedCountryName] = useState("");
   const [cities, setCities] = useState([]);
   const [isLoadingCities, setIsLoadingCities] = useState(false);
-  
+
   const [isCountrySelected, setIsCountrySelected] = useState(false);
-  const [updatedUser, setUpdatedUser] = useState([])
-  const [userDetail, setUserDetail] = useState(userData)
+  // const [updatedUser, setUpdatedUser] = useState({
+  //   name: user?.name || "",
+  //   country: user?.country || "",
+  //   city: user?.city || "",
+  //   phone: user?.phone || "",
+  //   about: user?.about || "",
+  // });
+  const [userDetail, setUserDetail] = useState(userData);
   useEffect(() => {
     getCountry();
   }, []);
@@ -32,7 +43,7 @@ const MyAccountForm = ({ userData }) => {
     } catch (error) {}
   };
 
-  console.log(user?.name)
+  // console.log(user?.name);
 
   // const selectedCountres = async (e) => {
   //   setSelectedCountry(e.target.value);
@@ -55,8 +66,7 @@ const MyAccountForm = ({ userData }) => {
       try {
         const { data } = await axios.get(CITY_API);
         setCities(data);
-        console.log(data)
-       
+        // console.log(data);
       } catch (error) {
         // Handle error
       } finally {
@@ -68,30 +78,29 @@ const MyAccountForm = ({ userData }) => {
   };
 
   const selectedCountres = (e) => {
-
     setSelectedCountry(e.target.value);
     setSelectedCountryName(e.target.options[e.target.selectedIndex].text);
-    setUpdatedUser({...updatedUser,country:e.target.options[e.target.selectedIndex].text})
+    setUpdatedUser({
+      ...updatedUser,
+      country: e.target.options[e.target.selectedIndex].text,
+    });
     setIsCountrySelected(true); // Set the flag to indicate that a country has been selected
   };
-  console.log(selectedCountryName)
-  console.log(selectedCountry)
+  // console.log(selectedCountryName);
+  // console.log(selectedCountry);
 
-  const selectedCities=(e)=>{
-   
-setSelectedCity(e.target.value)
-setUpdatedUser({...updatedUser,city:e.target.value})
-// console.log(selectedCity)
-// console.log(prevSelectedCity)
-
-  }
+  const selectedCities = (e) => {
+    setSelectedCity(e.target.value);
+    setUpdatedUser({ ...updatedUser, city: e.target.value });
+    // console.log(selectedCity)
+    // console.log(prevSelectedCity)
+  };
   //Trigger getCitiesByCountry whenever isCountrySelected changes
   useEffect(() => {
     if (isCountrySelected) {
       getCitiesByCountry();
     }
-  }, [isCountrySelected,selectedCountry]);
-
+  }, [isCountrySelected, selectedCountry]);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Formun gönderim davranışını engelledik
@@ -103,39 +112,43 @@ setUpdatedUser({...updatedUser,city:e.target.value})
     //    const updatedUser = {
     //   ...user,
     //    name,
-     
+
     //   country: selectedCountryName,
     //   city: selectedCity,
     // };
 
     try {
       // axios POST isteği kullanarak kullanıcı verilerini sunucuya gönderin
-      const {data} = await axios.post(
-        `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${API_KEY}`,
-       updatedUser,
-               { headers: { "Content-Type": "multipart/form-data" } }
+      const { data } = await axios.post(
+        `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${currentUser}&token=${API_KEY}`,
+        updatedUser,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
-       console.log(data)
-     
-      setUserDetail(data)
-  
+      getUserData();
+      console.log(data);
 
+      setUserDetail(data);
     } catch (error) {
       // POST isteği sırasında oluşan hata
       console.error("Error:", error);
       // hata mesajı
     }
-  }; 
- 
-  const handleChangeName = (e) => {
-    setUpdatedUser({...updatedUser,name:e.target.value})
   };
 
-  const handleChangeEmail = (e) => {
-    setUpdatedUser({...updatedUser,email:e.target.value})
+  const handleChange = (e) => {
+    setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
   };
-  console.log(userData);
-  console.log(updatedUser);
+
+  // console.log(updatedUser);
+  // const handleChangeEmail = (e) => {
+  //   setUpdatedUser({ ...updatedUser, email: e.target.value });
+  // };
+  // console.log(userData);
+  // console.log(updatedUser);
 
   return (
     <div>
@@ -148,111 +161,105 @@ setUpdatedUser({...updatedUser,city:e.target.value})
           <div className="grid grid-cols-2 gap-4">
             {/* //? birinci input */}
             {/*Your Name input*/}
-            <div className=" relative mb-6" data-te-input-wrapper-init>
+            <div className=" relative mb-6">
               <h2>Your Name*</h2>
               <input
                 type="text"
                 className="border border-gray-100 peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-1"
-                id="exampleInput123"
-                aria-describedby="emailHelp123"
-                placeholder={user?.name}
+                id="name"
+                name="name"
+                required
                 defaultValue={user?.name}
                 // value={user?.name} // Input değerini 'name' state ile bağladık
-                onChange={handleChangeName} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
+                onChange={handleChange} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
               />
             </div>
             {/*email input*/}
-            <div className=" relative mb-6" data-te-input-wrapper-init>
+            <div className=" relative mb-6">
               <h2>Email Adres*</h2>
               <input
+                name="email"
                 type="email"
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                id="exampleInput125"
-                placeholder={user?.email}
-                defaultValue={user?.email}
-                onChange={handleChangeEmail}
+                id="email"
+                required
+                defaultValue={user?.email || ""}
+                // onChange={handleChangeEmail}
               />
             </div>
             {/* //?ikinci input */}
             {/* Country input*/}
-            <div className=" relative mb-6" data-te-input-wrapper-init>
+            <div className=" relative mb-6">
               <h2>Country*</h2>
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-auto">
                 <i className="fas fa-chevron-down text-gray-500"></i>
               </div>
               <select
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                data-te-select-init
                 onChange={selectedCountres}
-               
+                id="country"
+                name="country"
               >
-            
-                <option value="">Select a country</option>
+                <option value="">{user?.country || "Select a country"}</option>
                 {country.map((country) => (
                   <option key={country.id} value={country.id}>
                     {country.tr}
                   </option>
                 ))}
               </select>
-              <label
-                htmlFor="emailHelp123"
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
-              ></label>
             </div>
             {/*City input*/}
-            <div className=" relative mb-6" data-te-input-wrapper-init>
+            <div className=" relative mb-6">
               <h2>City*</h2>
-              <select className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              onChange={selectedCities}>
-             <option value="">Select a city</option>
-    {isLoadingCities ? (
-      <option disabled>Loading cities...</option>
-    ) : (
-      cities.map((city) => (
-        <option key={city.id} value={city.en}>
-          {city.en}
-        </option>
-      ))
-    )}
+              <select
+                className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                onChange={selectedCities}
+                id="city"
+                name="city"
+              >
+                <option value="">{user?.city || "Select a city"}</option>
+                {isLoadingCities ? (
+                  <option disabled>Loading cities...</option>
+                ) : (
+                  cities.map((city) => (
+                    <option key={city.id} value={city.en}>
+                      {city.en}
+                    </option>
+                  ))
+                )}
               </select>
             </div>
           </div>
           {/*Pone input*/}
-          <div className="  relative mb-6" data-te-input-wrapper-init>
+          <div className="  relative mb-6">
             <h2>Phone</h2>
             <input
               type="tel"
-              className="border peer block min-h-[auto] w-full rounded  bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="exampleFormControlInputTel"
+              className="border peer block min-h-[auto] w-full rounded  bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none "
+              id="phone"
+              name="phone"
               placeholder="Example label"
+              onChange={handleChange}
+              defaultValue={user?.phone}
             />
-            <label
-              htmlFor="exampleFormControlInputTel"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
-            ></label>
           </div>
-          {/*Password input*/}
-          <div className=" relative mb-6" data-te-input-wrapper-init>
+          {/*about input*/}
+          <div className=" relative mb-6">
             <h2>About</h2>
             <textarea
-              className="border peer block min-h-[auto] w-full rounded  bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="exampleFormControlTextarea1"
+              className="border peer block min-h-[auto] w-full rounded  bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  "
+              id="about"
+              name="about"
               rows={4}
               placeholder="Your message"
-              defaultValue={""}
+              defaultValue={user?.about}
+              onChange={handleChange}
             />
-            <label
-              htmlFor="exampleFormControlTextarea1"
-              className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none  "
-            ></label>
           </div>
           {/*Submit button*/}
           <button
             type="submit"
             className="inline-block w-full rounded bg-[#3b71ca] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-            data-te-ripple-init
-            data-te-ripple-color="light"
-       
           >
             Save Changes
           </button>
