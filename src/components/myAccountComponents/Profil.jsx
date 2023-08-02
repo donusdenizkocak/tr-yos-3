@@ -1,4 +1,4 @@
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Profil = ({ userData }) => {
   const { user } = userData;
@@ -26,7 +26,7 @@ const Profil = ({ userData }) => {
           className="hover:bg-[#017efa]  w-full p-5 border-2 bg-[#017efa1a] border-[#017efa] rounded-lg text-[#017efa] hover:text-white font-semibold transition-all ease-in  duration-200
         "
         >
-         {user?.phone ||" 05** *** ** **"} 
+          {user?.phone || " 05** *** ** **"}
         </button>
         <button className="hover:bg-[#00BE82] bg-[#00be821f] w-full p-5 border-2  border-[#00BE82] rounded-lg text-[#017efa] hover:text-white font-semibold transition-all ease-in  duration-200">
           info@gmail.com
@@ -38,7 +38,7 @@ const Profil = ({ userData }) => {
             color: isActive && "text-white",
             background: isActive && "bg-[#017efa]",
           })}
-          className="bg-[#f0f5fb] w-full p-5 text-[#144273] hover:bg-[#017efa] hover:text-white rounded-lg font-medium transition-all ease-in  duration-300"         
+          className="bg-[#f0f5fb] w-full p-5 text-[#144273] hover:bg-[#017efa] hover:text-white rounded-lg font-medium transition-all ease-in  duration-300"
         >
           My Profil
         </NavLink>
