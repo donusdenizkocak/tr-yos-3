@@ -1,22 +1,17 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { useContext } from "react";
+import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from "../helper/ToastNotify";
 
 export const HomeContext = createContext();
 
 const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
-
-// const FEATURED_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
 const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
 const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`;
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
-
-
 
 const HomeContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -34,9 +29,7 @@ const HomeContextProvider = ({ children }) => {
   const [selectedItems, setSelectedItems] = useState([]);
 
   const [like, setLike] = useState([]);
-  const [compare, setCompare] = useState([]);
-
-  const navigate = useNavigate();
+  const [compare, setCompare] = useState([]); 
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -46,52 +39,32 @@ const HomeContextProvider = ({ children }) => {
     return array;
   };
 
-  console.log(currentUser);
-  useEffect(
-    (id) => {
-      getCities();
-      getUniversities();
-      getDepartments();
-      getAllDepartments();
-      if (currentUser) {
-        getLikes();
-        getCompare(currentUser);
-      }
-    },
-    []
-  );
+  useEffect(() => {
+    getCities();
+    getUniversities();
+    getDepartments();
+    getAllDepartments();
+    if (currentUser) {
+      getLikes();
+      getCompare(currentUser);
+    }
+  }, []);
 
-
-  // const handleCompare = (id) => {
-  //   if (!compare?.includes(id)) {
-  //     setCompare([...compare, id]);
-  //     console.log(compare);
-  //   } else {
-  //     postCompare(id);
-  //   }
-  // };
   const handleCompare = (id) => {
-        postCompare(id);
+    postCompare(id);
   };
 
   const handleDelete = async (id) => {
-    console.log(id)
+    console.log(id);
     try {
-
       const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
-      await axios.get(
-        `${DELETE_APİ}`
-
-      );
-      console.log("delete",DELETE_APİ);
-      setCompare((compare) =>
-      compare.filter((item) => item !== id)
-    );
+      await axios.get(`${DELETE_APİ}`);
+      console.log("delete", DELETE_APİ);
+      setCompare((compare) => compare.filter((item) => item !== id));
     } catch (error) {
       console.log(error);
     }
-   };
-  
+  };
 
   // ! ********* CITIES ************
   const getCities = async () => {
@@ -137,29 +110,21 @@ const HomeContextProvider = ({ children }) => {
   };
 
   //! *********** COMPARE (KARŞILAŞTIRMA) **************
-  
-
-  
-  
   const getCompare = async (userID) => {
     try {
-      const COMPARE_GET=`https://tr-yös.com/api/v1/users/allcompares.php?user_id=${userID}&token=${API_KEY}`
-      const { data } = await axios.get(
-        `${COMPARE_GET}`
-      );
-    console.log(data)
-     setCompare(data?.departments)
+      const COMPARE_GET = `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${userID}&token=${API_KEY}`;
+      const { data } = await axios.get(`${COMPARE_GET}`);
+      console.log(data);
+      setCompare(data?.departments);
     } catch (error) {
       console.log(error);
     }
   };
-  const postCompare = async (id) => {  
+  const postCompare = async (id) => {
     try {
-      const COMPARE_POST= `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
-      const { data } = await axios.post(
-        `${COMPARE_POST}`
-      );
-      setCompare([...compare,id])
+      const COMPARE_POST = `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
+      const { data } = await axios.post(`${COMPARE_POST}`);
+      setCompare([...compare, id]);
       getCompare(currentUser);
       console.log(data);
     } catch (error) {
@@ -174,11 +139,12 @@ const HomeContextProvider = ({ children }) => {
       const { data } = await axios.post(
         `https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       );
+      toastSuccessNotify("Favori ekleme Başarılı ");
 
       setLike([...like, id]);
       getLikes(currentUser);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify("Favori ekleme Hatalı !!! ");
     }
   };
 
@@ -202,10 +168,12 @@ const HomeContextProvider = ({ children }) => {
       await axios.delete(
         `/api/v1/users/deletefavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       );
+      toastWarnNotify("Favori silme Başarılı");
       console.log("Successfully removed from favorites.");
       setLike((like) => like.filter((item) => item !== id));
     } catch (error) {
       console.log(error);
+      toastErrorNotify("Favori silme Hatalı !!!")
     }
   };
   // ! ********* MULTIINPUT ************
@@ -295,7 +263,6 @@ const HomeContextProvider = ({ children }) => {
     getLikes,
 
     currentUser,
-
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };

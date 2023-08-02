@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 export const AuthContext = createContext();
 
 const API_KEY =
@@ -13,7 +14,6 @@ const AuthContextProvider = ({ children }) => {
     sessionStorage.getItem("user") || false
   );
   const navigate = useNavigate();
- 
 
   const createUser = async (info) => {
     const formData = new FormData();
@@ -27,13 +27,12 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-
+      toastSuccessNotify("Kayıt başarılı");
       setCurrentUser(data.user.userId);
       sessionStorage.setItem("user", data.user.userId);
-
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toastErrorNotify("Şifre veya Email hatalı");
     }
   };
 
@@ -47,23 +46,18 @@ const AuthContextProvider = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-
+      toastSuccessNotify("Giriş başarılı");
       setCurrentUser(data.userID);
-      // sessionStorage.setItem("user", JSON.stringify(data));
-
       sessionStorage.setItem("user", data.userID);
-
-      // setCurrentUser(data.userID);
-      // sessionStorage.setItem("user", JSON.stringify(data.userID));
-
       navigate("/");
     } catch (error) {
-      console.log(error);
-      navigate("/");
+      toastErrorNotify("Şifre veya Email hatalı");
+      
     }
   };
 
   const logoutUser = () => {
+    toastSuccessNotify("Çıkış başarılı");
     setCurrentUser(false);
     sessionStorage.clear();
   };
