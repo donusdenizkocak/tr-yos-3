@@ -4,25 +4,23 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { HomeContext } from "../context/HomeContext";
 import axios from "axios";
-import { Outlet } from "react-router";
+import { AuthContext } from "../context/AuthContext";
+
 
 const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
 
 const MyAccount = () => {
-  const { currentUser } = useContext(HomeContext);
+  const { currentUser } = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
-  console.log(userData);
-
   const [updatedUser, setUpdatedUser] = useState([]);
-  console.log(updatedUser);
   const getUserData = async () => {
     try {
       const { data } = await axios(
         `https://tr-yös.com/api/v1/users/user.php?id=${currentUser}&token=${API_KEY}`
       );
       setUserData(data);
-      console.log(data);
+
       setUpdatedUser({
         name: data?.user?.name,
         country: data?.user?.country,
@@ -64,7 +62,6 @@ const MyAccount = () => {
           getUserData={getUserData}
         />
       </div>
-      {/* <Outlet /> */}
     </>
   );
 };
