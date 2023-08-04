@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { HomeContext } from "../../context/HomeContext";
+import { toastErrorNotify, toastSuccessNotify } from "../../helper/ToastNotify";
 const MyAccountForm = ({
   userData,
   setUpdatedUser,
@@ -11,23 +12,13 @@ const MyAccountForm = ({
   const { currentUser } = useContext(HomeContext);
   const { user } = userData;
   const [country, setCountry] = useState([]);
-
   const [selectedCity, setSelectedCity] = useState("");
-
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedCountryName, setSelectedCountryName] = useState("");
   const [cities, setCities] = useState([]);
   const [isLoadingCities, setIsLoadingCities] = useState(false);
-
   const [isCountrySelected, setIsCountrySelected] = useState(false);
-  // const [updatedUser, setUpdatedUser] = useState({
-  //   name: user?.name || "",
-  //   country: user?.country || "",
-  //   city: user?.city || "",
-  //   phone: user?.phone || "",
-  //   about: user?.about || "",
-  // });
-  const [userDetail, setUserDetail] = useState(userData);
+
   useEffect(() => {
     getCountry();
   }, []);
@@ -43,37 +34,18 @@ const MyAccountForm = ({
     } catch (error) {}
   };
 
-  // console.log(user?.name);
-
-  // const selectedCountres = async (e) => {
-  //   setSelectedCountry(e.target.value);
-  //   setSelectedCountryName ( e.target.options[e.target.selectedIndex].text);
-  //   setIsLoadingCities(true);
-  //   setCities([]);
-  //   console.log(selectedCountryName)
-  //   try {
-  //     const { data } = await axios.get(CITY_API);
-  //     setCities(data);
-  //     console.log(cities)
-  //   } catch (error) {}finally{
-  //     setIsLoadingCities(false);
-  // }
-
-  // };
   const getCitiesByCountry = async () => {
     if (selectedCountry) {
       setIsLoadingCities(true);
       try {
         const { data } = await axios.get(CITY_API);
         setCities(data);
-        // console.log(data);
       } catch (error) {
-        // Handle error
       } finally {
         setIsLoadingCities(false);
       }
     } else {
-      setCities([]); // Reset cities if no country is selected
+      setCities([]);
     }
   };
 
@@ -84,18 +56,14 @@ const MyAccountForm = ({
       ...updatedUser,
       country: e.target.options[e.target.selectedIndex].text,
     });
-    setIsCountrySelected(true); // Set the flag to indicate that a country has been selected
+    setIsCountrySelected(true);
   };
-  // console.log(selectedCountryName);
-  // console.log(selectedCountry);
 
   const selectedCities = (e) => {
     setSelectedCity(e.target.value);
     setUpdatedUser({ ...updatedUser, city: e.target.value });
-    // console.log(selectedCity)
-    // console.log(prevSelectedCity)
   };
-  //Trigger getCitiesByCountry whenever isCountrySelected changes
+
   useEffect(() => {
     if (isCountrySelected) {
       getCitiesByCountry();
@@ -103,22 +71,9 @@ const MyAccountForm = ({
   }, [isCountrySelected, selectedCountry]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Formun gönderim davranışını engelledik
-    // 'name' ve 'email' state'leri kullanarak ilgili işlem yapıldı
-    // const updatedUser = { ...user, name: e.target.value };
-    // setUser(updatedUser);
-    // console.log("name:", name);
-    // console.log("e-mail:", email);
-    //    const updatedUser = {
-    //   ...user,
-    //    name,
-
-    //   country: selectedCountryName,
-    //   city: selectedCity,
-    // };
+    e.preventDefault();
 
     try {
-      // axios POST isteği kullanarak kullanıcı verilerini sunucuya gönderin
       const { data } = await axios.post(
         `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${currentUser}&token=${API_KEY}`,
         updatedUser,
@@ -128,14 +83,14 @@ const MyAccountForm = ({
           },
         }
       );
+      toastSuccessNotify("Başarılı");
       getUserData();
       console.log(data);
 
-      setUserDetail(data);
+      // setUserDetail(data);
     } catch (error) {
-      // POST isteği sırasında oluşan hata
       console.error("Error:", error);
-      // hata mesajı
+      toastErrorNotify("Hata !!!");
     }
   };
 
@@ -143,23 +98,14 @@ const MyAccountForm = ({
     setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
   };
 
-  // console.log(updatedUser);
-  // const handleChangeEmail = (e) => {
-  //   setUpdatedUser({ ...updatedUser, email: e.target.value });
-  // };
-  // console.log(userData);
-  // console.log(updatedUser);
-
   return (
     <div>
       <div className=" block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-        <form onSubmit={handleSubmit}>
-          {/* form gönderildiğinde handleSubmit fnk çağrıldı*/}
+        <form onSubmit={handleSubmit}>       
           <div className="text-xl text-darkBlue font-bold mb-2 mx-3">
             <h3>My Account</h3>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {/* //? birinci input */}
+          <div className="grid grid-cols-2 gap-4">           
             {/*Your Name input*/}
             <div className=" relative mb-6">
               <h2>Your Name*</h2>
@@ -169,9 +115,8 @@ const MyAccountForm = ({
                 id="name"
                 name="name"
                 required
-                defaultValue={user?.name}
-                // value={user?.name} // Input değerini 'name' state ile bağladık
-                onChange={handleChange} // Inputtaki değişiklikleri alıp 'name' state'i güncelliyoruz
+                defaultValue={user?.name}       
+                onChange={handleChange} 
               />
             </div>
             {/*email input*/}
@@ -183,11 +128,9 @@ const MyAccountForm = ({
                 className="border peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 id="email"
                 required
-                defaultValue={user?.email || ""}
-                // onChange={handleChangeEmail}
+                defaultValue={user?.email || ""}               
               />
-            </div>
-            {/* //?ikinci input */}
+            </div>          
             {/* Country input*/}
             <div className=" relative mb-6">
               <h2>Country*</h2>
@@ -230,7 +173,7 @@ const MyAccountForm = ({
               </select>
             </div>
           </div>
-          {/*Pone input*/}
+          {/*Phone input*/}
           <div className="  relative mb-6">
             <h2>Phone</h2>
             <input
