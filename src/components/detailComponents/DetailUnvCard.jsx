@@ -1,47 +1,26 @@
 import { HomeContext } from "../../context/HomeContext";
-
-import { AuthContext } from "../../context/AuthContext";
-import { Icon } from "../../helper/Icons";
 import { useContext } from "react";
-import { useState } from "react";
 
 const DetailUnvCard = ({ departments }) => {
-  
-  const { universities, removeLikes, addLikes, userID, like } =
-    useContext(HomeContext);
-  const { currentUser } = useContext(AuthContext);
-  // const [isLiked, setIsLiked] = useState(false);
+  const { universities, removeLikes, addLikes, like } = useContext(HomeContext);
 
   if (!departments) {
     return null;
   }
 
-  const {
-    department,
-    city,
-    university,
-    data,
-    id,
-    // data: { adress, web, email, phone, fax },
-  } = departments;
-  console.log(universities)
+  const { department, city, university, data, id } = departments;
+  console.log(universities);
 
   const filteredLogo = universities
     .filter((item) => item.tr === university.tr)
     .map((item) => item.logo);
 
-  //handleLike
   const handleLikeClick = (id) => {
     if (like.includes(id)) {
-      // Card is already in favorites, remove it from favorites
       removeLikes(id);
     } else {
-      // Card is not in favorites, add it to favorites
       addLikes(id);
     }
-
-    // Toggle the isLiked state
-    // setIsLiked(!isLiked);
   };
 
   return (
@@ -67,7 +46,7 @@ const DetailUnvCard = ({ departments }) => {
           <div className="flex-shrink-0">
             <img
               src={filteredLogo}
-              // className="w-16 h-16 rounded-full"
+          
               className="w-16 h-16 rounded-full"
               alt=""
             />
@@ -81,7 +60,7 @@ const DetailUnvCard = ({ departments }) => {
 
         <div>
           <div>
-            <div>{/* <Icon name="fav"/> */}</div>
+           
             <div className="ml-2 mb-5">
               <h6 className="font-bold">Call Us</h6>
               <p>
@@ -96,7 +75,7 @@ const DetailUnvCard = ({ departments }) => {
           </div>
 
           <div>
-            <div> {/*  <Icon name="fav"/>*/} </div>
+         
             <div className="ml-2 mb-5">
               <h6 className="font-sm font-bold">Email</h6>
               <p>
@@ -108,7 +87,7 @@ const DetailUnvCard = ({ departments }) => {
           </div>
 
           <div>
-            <div>{/* <Icon name="fav" size="35"/> */}</div>
+          
             <div className="ml-2 mb-5">
               <h6 className="font-sm font-bold">Website</h6>
               <p>

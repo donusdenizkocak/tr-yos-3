@@ -15,26 +15,10 @@ const dataImages = [
   "https://swiperjs.com/demos/images/nature-8.jpg",
 ];
 
-const DetailHeader = ({ universityImage, departments }) => {
- 
+const DetailHeader = ({ universityImage, departments }) => { 
 
   if (!departments) {
-    return null;
-  }
-  console.log(universityImage);
-
-  const {
-    department,
-    faculty,
-    content,
-    language,
-    university,
-    price,
-    scholarship,
-    data,
-  } = departments;
-
-  const departmentName = university?.tr;
+    return null;  }
 
   return (
     <div className="bg-gradient-black-white">

@@ -8,14 +8,10 @@ const MainInfo = ({ departments }) => {
   const {
     department,
     faculty,
-    content,
     language,
-    university,
-    price,
-    scholarship,
     data,
   } = departments;
- 
+
   return (
     <div className="w-full ">
       {/* birinci kısım */}
@@ -28,27 +24,7 @@ const MainInfo = ({ departments }) => {
             <h2 className="text-xl text-darkBlue font-bold mb-2">
               {faculty.tr}
             </h2>
-            {/* <a href="#" className="flex items-center mb-2">
-
-
-            
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-             {data.adress}
-            </a> */}
-            <div className="flex text-[12px] text-[#4F5E64] gap-2 mb-2">              
+            <div className="flex text-[12px] text-[#4F5E64] gap-2 mb-2">
               <Icon name="city" size="15" />
               <p className="">{data?.adress}</p>
             </div>

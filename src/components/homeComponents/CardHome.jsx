@@ -15,15 +15,7 @@ import "swiper/css/pagination";
 const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
 
-const CardHome = ({
-  city, 
-  faculty,
-  university,
-  department, 
-  code,
-  id,
-}) => {
-  // const [iconColor, setIconColor] = useState("#017EFA");
+const CardHome = ({ city, faculty, university, department, code, id }) => {
   const [cardImages, setCardImages] = useState([]);
   const navigate = useNavigate();
   console.log(cardImages);
@@ -34,7 +26,6 @@ const CardHome = ({
 
   const departmentName = university?.tr;
 
-
   const handleDetailClick = () => {
     if (currentUser) {
       navigate(`/detail/${id}`);
@@ -42,17 +33,13 @@ const CardHome = ({
       toastWarnNotify("Lütfen Giriş Yapınız");
     }
   };
-  
+
   const handleLikeClick = (id) => {
     if (currentUser) {
       if (!like.includes(id)) {
-        // Card is not in favorites, add it to favorites
         addLikes(id, userID);
-        // setIconColor("red");
       } else {
-        // Card is already in favorites, remove it from favorites
         removeLikes(id, userID);
-        // setIconColor("#017EFA");
       }
     } else {
       toastWarnNotify("Lütfen Giriş Yapınız");
@@ -86,10 +73,9 @@ const CardHome = ({
           modules={[Pagination]}
           className="mySwiper"
         >
-          {cardImages?.image?.map((item,index) => (
-           
+          {cardImages?.image?.map((item, index) => (
             <SwiperSlide
-            key={index}
+              key={index}
               style={{
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
@@ -108,7 +94,7 @@ const CardHome = ({
             src="https://iatkv.tmgrup.com.tr/c4c003/616/321/0/0/800/416?u=https%3A%2F%2Fitkv.tmgrup.com.tr%2F2020%2F08%2F07%2Fmaas-gibi-burs-destegi-1596775964948.jpeg"
             alt="image"
           />
-        )}      
+        )}
 
         <button
           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold  ${

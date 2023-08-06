@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { HomeContext } from "../../context/HomeContext";
 import CompareDeprtCard from "./CompareDeprtCard";
@@ -18,12 +18,6 @@ const CompareDepartments = () => {
     }
     return map;
   }, {});
-
-  //   const { selectedItems, allDepartments, compare } = useContext(HomeContext);
-  //   console.log(allDepartments);
-
-  //   const records = allDepartments.filter((item) => compare.includes(item.id));
-  //   console.log(records);
 
   return (
     <>
@@ -64,14 +58,4 @@ const CompareDepartments = () => {
     </>
   );
 };
-
-//       <div className="flex flex-wrap justify-center ">
-//         {records.map((item, i) => (
-//           <CompareDeprtCard {...item} key={i} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
 export default CompareDepartments;

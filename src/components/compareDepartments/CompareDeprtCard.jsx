@@ -2,10 +2,7 @@
 import { useContext } from "react";
 import { HomeContext } from "../../context/HomeContext";
 
- const CompareDeprtCard = ({item,universityImage}) => {
-  // const {id,city:{tr},university:{tr}}=item 
-  //  console.log(item)
-   
+ const CompareDeprtCard = ({item,universityImage}) => {   
    const {handleDelete}=useContext(HomeContext)
   
    const departmentName = item?.university?.tr;
@@ -53,10 +50,7 @@ import { HomeContext } from "../../context/HomeContext";
       </p>
       <p className="mb-3 font-normal text-gray-700  p-4 text-center">
         {item?.price}$
-      </p>     
-
-
-
+      </p>
       </div>
     </div>
     </>

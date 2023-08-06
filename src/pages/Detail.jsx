@@ -14,7 +14,7 @@ const API_KEY =
 
 const Detail = () => {
   const [imagesData, setImagesData] = useState([]);
-  console.log(imagesData)
+  console.log(imagesData);
   const { id } = useParams();
   const { allDepartments, universities } = useContext(HomeContext);
   const [departmentDetails, setDepartmentDetails] = useState(null);
@@ -56,7 +56,6 @@ const Detail = () => {
           <MainInfo departments={departmentDetails} />
           <AboutDetail departments={departmentDetails} />
           <BasicDetail departments={departmentDetails} />
-          {/* <SubmitReview /> */}
         </div>
         <div>
           <DetailUnvCard departments={departmentDetails} />

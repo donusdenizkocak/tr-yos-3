@@ -20,7 +20,6 @@ const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php
 const HomeContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
 
-
   const [cities, setCities] = useState([]);
   const [universities, setUniversities] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -37,7 +36,6 @@ const HomeContextProvider = ({ children }) => {
 
   const [compare, setCompare] = useState([]);
 
-
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -47,46 +45,38 @@ const HomeContextProvider = ({ children }) => {
   };
 
   console.log(currentUser);
-  useEffect(
-    (id) => {
-      getCities();
-      getUniversities();
-      getDepartments();
-      getAllDepartments();
-      if (currentUser) {
-        getLikes();
-        getCompare(currentUser);
-      }
-    },
-    []
-  );
-
+  useEffect((id) => {
+    getCities();
+    getUniversities();
+    getDepartments();
+    getAllDepartments();
+    if (currentUser) {
+      getLikes();
+      getCompare(currentUser);
+    }
+  }, []);
 
   const handleCompare = (id) => {
-
-    if(! compare.includes(id)){
-      postCompare(id);
-     
-    }else{
-   
-      deletCompare(id)
-    }     
-
+    if (currentUser) {
+      if (!compare.includes(id)) {
+        postCompare(id);
+      } else {
+        deletCompare(id);
+      }
+    } else {
+      toastWarnNotify(`Lütfen giriş yapınız`);
+    }
   };
 
   const handleDelete = async (id) => {
-   deletCompare(id)
-   };
-
-
-  
-
+    deletCompare(id);
+  };
 
   // ! ********* CITIES ************
   const getCities = async () => {
     try {
       const { data } = await axios.get(CITIES_API);
-      // console.log(data);
+  
       setCities(data);
     } catch (error) {
       console.log(error);
@@ -127,26 +117,18 @@ const HomeContextProvider = ({ children }) => {
 
   //! *********** COMPARE (KARŞILAŞTIRMA) **************
 
-  
-
-  
-  
   const getCompare = async (currentUser) => {
     try {
-      const COMPARE_GET=`https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser}&token=${API_KEY}`
-      const { data } = await axios.get(
-        `${COMPARE_GET}`
-      );
-    console.log(data)
-     setCompare(data?.departments)
-
+      const COMPARE_GET = `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser}&token=${API_KEY}`;
+      const { data } = await axios.get(`${COMPARE_GET}`);
+      console.log(data);
+      setCompare(data?.departments);
     } catch (error) {
       console.log(error);
     }
   };
   const postCompare = async (id) => {
     try {
-
       const COMPARE_POST = `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
       const { data } = await axios.post(`${COMPARE_POST}`);
       setCompare([...compare, id]);
@@ -157,30 +139,26 @@ const HomeContextProvider = ({ children }) => {
     }
   };
 
-  const deletCompare = async(id) =>{
-    console.log(id)
+  const deletCompare = async (id) => {
+    console.log(id);
     try {
       const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
-      await axios.get(
-        `${DELETE_APİ}`
-      );
-      setCompare((compare) =>
-      compare.filter((item) => item !== id)
-    );
+      await axios.get(`${DELETE_APİ}`);
+      setCompare((compare) => compare.filter((item) => item !== id));
     } catch (error) {
       console.log(error);
     }
-  }
-console.log(like)
+  };
+  console.log(like);
 
- // ! ********* DEPARTMENT İMAGE ************
+  // ! ********* DEPARTMENT İMAGE ************
 
-// const getImage = async (id) =>{
-//   const DEPARTMAN_IMAGE =`https://tr-yös.com/api/v1/record/departmentimage.php?id=${id}&token=${API_KEY}`
-//   const {data} = await axios.get(DEPARTMAN_IMAGE)
-//   setDepartmanImage(data)
-//   console.log(data)
-//  }
+  // const getImage = async (id) =>{
+  //   const DEPARTMAN_IMAGE =`https://tr-yös.com/api/v1/record/departmentimage.php?id=${id}&token=${API_KEY}`
+  //   const {data} = await axios.get(DEPARTMAN_IMAGE)
+  //   setDepartmanImage(data)
+  //   console.log(data)
+  //  }
 
   // ! ********* LİKE (BEĞENME) ************
 

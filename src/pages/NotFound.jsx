@@ -4,7 +4,7 @@ import errorImg from "../img/404.png";
 const NotFound = () => {
   const navigate = useNavigate();
   return (
-    <div className="container flex justify-center items-center flex-col min-h-screen text-center mt-4 mb-10 ">
+    <div className="flex justify-center items-center flex-col min-h-screen text-center mt-4 mb-10 ">
       <img className="m-0" src={errorImg} alt="NotFound" />
       <div>
         <button

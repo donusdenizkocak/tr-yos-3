@@ -6,14 +6,7 @@ import { useNavigate } from "react-router-dom";
 const MultiInput = () => {
   const navigate = useNavigate();
   const {
-    cities,
-    setCities,
-    city,
-    universities,
-    allDepartments,
-    selectedIds,
-    setSelectedIds,
-    selectedSecondIds,
+    city,    
     handleFirstInputChange,
     handleSecondInputChange,
     handleThirdInputChange,

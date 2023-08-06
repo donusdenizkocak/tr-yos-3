@@ -24,13 +24,13 @@ const AppRouter = () => {
         <Route path="/departments" element={<Departments />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="" element={<PrivateRouter/>}>
+        <Route path="" element={<PrivateRouter />}>
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/compare" element={<CompareDepartments />} />
           <Route path="/favori" element={<FavoriUni />} />
         </Route>
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Action />

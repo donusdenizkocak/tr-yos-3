@@ -1,6 +1,5 @@
 import { Icon } from "../helper/Icons";
 import { Formik } from "formik";
-
 import RegisterForm from "../components/authComponents/RegisterForm";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
