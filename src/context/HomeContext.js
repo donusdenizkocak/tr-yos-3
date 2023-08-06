@@ -2,7 +2,11 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import { useContext } from "react";
-import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from "../helper/ToastNotify";
+import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from "../helper/ToastNotify";
 
 export const HomeContext = createContext();
 
@@ -32,7 +36,6 @@ const HomeContextProvider = ({ children }) => {
   const [like, setLike] = useState([]);
 
   const [compare, setCompare] = useState([]);
- 
 
 
   const shuffleArray = (array) => {
@@ -60,6 +63,7 @@ const HomeContextProvider = ({ children }) => {
 
 
   const handleCompare = (id) => {
+
     if(! compare.includes(id)){
       postCompare(id);
      
@@ -67,6 +71,7 @@ const HomeContextProvider = ({ children }) => {
    
       deletCompare(id)
     }     
+
   };
 
   const handleDelete = async (id) => {
@@ -218,7 +223,7 @@ console.log(like)
       setLike((like) => like.filter((item) => item !== id));
     } catch (error) {
       console.log(error);
-      toastErrorNotify("Favori silme Hatalı !!!")
+      toastErrorNotify("Favori silme Hatalı !!!");
     }
   };
   // ! ********* MULTIINPUT ************

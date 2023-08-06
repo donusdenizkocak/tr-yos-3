@@ -25,7 +25,7 @@ const Departments = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row container mx-auto ">
+      <div className="flex flex-col sm:flex-row container mx-auto  gap-7">
         <div className="flex justify-center md:justify-start md:items-start ">
           <DepartmentsForm />
         </div>
