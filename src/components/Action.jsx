@@ -43,7 +43,7 @@ const Action = () => {
         </p>
       </div>
 
-      <div className="rounded-full border w-full   md:w-[25rem]   bg-white px-4 pt-4 mt-10">
+      <div className="rounded-full border w-full   md:w-[35rem] bg-white px-4 pt-4 mt-10">
         <form onSubmit={handleSumbit}>
           <div className="rounded-full relative  mb-4 flex flex-wrap items-stretch">
             <input
