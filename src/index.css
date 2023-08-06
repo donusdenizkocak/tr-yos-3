@@ -2,35 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.main-swiper {
-  width: 65% !important;
-  margin: auto !important;
-  padding: 8rem 0 !important;
-}
-
-.data-swiper-slider {
-  background-position: center !important ;
-  background-size: cover !important;
-  width: 350px !important;
-  height: 350px !important;
-}
-
-.swiper-image {
-  display: block !important;
-  width: 100% !important;
-}
 .ucnokta {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-
-.activeCompare{
+.activeCompare {
   color: white !important;
   background-color: green;
 }
-.comparedelet{
+.comparedelet {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;

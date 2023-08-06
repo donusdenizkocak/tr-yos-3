@@ -1,35 +1,13 @@
 import Select from "react-select";
-
 import { HomeContext } from "../../context/HomeContext";
 import { useContext } from "react";
 
-// const Checkbox = ({ id, label }) => (
-//   <div className="checkbox-container">
-//     <label className="left">
-//       <input
-//         className="checkbox-input mx-1"
-//         type="checkbox"
-//         defaultValue
-//         id={id}
-//       />
-//       {label}
-//     </label>
-//   </div>
-// );
-
 const DepartmentsForm = () => {
-  const {
-    cities,
+  const {   
     city,
     selectedCities,
-    selectedUnies,
-    selectedThirdIds,
-    selectedDeps,
-    universities,
-    allDepartments,
-    selectedIds,
-    setSelectedIds,
-    selectedSecondIds,
+    selectedUnies,   
+    selectedDeps,   
     handleFirstInputChange,
     handleSecondInputChange,
     handleThirdInputChange,
@@ -108,15 +86,7 @@ const DepartmentsForm = () => {
             </label>
           </div>
         </div>
-
-        {/* <div>
-          <h3 className="text-gray-900 font-semibold">Advanture Feautures</h3>
-          <div className="grid grid-cols-2 gap-2 mt-4 justify-center text-gray-600">
-            {options.map((option) => (
-              <Checkbox key={option.id} id={option.id} label={option.label} />
-            ))}
-          </div>
-        </div> */}
+        
         <div className=" flex justify-center items-center">
           <button className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1.5 px-4 border border-blue-700 rounded h-9 w-full mt-5">
             Submit Search

@@ -1,38 +1,30 @@
+import { Swiper, SwiperSlide } from "swiper/react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../context/HomeContext";
 import { Icon } from "../../helper/Icons";
 import { AuthContext } from "../../context/AuthContext";
 import { toastWarnNotify } from "../../helper/ToastNotify";
+import axios from "axios";
+import { useEffect } from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
-const CardHome = ({
-  city,
-  bolum,
-  faculty,
-  university,
-  universities,
-  universityImage,
-  department,
-  images,
-  code,
-  id,
-}) => {
-  const [iconColor, setIconColor] = useState("#017EFA");
+const API_KEY =
+  "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
+
+const CardHome = ({ city, faculty, university, department, code, id }) => {
+  const [cardImages, setCardImages] = useState([]);
   const navigate = useNavigate();
+  console.log(cardImages);
 
   const { addLikes, removeLikes, like, userID, compare, handleCompare } =
     useContext(HomeContext);
   const { currentUser } = useContext(AuthContext);
 
   const departmentName = university?.tr;
-
-  const departmentImage =
-    universityImage &&
-    Object.entries(universityImage).find(
-      ([universityName, imageUrl]) =>
-        universityName.trim().toLowerCase() ===
-        departmentName?.trim().toLowerCase()
-    )?.[1];
 
   const handleDetailClick = () => {
     if (currentUser) {
@@ -42,51 +34,67 @@ const CardHome = ({
     }
   };
 
-  // console.log(like.includes(id))
-  // const handleLikeClick = (id) => {
-  //   if (iconColor === "#017EFA") {
-  //     if (like.includes(id)) {
-  //       addLikes(id,currentUser);
-  //       setIconColor("bebe");
-  //     } else {
-  //       removeLikes(id,currentUser);
-  //       console.log("delete kısmı ");
-  //       setIconColor("#017EFA");
-  //     }
-  //   } else {
-  //     alert("LÜTFEN GİRİŞ YAPINIZ");
-  //   }
-
-  // };
   const handleLikeClick = (id) => {
     if (currentUser) {
       if (!like.includes(id)) {
-        // Card is not in favorites, add it to favorites
         addLikes(id, userID);
-        setIconColor("red");
       } else {
-        // Card is already in favorites, remove it from favorites
         removeLikes(id, userID);
-        setIconColor("#017EFA");
       }
     } else {
       toastWarnNotify("Lütfen Giriş Yapınız");
     }
   };
+
+  const getImg = async (cardId) => {
+    try {
+      const { data } = await axios(
+        `https://tr-yös.com/api/v1/record/departmentimage.php?id=${cardId}&token=${API_KEY}`
+      );
+      setCardImages(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getImg(id);
+  }, []);
+
   return (
     <div
       className=" bg-white border border-gray-200 rounded-lg shadow w-[310px] h-[415px] flex flex-col justify-between"
       key={code}
     >
       <div className="relative">
-        <img
-          className="rounded-t-lg w-full h-[215px] object-fill hover:scale-90 hover:ease-in-out hover:duration-300 "
-          src={
-            departmentImage ||
-            "https://iatkv.tmgrup.com.tr/c4c003/616/321/0/0/800/416?u=https%3A%2F%2Fitkv.tmgrup.com.tr%2F2020%2F08%2F07%2Fmaas-gibi-burs-destegi-1596775964948.jpeg"
-          }
-          alt="image"
-        />
+        <Swiper
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {cardImages?.image?.map((item, index) => (
+            <SwiperSlide
+              key={index}
+              style={{
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundImage: `url(${item})`,
+                height: "215px",
+                with: "100%",
+                borderRadius: "8px 8px 0 0 ",
+              }}
+            ></SwiperSlide>
+          ))}
+        </Swiper>
+
+        {cardImages.length === 0 && (
+          <img
+            className="rounded-t-lg w-full h-[215px] object-fill  "
+            src="https://iatkv.tmgrup.com.tr/c4c003/616/321/0/0/800/416?u=https%3A%2F%2Fitkv.tmgrup.com.tr%2F2020%2F08%2F07%2Fmaas-gibi-burs-destegi-1596775964948.jpeg"
+            alt="image"
+          />
+        )}
 
         <button
           className={`absolute bottom-2 right-2 flex gap-1 z-10  p-1 rounded-lg border font-semibold  ${
@@ -140,7 +148,7 @@ const CardHome = ({
           className="text-md font-bold h-[2rem] my-1 flex justify-center items-center"
           onClick={handleDetailClick}
         >
-          <button className="mx-5 h-full px-3 bg-[#00000080] text-white rounded-lg">
+          <button className="mx-5 h-full px-3 bg-[#3B82F6] text-white rounded-lg">
             Detail
           </button>
         </div>

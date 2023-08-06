@@ -34,9 +34,9 @@ const MyAccount = () => {
   };
 
   useEffect(() => {
-    getUserData(); //---- API isteği
+    getUserData(); 
   }, []);
-  // console.log(currentUser);
+
   return (
     <>
       <div
@@ -53,7 +53,7 @@ const MyAccount = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-9 container mx-auto my-10">
+      <div className="flex flex-col md:flex-row justify-center items-center flex-wrap gap-9 container mx-auto my-10">
         <Profil userData={userData} />
         <MyAccountForm
           updatedUser={updatedUser}

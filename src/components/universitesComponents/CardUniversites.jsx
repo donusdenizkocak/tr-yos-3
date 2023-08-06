@@ -10,10 +10,6 @@ const framerItem = {
 const CardUniversites = ({ id, code, tr, data, logo, cities, city }) => {
   const { allDepartments } = useContext(HomeContext);
 
-  // const universityDepartments = allDepartments.filter(
-  //   (department) => department?.university?.code === code
-  // );
-
   const universityDepartments = allDepartments.filter((department) =>
     department?.university?.code.includes(code)
   );

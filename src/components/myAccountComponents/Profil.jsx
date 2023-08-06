@@ -8,7 +8,7 @@ const [openPassword, setopenPassword] = useState(false)
   return (
     <>
     <div
-      className="flex flex-col justify-center items-center w-[350px] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] rounded-lg  gap-5 p-3
+      className="flex flex-col justify-center items-center w-[300px] sm:w-[350px] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] rounded-lg  gap-5 p-3
     "
     >
       <div className="w-24 rounded-full border-3 mt-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] ">

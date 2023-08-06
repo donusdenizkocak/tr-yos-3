@@ -4,7 +4,6 @@ import HomeContextProvider from "./context/HomeContext";
 import AuthContextProvider from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 
-
 function App() { 
   return (
     <BrowserRouter>

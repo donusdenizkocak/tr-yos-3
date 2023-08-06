@@ -5,12 +5,18 @@ import MainInfo from "../components/detailComponents/MainInfo";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { SubmitReview } from "../components/detailComponents/SubmitReview";
 import DetailUnvCard from "../components/detailComponents/DetailUnvCard";
 import { HomeContext } from "../context/HomeContext";
+import axios from "axios";
+
+const API_KEY =
+  "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
+
 const Detail = () => {
-  const { id } = useParams()
-  const { allDepartments ,universities} = useContext(HomeContext);
+  const [imagesData, setImagesData] = useState([]);
+  console.log(imagesData);
+  const { id } = useParams();
+  const { allDepartments, universities } = useContext(HomeContext);
   const [departmentDetails, setDepartmentDetails] = useState(null);
   useEffect(() => {
     // Function to fetch department details by ID from allDepartments
@@ -18,34 +24,45 @@ const Detail = () => {
       const departments = allDepartments.find((dep) => dep.id === id);
       setDepartmentDetails(departments);
       // console.log(departments)
+      getImg(id);
     };
 
     fetchDepartmentDetails();
   }, [allDepartments, id]);
 
-  const universityImagesMap = universities.reduce((map, university) => {
-    if (university && university.images && university.images.length > 0) {
-      map[university.tr] = university.images[0];
+  const getImg = async (cardId) => {
+    try {
+      const { data } = await axios(
+        `https://tr-yös.com/api/v1/record/departmentimage.php?id=${cardId}&token=${API_KEY}`
+      );
+      setImagesData(data.image);
+    } catch (error) {
+      console.log(error);
     }
-    return map;
-  }, {});
+  };
+
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-[#f1f5f8]">
-      <DetailHeader  universityImage={universityImagesMap} departments= {departmentDetails}/>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="bg-[#f1f5f8]"
+    >
+      <DetailHeader
+        universityImage={imagesData}
+        departments={departmentDetails}
+      />
       <div className="container mx-auto flex gap-5 py-5">
         <div className="flex flex-col gap-5">
-          <MainInfo departments={departmentDetails}/>
-          <AboutDetail departments={departmentDetails}/>
+          <MainInfo departments={departmentDetails} />
+          <AboutDetail departments={departmentDetails} />
           <BasicDetail departments={departmentDetails} />
-          <SubmitReview />
         </div>
         <div>
-          <DetailUnvCard departments= {departmentDetails}/>
+          <DetailUnvCard departments={departmentDetails} />
         </div>
       </div>
     </motion.div>
   );
 };
-
 
 export default Detail;

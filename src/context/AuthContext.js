@@ -52,7 +52,6 @@ const AuthContextProvider = ({ children }) => {
       navigate("/");
     } catch (error) {
       toastErrorNotify("Şifre veya Email hatalı");
-      
     }
   };
 

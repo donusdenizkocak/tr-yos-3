@@ -98,8 +98,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-
-
       <div
         className="invisible fixed left-0 right-0 top-0 z-[1045] flex h-1/3 max-h-full max-w-full -translate-y-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out  [&[data-te-offcanvas-show]]:transform-none"
         tabIndex={-1}
@@ -108,27 +106,32 @@ const Navbar = () => {
         data-te-offcanvas-init
       >
         <div className="flex items-center justify-between p-4 ">
-          {/* <h5
-            className="mb-0 font-semibold leading-normal"
-            id="offcanvasTopLabel"
-          >
-            Offcanvas top
-          </h5> */}
-
           <ul className=" h-full flex flex-col justify-center  ">
-
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >HomePage</a>
-        </li>
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700" >Universites</a>
-        </li>
-        <li className=" mb-0 p-2 font-semibold leading-normal">
-          <a href="/" className=" no-underline text-darkBlue text-xl hover:text-blue-700">Departments</a>
-        </li>
-      </ul>
-
-
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                HomePage
+              </a>
+            </li>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                Universites
+              </a>
+            </li>
+            <li className=" mb-0 p-2 font-semibold leading-normal">
+              <a
+                href="/"
+                className=" no-underline text-darkBlue text-xl hover:text-blue-700"
+              >
+                Departments
+              </a>
+            </li>
+          </ul>
 
           <button
             type="button"
@@ -154,8 +157,6 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-
-
     </>
   );
 };

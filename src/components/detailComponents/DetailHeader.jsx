@@ -1,19 +1,8 @@
-import { initLightboxJS } from "lightbox.js-react";
-import "lightbox.js-react/dist/index.css";
-import { SlideshowLightbox } from "lightbox.js-react";
-import { useEffect } from "react";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import "swiper/css/navigation";
-import {
-  EffectCoverflow,
-  Pagination,
-  Autoplay,
-  Navigation,
-} from "swiper/modules";
 
 const dataImages = [
   "https://swiperjs.com/demos/images/nature-1.jpg",
@@ -26,79 +15,78 @@ const dataImages = [
   "https://swiperjs.com/demos/images/nature-8.jpg",
 ];
 
-const DetailHeader = ({ universityImage, departments }) => {
-  useEffect(() => {
-    initLightboxJS("Insert your License Key here", "Insert plan type here");
-  }, []);
+const DetailHeader = ({ universityImage, departments }) => { 
 
   if (!departments) {
-    return null;
-  }
+    return null;  }
 
-  const {
-    department,
-    faculty,
-    content,
-    language,
-    university,
-    price,
-    scholarship,
-    data,
-  } = departments;  
-
-  const departmentName = university?.tr;
-
-  const departmentImage = Object.entries(universityImage).find(
-    ([universityName, imageUrl]) =>
-      universityName.trim().toLowerCase() ===
-      departmentName?.trim().toLowerCase()
-  )?.[1];
   return (
     <div className="bg-gradient-black-white">
       <Swiper
-        style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
-        }}
-        effect={"coverflow"}
-        spaceBetween={10}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={5}
-        loop={true}
-        coverflowEffect={{
-          rotate: 35,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
         }}
-        navigation={true}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
-        className="main-swiper"
+        pagination={{
+          clickable: true,
+        }}
+        loop={true}
+        style={{
+          padding: "6rem 0 2rem 0  ",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height:"50vh"
+        }}
+        modules={[Autoplay, Pagination]}
       >
-        {/* /**map yap  */}
-        {departmentImage ? (
-          <SwiperSlide className="data-swiper-slider">
-            <SlideshowLightbox>
-              {/* <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> */}
-              <img src={departmentImage} />
-            </SlideshowLightbox>
+        {universityImage.map((item, index) => (
+          <SwiperSlide
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height:"50vh"
+            }}
+          >
+            <div
+              key={index}
+              style={{
+                width: "100%",
+                height: "50vh",
+                backgroundImage: `url(${item})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                backgroundPosition: "center center",
+              }}
+            ></div>
           </SwiperSlide>
-        ) : (
-          dataImages.map((item) => (
-            <SwiperSlide className="data-swiper-slider">
-              <SlideshowLightbox>
-                <img src={item} />
-              </SlideshowLightbox>
-            </SwiperSlide>
-          ))
-        )}
+        ))}
+        {universityImage.length== 0 &&dataImages.map((item,index)=>(
+          <SwiperSlide
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <div
+              key={index}
+              style={{
+                width: "100%",
+                height: "50vh",
+                backgroundImage: `url(${item})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                backgroundPosition: "center center",
+              }}
+            ></div>
+          </SwiperSlide>
+
+        )) }
       </Swiper>
     </div>
   );
