@@ -32,10 +32,7 @@ const HomeContextProvider = ({ children }) => {
   const [like, setLike] = useState([]);
 
   const [compare, setCompare] = useState([]);
-  const [departmanImage, setDepartmanImage] = useState([])
-  
  
-  const navigate = useNavigate();
 
 
   const shuffleArray = (array) => {
