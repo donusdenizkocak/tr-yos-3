@@ -18,6 +18,7 @@ const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php
 
 
 
+
 const HomeContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   console.log(currentUser)
@@ -42,7 +43,7 @@ const HomeContextProvider = ({ children }) => {
   // const currentUserID = JSON.parse(sessionStorage.getItem("user")) || false;
   const [like, setLike] = useState([]);
   const [compare, setCompare] = useState([]);
-  const [aktifCompare, setAktifCompare] = useState(false)
+  const [departmanImage, setDepartmanImage] = useState([])
   
  
   const navigate = useNavigate();
@@ -85,6 +86,7 @@ const HomeContextProvider = ({ children }) => {
    deletCompare(id)
    };
 
+
   
 
   // ! ********* CITIES ************
@@ -121,7 +123,7 @@ const HomeContextProvider = ({ children }) => {
   // ! ********* ALL DEPARTMENTS  ************
   const getAllDepartments = async () => {
     try {
-      const { data } = await axios.get("https://tr-yös.com/api/v1/record/alldepartments.php?token=M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5");
+      const { data } = await axios.get(ALLDEPARTMENTS_API);
       // console.log(data);
       const shuffledData = shuffleArray(data);
       setAllDepartments(shuffledData);
@@ -176,6 +178,15 @@ const HomeContextProvider = ({ children }) => {
     }
   }
 console.log(like)
+
+ // ! ********* DEPARTMENT İMAGE ************
+
+// const getImage = async (id) =>{
+//   const DEPARTMAN_IMAGE =`https://tr-yös.com/api/v1/record/departmentimage.php?id=${id}&token=${API_KEY}`
+//   const {data} = await axios.get(DEPARTMAN_IMAGE)
+//   setDepartmanImage(data)
+//   console.log(data)
+//  }
 
   // ! ********* LİKE (BEĞENME) ************
 

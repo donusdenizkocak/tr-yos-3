@@ -12,6 +12,7 @@ import MyAccount from "../pages/MyAccount";
 import CompareDepartments from "../components/compareDepartments/CompareDepartments";
 import FavoriUni from "../pages/FavoriUni";
 import PrivateRouter from "./PrivateRouter";
+import NotFound from "../pages/NotFound";
 
 const AppRouter = () => {
   return (
@@ -29,6 +30,7 @@ const AppRouter = () => {
           <Route path="/compare" element={<CompareDepartments />} />
           <Route path="/favori" element={<FavoriUni />} />
         </Route>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
 
       <Action />
