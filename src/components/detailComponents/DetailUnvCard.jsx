@@ -9,7 +9,7 @@ const DetailUnvCard = ({ departments }) => {
   }
 
   const { department, city, university, data, id } = departments;
-  console.log(universities);
+ 
 
   const filteredLogo = universities
     .filter((item) => item.tr === university.tr)

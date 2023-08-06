@@ -14,16 +14,16 @@ const API_KEY =
 
 const Detail = () => {
   const [imagesData, setImagesData] = useState([]);
-  console.log(imagesData);
+  
   const { id } = useParams();
-  const { allDepartments, universities } = useContext(HomeContext);
+  const { allDepartments} = useContext(HomeContext);
   const [departmentDetails, setDepartmentDetails] = useState(null);
   useEffect(() => {
-    // Function to fetch department details by ID from allDepartments
+   
     const fetchDepartmentDetails = () => {
       const departments = allDepartments.find((dep) => dep.id === id);
       setDepartmentDetails(departments);
-      // console.log(departments)
+   
       getImg(id);
     };
 

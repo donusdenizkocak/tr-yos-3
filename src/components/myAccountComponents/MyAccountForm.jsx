@@ -29,7 +29,7 @@ const MyAccountForm = ({
   const getCountry = async () => {
     try {
       const { data } = await axios.get(COUNTRY_API);
-      // console.log(data)
+    
       setCountry(data);
     } catch (error) {}
   };
@@ -84,12 +84,9 @@ const MyAccountForm = ({
         }
       );
       toastSuccessNotify("Başarılı");
-      getUserData();
-      console.log(data);
+      getUserData();     
 
-      // setUserDetail(data);
-    } catch (error) {
-      console.error("Error:", error);
+    } catch (error) {     
       toastErrorNotify("Hata !!!");
     }
   };
