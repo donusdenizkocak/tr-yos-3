@@ -8,8 +8,7 @@ const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
 
 const Home = () => {
-  const [slider, setSlider] = useState([]);
-  console.log(slider);
+  const [slider, setSlider] = useState([]); 
   const getSliders = async () => {
     try {
       const { data } = await axios(

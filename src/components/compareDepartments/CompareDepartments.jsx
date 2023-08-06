@@ -4,9 +4,9 @@ import { HomeContext } from "../../context/HomeContext";
 import CompareDeprtCard from "./CompareDeprtCard";
 
 const CompareDepartments = () => {
-  const { compare, getCompare, userID, allDepartments, universities } =
+  const { compare, allDepartments, universities } =
     useContext(HomeContext);
-  console.log(compare);
+ 
   const filterCompare = allDepartments?.filter((item) =>
     compare?.includes(item.id)
   );

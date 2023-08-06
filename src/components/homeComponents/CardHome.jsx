@@ -18,7 +18,7 @@ const API_KEY =
 const CardHome = ({ city, faculty, university, department, code, id }) => {
   const [cardImages, setCardImages] = useState([]);
   const navigate = useNavigate();
-  console.log(cardImages);
+
 
   const { addLikes, removeLikes, like, userID, compare, handleCompare } =
     useContext(HomeContext);

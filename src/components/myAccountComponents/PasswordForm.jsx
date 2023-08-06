@@ -9,9 +9,8 @@ const API_KEY =
 
 const PasswordForm = ({ openPassword, setopenPassword }) => {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
-  const handleSubmit = async (info) => {
-    console.log(info);
+
+  const handleSubmit = async (info) => { 
     try {
       await axios.post(
         `/api/v1/users/changepassword2.php?user_id=${currentUser}&token=${API_KEY}`,
