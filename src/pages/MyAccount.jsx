@@ -3,37 +3,40 @@ import MyAccountForm from "../components/myAccountComponents/MyAccountForm";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { HomeContext } from "../context/HomeContext";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
+
+
+const API_KEY =
+  "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
+
 const MyAccount = () => {
-  const { userID } = useContext(HomeContext);
+  const { currentUser } = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
-  const API_KEY =
-    "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
+  const [updatedUser, setUpdatedUser] = useState([]);
+  const getUserData = async () => {
+    try {
+      const { data } = await axios(
+        `https://tr-yös.com/api/v1/users/user.php?id=${currentUser}&token=${API_KEY}`
+      );
+      setUserData(data);
+
+      setUpdatedUser({
+        name: data?.user?.name,
+        country: data?.user?.country,
+        city: data?.user?.city,
+        phone: data?.user?.phone,
+        about: data?.user?.about,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    // ----API isteğini yapacak fonksiyon------
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://tr-yös.com/api/v1/users/user.php?id=${userID}&token=${API_KEY}`
-        );
-        if (!response.ok) {
-          throw new Error("API request failed!");
-        }
-        const data = await response.json();
-        if (data.status === "success") {
-          setUserData(data);
-          console.log(data);
-          console.log(userData);
-        } else {
-          throw new Error("API request failed!");
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-    console.log(userData);
-    fetchData(); //---- API isteği
-  }, [userID, API_KEY]);
+    getUserData(); //---- API isteği
+  }, []);
+  // console.log(currentUser);
   return (
     <>
       <div
@@ -47,15 +50,18 @@ const MyAccount = () => {
       >
         <div className="h-full flex flex-col justify-end text-white mx-auto md:container pb-8">
           <h2 className=" font-bold text-[50px] ">My Account</h2>
-          <p className="text-sm font-medium"></p>
         </div>
       </div>
-      {userData && (
-        <div className="flex justify-center items-center gap-9 container mx-auto my-10">
-          <Profil userData={userData}  />
-          <MyAccountForm userData={userData} />
-        </div>
-      )}
+
+      <div className="flex justify-center items-center gap-9 container mx-auto my-10">
+        <Profil userData={userData} />
+        <MyAccountForm
+          updatedUser={updatedUser}
+          setUpdatedUser={setUpdatedUser}
+          userData={userData}
+          getUserData={getUserData}
+        />
+      </div>
     </>
   );
 };

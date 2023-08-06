@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import PasswordForm from "./PasswordForm";
 
 const Profil = ({ userData }) => {
+const [openPassword, setopenPassword] = useState(false)
   const { user } = userData;
   return (
+    <>
     <div
       className="flex flex-col justify-center items-center w-[350px] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] rounded-lg  gap-5 p-3
     "
@@ -26,7 +30,7 @@ const Profil = ({ userData }) => {
           className="hover:bg-[#017efa]  w-full p-5 border-2 bg-[#017efa1a] border-[#017efa] rounded-lg text-[#017efa] hover:text-white font-semibold transition-all ease-in  duration-200
         "
         >
-          +555555555555
+          {user?.phone || " 05** *** ** **"}
         </button>
         <button className="hover:bg-[#00BE82] bg-[#00be821f] w-full p-5 border-2  border-[#00BE82] rounded-lg text-[#017efa] hover:text-white font-semibold transition-all ease-in  duration-200">
           info@gmail.com
@@ -47,12 +51,16 @@ const Profil = ({ userData }) => {
             color: isActive && "text-white",
             background: isActive && "bg-[#017efa]",
           })}
+          onClick={()=>setopenPassword(true)}
           className="bg-[#f0f5fb] w-full p-5 text-[#144273] hover:bg-[#017efa] hover:text-white rounded-lg font-medium transition-all ease-in  duration-300"
         >
           Change Password
         </NavLink>
       </div>
+
     </div>
+    <PasswordForm setopenPassword={setopenPassword} openPassword={openPassword}/>
+    </>
   );
 };
 

@@ -1,29 +1,22 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { useContext } from "react";
+import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from "../helper/ToastNotify";
 
 export const HomeContext = createContext();
 
 const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
-
-// const FEATURED_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
 const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
 const UNIVERSITIES_API = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${API_KEY}`;
 const DEPARTMENTS_API = `https://tr-yös.com/api/v1/education/alldepartmentsname.php?token=${API_KEY}`;
 const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php?token=${API_KEY}`;
 
-
-
-
 const HomeContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser)
 
-//  const userID = currentUser ? currentUser?.userID : null;
+
   const [cities, setCities] = useState([]);
   const [universities, setUniversities] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -36,17 +29,14 @@ const HomeContextProvider = ({ children }) => {
   const [selectedDeps, setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
 
-
-  // const [userID, setUserID] = useState(
-  //   currentUser.userID || null)
-
-  // const currentUserID = JSON.parse(sessionStorage.getItem("user")) || false;
   const [like, setLike] = useState([]);
+
   const [compare, setCompare] = useState([]);
   const [departmanImage, setDepartmanImage] = useState([])
   
  
   const navigate = useNavigate();
+
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -55,6 +45,7 @@ const HomeContextProvider = ({ children }) => {
     }
     return array;
   };
+
   console.log(currentUser);
   useEffect(
     (id) => {
@@ -76,8 +67,7 @@ const HomeContextProvider = ({ children }) => {
       postCompare(id);
      
     }else{
-      // setCompare((compare) =>
-      // compare.filter((item) => item !== id) );
+   
       deletCompare(id)
     }     
   };
@@ -88,6 +78,7 @@ const HomeContextProvider = ({ children }) => {
 
 
   
+
 
   // ! ********* CITIES ************
   const getCities = async () => {
@@ -133,6 +124,7 @@ const HomeContextProvider = ({ children }) => {
   };
 
   //! *********** COMPARE (KARŞILAŞTIRMA) **************
+
   
 
   
@@ -145,17 +137,17 @@ const HomeContextProvider = ({ children }) => {
       );
     console.log(data)
      setCompare(data?.departments)
+
     } catch (error) {
       console.log(error);
     }
   };
-  const postCompare = async (id) => {  
+  const postCompare = async (id) => {
     try {
-      const COMPARE_POST= `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
-      const { data } = await axios.post(
-        `${COMPARE_POST}`
-      );
-      setCompare([...compare,id])
+
+      const COMPARE_POST = `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
+      const { data } = await axios.post(`${COMPARE_POST}`);
+      setCompare([...compare, id]);
       getCompare(currentUser);
       console.log(data);
     } catch (error) {
@@ -195,11 +187,12 @@ console.log(like)
       const { data } = await axios.post(
         `https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       );
-  
+      toastSuccessNotify("Favori ekleme Başarılı ");
+
       setLike([...like, id]);
       getLikes(currentUser);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify("Favori ekleme Hatalı !!! ");
     }
   };
 
@@ -217,108 +210,24 @@ console.log(like)
   const filteredLikes = allDepartments?.filter((item) =>
     like?.includes(item.id)
   );
-  // console.log(filteredLikes)
 
-  /*   Handle Like */
-  const handleLike = (id, currentUser) => {
-    addLikes(id, currentUser);
-  };
   const removeLikes = async (id) => {
     try {
       await axios.delete(
         `/api/v1/users/deletefavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       );
+      toastWarnNotify("Favori silme Başarılı");
       console.log("Successfully removed from favorites.");
       setLike((like) => like.filter((item) => item !== id));
     } catch (error) {
       console.log(error);
+      toastErrorNotify("Favori silme Hatalı !!!")
     }
   };
   // ! ********* MULTIINPUT ************
 
   const handleFirstInputChange = (selectedOptions) => {
-    // console.log(selectedOptions)
     const selectedIds = selectedOptions.map((option) => option.value);
-
-    //     // const selectedCities=selectedOptions.map((option) => option.label)
-    //     setSelectedCities(selectedOptions)
-    //     setSelectedIds(selectedIds);
-
-    //     // console.log(selectedIds)
-
-    //   }
-    //   // console.log(selectedCities)
-
-    //   const city= cities?.map((city) => ({ value: city.id, label: city.tr }))
-
-    //      const handleSecondInputChange = (selectedOptions2) => {
-    //       const selectedSecondIds= selectedOptions2.map((option) => option.label);
-
-    //       // console.log(selectedOptions2)
-    //       setSelectedSecondIds(selectedSecondIds);
-    //       setSelectedUnies(selectedOptions2)
-
-    //     };
-    //      const handleThirdInputChange = (selectedOptions3) => {
-    //       const selectedThirdIds= selectedOptions3.map((option) => option.label);
-    //       // const selectedDeps= selectedOptions3.map((option) => ({label:option.department.tr,value:option.department.code}));
-    //       // console.log(selectedOptions3)
-    //       setSelectedThirdIds(selectedThirdIds);
-    //       setSelectedDeps(selectedOptions3)
-
-    //     };
-
-    //     // console.log(selectedDeps)
-    //     // console.log(selectedThirdIds)
-    //     const filteredUniList=selectedIds.length ?
-    //  universities?.filter((item) => selectedIds.includes(item.city)).map((item)=>({...item,
-    //   value:item.code,
-    //   label:item.tr
-    // })) :
-    // universities?.map((item) => ({
-    //   ...item,
-    //   value: item.code,
-    //   label: item.tr,
-    // }));
-    // // const UniversityImages = universities.map((item) => item.images);
-
-    // // const allImages = UniversityImages.flat();
-
-    // // for (const image of allImages) {
-
-    // //   console.log(image);
-    // // }
-    // const getCompare = async(id) =>{
-    //   try {
-    //     const {data} = await axios.get( `${COMPARE_GET_API}&id=${id}&token=${API_KEY}`)
-    //     setCompare(data.departments)
-    //     console.log(compare)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
-
-    // const postCompare = async (id) =>{
-    //   try {
-    //    const {data}= await axios.post(`${COMPARE_ADD_API}id=${id}&user_id=${userID}&token=${API_KEY}`);
-    //    console.log(id)
-    //    setCompare(data)
-    //    console.log(compare)
-    //    getCompare(id)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
-
-    // const filteredAllUniList =selectedSecondIds.length ?
-    //  allDepartments?.filter((item) => selectedSecondIds.includes(item.university.tr)).map((item)=>({...item,label:item.department.tr,value:item.department.code})):
-
-    // allDepartments.map((item)=>({...item,label:item.department.tr,value:item.department.code}))
-
-    // const filteredDepartments= filteredAllUniList?.filter((item)=>selectedThirdIds?.includes(item.label))
-
-    // const values = {
-
     setSelectedCities(selectedOptions);
     setSelectedIds(selectedIds);
   };
@@ -374,13 +283,11 @@ console.log(like)
     setUniversities,
     departments,
     setAllDepartments,
-
     allDepartments,
     selectedIds,
     selectedCities,
     selectedUnies,
     selectedDeps,
-
     selectedSecondIds,
     handleFirstInputChange,
     handleSecondInputChange,
@@ -389,7 +296,6 @@ console.log(like)
     filteredAllUniList,
     selectedItems,
     setSelectedItems,
-
     filteredDepartments,
     postCompare,
     getCompare,
@@ -402,9 +308,9 @@ console.log(like)
     filteredLikes,
     like,
 
-  
-    currentUser,
+    getLikes,
 
+    currentUser,
   };
   return <HomeContext.Provider value={values}>{children}</HomeContext.Provider>;
 };

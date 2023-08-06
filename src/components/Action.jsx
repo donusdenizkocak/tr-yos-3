@@ -1,21 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
-
-//***********************! */ HATALI  BURASI ( SADECE POST ATILMADI 404 hata alınıyor) ************************
-
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
 const API_ADDEMAİL = `https://tr-yös.com/api/v1/record/addemail.php?token=${API_KEY}`;
 
 const Action = () => {
-  const [emailPost, setEmailPost] = useState(""); 
+  const [emailPost, setEmailPost] = useState("");
 
   const handleSumbit = (e) => {
     e.preventDefault();
     postEmailAdd(emailPost);
   };
-
-  // console.log(emailPost)
 
   const postEmailAdd = async (info) => {
     const formData = new FormData();
@@ -26,9 +22,12 @@ const Action = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      toastSuccessNotify("Emailiniz iletildi");
+      
     } catch (error) {
-      console.log(error.message);
+      toastErrorNotify("Hata");
     }
+    setEmailPost("")
   };
 
   return (
@@ -53,7 +52,7 @@ const Action = () => {
               id="email"
               className="rounded-full relative m-0 -mr-0.5 mx-5 block w-[1px] min-w-0 flex-auto border-solid border-neutral-300 bg-transparent bg-white bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none "
               placeholder="Enter Your email"
-              value={emailPost || ""}            
+              value={emailPost || ""}
               onChange={(e) => setEmailPost(e.target.value)}
             />
 
