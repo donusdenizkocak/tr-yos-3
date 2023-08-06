@@ -134,7 +134,7 @@ const HomeContextProvider = ({ children }) => {
   };
 
   const deletCompare = async (id) => {
-    console.log(id);
+  
     try {
       const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
       await axios.get(`${DELETE_APİ}`);
@@ -145,7 +145,6 @@ const HomeContextProvider = ({ children }) => {
       toastErrorNotify("Hata !!! ");
     }
   };
-  console.log(like);
 
   // ! ********* LİKE (BEĞENME) ************
 
@@ -182,8 +181,7 @@ const HomeContextProvider = ({ children }) => {
       await axios.delete(
         `/api/v1/users/deletefavorite.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`
       );
-      toastWarnNotify("Favori silme Başarılı");
-      console.log("Successfully removed from favorites.");
+      toastWarnNotify("Favori silme Başarılı");  
       setLike((like) => like.filter((item) => item !== id));
     } catch (error) {
       console.log(error);
