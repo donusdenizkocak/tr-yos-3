@@ -9,7 +9,6 @@ import {
 } from "../helper/ToastNotify";
 
 export const HomeContext = createContext();
-
 const API_KEY =
   "M5IJfY8iFQ/OpURXwOpQVTzUq8affdseVfOthIPmI4s6fxBUPqNYQ4g7UvukkqAf9WcQtdaBdYqtgpXNe5ce37d90ccf67cb521e26eb392c23f5";
 const CITIES_API = `https://tr-yös.com/api/v1/location/allcities.php?token=${API_KEY}`;
@@ -19,7 +18,6 @@ const ALLDEPARTMENTS_API = `https://tr-yös.com/api/v1/record/alldepartments.php
 
 const HomeContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
-
   const [cities, setCities] = useState([]);
   const [universities, setUniversities] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -31,9 +29,7 @@ const HomeContextProvider = ({ children }) => {
   const [selectedThirdIds, setSelectedThirdIds] = useState([]);
   const [selectedDeps, setSelectedDeps] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-
   const [like, setLike] = useState([]);
-
   const [compare, setCompare] = useState([]);
 
   const shuffleArray = (array) => {
@@ -44,8 +40,8 @@ const HomeContextProvider = ({ children }) => {
     return array;
   };
 
-  console.log(currentUser);
-  useEffect((id) => {
+
+  useEffect(() => {
     getCities();
     getUniversities();
     getDepartments();
@@ -76,7 +72,7 @@ const HomeContextProvider = ({ children }) => {
   const getCities = async () => {
     try {
       const { data } = await axios.get(CITIES_API);
-  
+
       setCities(data);
     } catch (error) {
       console.log(error);
@@ -96,7 +92,6 @@ const HomeContextProvider = ({ children }) => {
   const getDepartments = async () => {
     try {
       const { data } = await axios.get(DEPARTMENTS_API);
-      // console.log(data);
       setDepartments(data);
     } catch (error) {
       console.log(error);
@@ -107,7 +102,6 @@ const HomeContextProvider = ({ children }) => {
   const getAllDepartments = async () => {
     try {
       const { data } = await axios.get(ALLDEPARTMENTS_API);
-      // console.log(data);
       const shuffledData = shuffleArray(data);
       setAllDepartments(shuffledData);
     } catch (error) {
@@ -121,7 +115,7 @@ const HomeContextProvider = ({ children }) => {
     try {
       const COMPARE_GET = `https://tr-yös.com/api/v1/users/allcompares.php?user_id=${currentUser}&token=${API_KEY}`;
       const { data } = await axios.get(`${COMPARE_GET}`);
-      console.log(data);
+
       setCompare(data?.departments);
     } catch (error) {
       console.log(error);
@@ -133,9 +127,9 @@ const HomeContextProvider = ({ children }) => {
       const { data } = await axios.post(`${COMPARE_POST}`);
       setCompare([...compare, id]);
       getCompare(currentUser);
-      console.log(data);
+      toastSuccessNotify("Karşılaştırma eklendi ");
     } catch (error) {
-      console.log(error);
+      toastErrorNotify("Hata !!! ");
     }
   };
 
@@ -145,20 +139,13 @@ const HomeContextProvider = ({ children }) => {
       const DELETE_APİ = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${currentUser}&token=${API_KEY}`;
       await axios.get(`${DELETE_APİ}`);
       setCompare((compare) => compare.filter((item) => item !== id));
+      toastWarnNotify("Karşılaştırma silindi ");
     } catch (error) {
       console.log(error);
+      toastErrorNotify("Hata !!! ");
     }
   };
   console.log(like);
-
-  // ! ********* DEPARTMENT İMAGE ************
-
-  // const getImage = async (id) =>{
-  //   const DEPARTMAN_IMAGE =`https://tr-yös.com/api/v1/record/departmentimage.php?id=${id}&token=${API_KEY}`
-  //   const {data} = await axios.get(DEPARTMAN_IMAGE)
-  //   setDepartmanImage(data)
-  //   console.log(data)
-  //  }
 
   // ! ********* LİKE (BEĞENME) ************
 
@@ -180,8 +167,7 @@ const HomeContextProvider = ({ children }) => {
     try {
       const { data } = await axios.get(
         `https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${currentUser}&token=${API_KEY}`
-      );
-      // console.log(data.departments);
+      );     
       setLike(data.departments);
     } catch (error) {
       console.log(error);
